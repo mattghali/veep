@@ -121,31 +121,6 @@ class Role(object):
         return str(self)
 
 
-def policy(**kwargs):
-    """Return a string usable as a generic IAM policy document"""
-    _policy = {}
-    _policy['Version'] = kwargs.get('version', '2008-10-17')
-    _policy['Id'] = kwargs.get('id', str(uuid.uuid4()))
-
-    _statement = {}
-    _statement['Sid'] = kwargs.get('sid', _policy['Id'])
-    _statement['Effect'] = kwargs.get('effect', 'Allow')
-    _statement['Action'] = kwargs.get('action', None)
-    _statement['Resource'] = kwargs.get('resource', None)
-
-    cond_chk = kwargs.get('cond_chk', None)
-    cond_val = kwargs.get('cond_val', None)
-    cond_name = kwargs.get('cond_name', None)
-    _statement.update({'Condition': { cond_chk: { cond_name: cond_val }}})
-    
-    ptype = kwargs.get('ptype', 'AWS')
-    pid = kwargs.get('pid', '*')
-    _statement.update({'Principal': { ptype: pid }})
-    _policy.update(_statement)
-
-    return json.dumps(_policy, indent=4)
-
-
 def get_certificates(conn):
     ret = conn.list_server_certs()
     for i in ret['list_server_certificates_response']['list_server_certificates_result']['server_certificate_metadata_list']:
@@ -197,38 +172,6 @@ def get_role(conn, **kwargs):
 
     p = r['get_role_response']['get_role_result']['role']
     return Role(conn, **p)
-
-
-
-def policy(**kwargs):
-    """Return a string usable as a generic IAM policy document"""
-    _policy = {}
-    _policy['Version'] = kwargs.get('version', '2008-10-17')
-    _policy['Id'] = kwargs.get('id', str(uuid.uuid4()))
-
-    _statement = {}
-    _statement['Sid'] = kwargs.get('sid', _policy['Id'])
-    _statement['Effect'] = kwargs.get('effect', 'Allow')
-    _statement['Action'] = kwargs.get('action', None)
-    _statement['Resource'] = kwargs.get('resource', None)
-
-    cond_chk = kwargs.get('cond_chk', None)
-    cond_val = kwargs.get('cond_val', None)
-    cond_name = kwargs.get('cond_name', None)
-    _statement.update({'Condition': { cond_chk: { cond_name: cond_val }}})
-    
-    ptype = kwargs.get('ptype', 'AWS')
-    pid = kwargs.get('pid', '*')
-    _statement.update({'Principal': { ptype: pid }})
-    _policy.update(_statement)
-
-    return json.dumps(_policy, indent=4)
-
-
-def get_certificates(conn):
-    ret = conn.list_server_certs()
-    for i in ret['list_server_certificates_response']['list_server_certificates_result']['server_certificate_metadata_list']:
-        yield Certificate(**i)
 
 
 def connect(region='us-west-2'):
