@@ -54,7 +54,8 @@ class Condition(dict):
 
 
 class Certificate(object):
-    def __init__(self, **kwargs):
+    def __init__(self, conn, **kwargs):
+        self.conn = conn
         self.upload_date = kwargs.get('upload_date', None)
         self.server_certificate_id = kwargs.get('server_certificate_id', None)
         self.server_certificate_name = kwargs.get('server_certificate_name', None)
@@ -72,6 +73,12 @@ class Certificate(object):
 
     def __repr__(self):
         return str(self)
+
+    def delete(self):
+        return self.conn.delete_server_cert(self.name)
+
+    def update(self, name=self.name, path=self.path):
+        return self.conn.update_server_cert(self.name, new_cert_name=name, new_path=path)
 
 
 class Profile(object):
@@ -124,7 +131,7 @@ class Role(object):
 def get_certificates(conn):
     ret = conn.list_server_certs()
     for i in ret['list_server_certificates_response']['list_server_certificates_result']['server_certificate_metadata_list']:
-        yield Certificate(**i)
+        yield Certificate(conn, **i)
 
 
 def create_profile(conn, **kwargs):
