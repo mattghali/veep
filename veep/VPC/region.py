@@ -132,12 +132,11 @@ class Region(boto.vpc.RegionInfo):
 
     def create_vpc(self, **kwargs):
         env = kwargs.get('env', False)
-        region = kwargs.get('region', False)
         cidr_block = kwargs.get('cidr_block', False)
         self.debug = kwargs.get('debug', False)
         name = region.name + '-' + env
 
-        if env is False or region is False or cidr_block is False:
+        if env is False or cidr_block is False:
             raise RuntimeError, "missing required parameters"
 
         v = self.conn.create_vpc(cidr_block, dry_run=self.debug)

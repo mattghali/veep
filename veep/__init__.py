@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 
-import netaddr, unittest
 from VPC import Config
 import IAM, SNS, VPC
 

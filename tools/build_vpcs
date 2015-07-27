@@ -1,0 +1,119 @@
+#!/usr/bin/env python
+
+# Script used to create new per-region vpcs.
+
+import netaddr, sys, time
+from veep import Config, IAM, SNS, VPC
+import json, boto.sns, boto.sqs
+
+
+# netblock to allocate VPC space from
+master_netblock = netaddr.IPNetwork('10.0.0.0/8')
+
+# subnet length to allocate per-region
+region_block = 14
+
+# environments to create a vpc for in each region
+env_list = [ 'dev', 'prod' ]
+
+# subnet length to allocate per-vpc (need space for all environments)
+vpc_block = 16
+
+# tiers to create in each vpc
+tier_list = [ 'frontend', 'application', 'private', 'mgmt' ]
+
+# subnet length to allocate to each tier
+tier_block = 18
+
+# subnet size for each az in a tier
+az_block = 21
+
+
+if __name__ == '__main__':
+
+    region_subnets = list(master_netblock.subnet(region_block))
+    regions = VPC.get_regions()
+    
+    for region in regions:
+        region.cidr_block = region_subnets[regions.index(region)]
+        vpc_subnets = list(region.cidr_block.subnet(vpc_block))
+
+        for vpc_env in env_list:
+            vpc_netblock = vpc_subnets[env_list.index(vpc_env)]
+            existing_vpcs =  region.find_vpcs(env=vpc_env) 
+            if len(existing_vpcs) == 0:
+                vpc = region.create_vpc(env=vpc_env, cidr_block=vpc_netblock)
+            else:
+                vpc = existing_vpcs[0]
+    
+            tier_subnets = list(vpc_netblock.subnet(tier_block))
+
+            for t in tier_list:
+                if t not in [tier.name for tier in vpc.get_tiers()]:
+                    tier = vpc.add_tier(t, tier_subnets[tier_list.index(t)], subnet_size=az_block)
+                    print "create tier", tier_subnets[tier_list.index(t)], az_block
+
+            tables = region.conn.get_all_route_tables(filters=[('vpc_id', vpc.id)])
+            table_names = [table.tags.get('Name') for table in tables]
+
+            for table in tables:
+                if table.tags.get('Name') == 'Public':
+                    for tier in vpc.get_tiers():
+                        if tier.name == 'frontend':
+                            for subnet in tier.subnets:
+                                region.conn.associate_route_table(table.id, subnet.id)
+
+            for tablename in ['NAT', 'Local']:
+                if tablename not in table_names:
+                    table = region.conn.create_route_table(vpc.id)
+                    time.sleep(1)
+                    table.add_tag('Name', tablename)
+                    if tablename == 'NAT':
+                        for tier in vpc.get_tiers():
+                            if tier.name in ['application', 'mgmt']:
+                                for subnet in tier.subnets:
+                                    region.conn.associate_route_table(table.id, subnet.id)
+                    if tablename == 'Local':
+                        for tier in vpc.get_tiers():
+                            if tier.name == 'private':
+                                for subnet in tier.subnets:
+                                    region.conn.associate_route_table(table.id, subnet.id)
+
+
+            # Create SNS topics, SQS Queue, subscribe to topics
+            snsconn = SNS.connect(region_name)
+            sqsconn = boto.sqs.connect_to_region(region_name)
+
+            as_res_name = vpc.get_name() + '-autoscaling'
+
+            asgtopic = SNS.get_topic(snsconn, as_res_name)
+            if not asgtopic:
+                asgtopic = SNS.create_topic(snsconn, as_res_name)
+
+            queues = sqsconn.get_all_queues(prefix=vpc.get_name())
+            asgqueue = False
+            for queue in queues:
+                if queue.name == as_res_name: asgqueue = queue
+
+            if not asgqueue:
+                asgqueue = sqsconn.create_queue(as_res_name)
+
+                condition = IAM.Condition('ArnEquals', 'aws:SourceArn', str(asgtopic.arn))
+                statement = IAM.Statement(principal=IAM.P_any(), actions='SQS:SendMessage',
+                                      resources=asgqueue.arn, conditions=condition)
+                policy = IAM.Policy(statements=statement)
+                asgqueue.set_attribute('Policy', policy)
+
+            endpoints = [('sqs', asgqueue.arn),
+                         ('https', Config.endpoints['datadog']),
+                         ('https', Config.endpoints['sumologic'])]
+
+            subs = asgtopic.get_subscriptions()
+            for sub in subs:
+                (proto, endpoint) = (sub['Protocol'], sub['Endpoint'])
+                if (proto, endpoint) in endpoints:
+                    endpoints.remove((proto, endpoint))
+
+            for sub in endpoints:
+                asgtopic.subscribe(sub)
+
