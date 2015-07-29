@@ -43,7 +43,7 @@ class Vpc(boto.vpc.vpc.VPC):
             tier = Tier(name=t_name, cidr_block=netaddr.IPNetwork(cidr_block))
             tiers.append(tier)
 
-        subnets = self.region.conn.get_all_subnets(filters=[('vpcId', self.id)])
+        subnets = self.connection.get_all_subnets(filters=[('vpcId', self.id)])
         for subnet in subnets:
             cidr = netaddr.IPNetwork(subnet.cidr_block)
             for tier in tiers:
@@ -60,14 +60,14 @@ class Vpc(boto.vpc.vpc.VPC):
         try:
             while vpc.update() != 'available':
                 time.sleep(1)
-        except self.region.conn.ResponseError as e:
+        except self.connection.ResponseError as e:
             self._wait(vpc)
 
     def wait(self, obj):
         try:
             while obj.state != 'available':
                 time.sleep(1)
-        except self.region.conn.ResponseError as e:
+        except self.connection.ResponseError as e:
             self.wait(obj)
 
     def encode_tag(self, values):
@@ -114,10 +114,10 @@ class Vpc(boto.vpc.vpc.VPC):
         return tier
 
     def add_subnet(self, name, zone, cidr_block):
-        subnet = self.region.conn.create_subnet(self.id, str(cidr_block), availability_zone=zone)
+        subnet = self.connection.create_subnet(self.id, str(cidr_block), availability_zone=zone)
         # subnet isnt avail immediately, state nevr updates
         while subnet.state == 'pending':
-            subnets = self.region.conn.get_all_subnets(filters={'vpcId': self.id})
+            subnets = self.connection.get_all_subnets(filters={'vpcId': self.id})
             for i in subnets:
                 if i.id == subnet.id:
                     subnet.state = i.state
@@ -133,7 +133,7 @@ class Vpc(boto.vpc.vpc.VPC):
         return True
 
     def delete_subnet(self, subnet):
-        self.region.conn.delete_subnet(subnet.id)
+        self.connection.delete_subnet(subnet.id)
         return True
         
     def rename_tier(self, old, new):
@@ -171,7 +171,7 @@ class Vpc(boto.vpc.vpc.VPC):
         ids = kwargs.get('ids', [])
         filters = kwargs.get('filters', {})
         filters.update({'vpc_id': self.id})
-        groups = self.region.conn.get_all_security_groups(group_ids=ids, filters=filters)
+        groups = self.connection.get_all_security_groups(group_ids=ids, filters=filters)
         if names:
             groups = [ g for g in groups if g.name in names ]
         return groups
@@ -182,7 +182,7 @@ class Vpc(boto.vpc.vpc.VPC):
         description = kwargs.get('description', None)
         rules = kwargs.get('rules', [])
         if name:
-            group = self.region.conn.create_security_group(name, description, vpc_id=self.id)
+            group = self.connection.create_security_group(name, description, vpc_id=self.id)
             for rule in rules:
                 for grant in rule.grants:
                     group.authorize(ip_protocol=rule.ip_protocol, from_port=rule.from_port,
@@ -198,7 +198,7 @@ class Vpc(boto.vpc.vpc.VPC):
         filters = {'vpc_id': self.id}
 
         if id:
-            groups = self.region.conn.get_all_security_groups(group_ids=[id], filters=filters)
+            groups = self.connection.get_all_security_groups(group_ids=[id], filters=filters)
             group = groups[0] if groups else None
 
         for rule in authorize:
@@ -209,13 +209,13 @@ class Vpc(boto.vpc.vpc.VPC):
             if rule.grants[0].group_id:
                 # grant by group id
                 for grant in rule.grants:
-                    self.region.conn.authorize_security_group(group_id=group.id, 
+                    self.connection.authorize_security_group(group_id=group.id, 
                         ip_protocol=rule.ip_protocol, from_port=rule.from_port,
                         to_port=rule.to_port, src_security_group_group_id=grant.group_id)
             else:
                 # grant by cidr_ip
                 for grant in rule.grants:
-                    self.region.conn.authorize_security_group(group_id=group.id, 
+                    self.connection.authorize_security_group(group_id=group.id, 
                         ip_protocol=rule.ip_protocol, from_port=rule.from_port,
                         to_port=rule.to_port, cidr_ip=grant.cidr_ip)
 
@@ -223,13 +223,13 @@ class Vpc(boto.vpc.vpc.VPC):
             if rule.grants[0].group_id:
                 # grant by group id
                 for grant in rule.grants:
-                    self.region.conn.revoke_security_group(group_id=group.id, 
+                    self.connection.revoke_security_group(group_id=group.id, 
                         ip_protocol=rule.ip_protocol, from_port=rule.from_port,
                         to_port=rule.to_port, src_security_group_group_id=grant.group_id)
             else:
                 # grant by cidr_ip
                 for grant in rule.grants:
-                    self.region.conn.revoke_security_group(group_id=group.id, 
+                    self.connection.revoke_security_group(group_id=group.id, 
                         ip_protocol=rule.ip_protocol, from_port=rule.from_port,
                         to_port=rule.to_port, cidr_ip=grant.cidr_ip)
 
@@ -239,14 +239,14 @@ class Vpc(boto.vpc.vpc.VPC):
         """Delete a security group associated with this VPC"""
         id = kwargs.get('id', None)
         if id:
-            self.region.conn.delete_security_group(group_id=id)
+            self.connection.delete_security_group(group_id=id)
             return True
 
     def get_tables(self):
-        return self.region.conn.get_all_route_tables(filters=[('vpc_id', self.id)])
+        return self.connection.get_all_route_tables(filters=[('vpc_id', self.id)])
 
     def get_igw(self):
-        igws = self.region.conn.get_all_internet_gateways(filters={'attachment.vpc-id': self.id})
+        igws = self.connection.get_all_internet_gateways(filters={'attachment.vpc-id': self.id})
         if len(igws) > 0:
             return igws[0]
         else:
@@ -254,8 +254,8 @@ class Vpc(boto.vpc.vpc.VPC):
 
     def add_igw(self):
         if not self.get_igw():
-            igw = self.region.conn.create_internet_gateway()
-            self.region.conn.attach_internet_gateway(igw.id, self.id)
+            igw = self.connection.create_internet_gateway()
+            self.connection.attach_internet_gateway(igw.id, self.id)
             igw.add_tag('Name', self.get_name())
             return igw
         return False
