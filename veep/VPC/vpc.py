@@ -1,4 +1,4 @@
-import boto.ec2, boto.vpc, collections, netaddr, time
+import boto.ec2, boto.vpc, netaddr, time
 import Config
 from tier import Tier
 

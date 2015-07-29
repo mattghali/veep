@@ -1,5 +1,4 @@
 import boto.ec2, boto.ec2.autoscale, boto.ec2.elb, boto.regioninfo, boto.vpc, datetime, time
-from collections import OrderedDict
 import Config
 from vpc import Vpc
 
