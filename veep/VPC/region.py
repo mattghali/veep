@@ -134,7 +134,7 @@ class Region(boto.vpc.RegionInfo):
         env = kwargs.get('env', False)
         cidr_block = kwargs.get('cidr_block', False)
         self.debug = kwargs.get('debug', False)
-        name = region.name + '-' + env
+        name = self.name + '-' + env
 
         if env is False or cidr_block is False:
             raise RuntimeError, "missing required parameters"
@@ -146,38 +146,22 @@ class Region(boto.vpc.RegionInfo):
             v.add_tag('Environment', env)
             v.add_tag('Netblock', cidr_block)
         
-            igw = self.add_igw(v, name)
-            tables = self.conn.get_all_route_tables(filters=[('vpc_id', v.id)])
+            vpc = self.find_vpcs(id=v.id)[0]
+
+            igw = vpc.add_igw()
+            tables = vpc.get_tables()
             pub_table = tables[0]
             pub_table.add_tag('Name', 'Public')
             self.conn.create_route(pub_table.id, '0.0.0.0/0', gateway_id=igw.id)
 
-            return self.find_vpcs(id=v.id)[0]
+            return vpc
         return None
-
-    def get_tables(self, vpc):
-        return self.conn.get_all_route_tables(filters=[('vpc_id', vpc.id)])
-
-    def get_igw(self, vpc):
-        igws = self.conn.get_all_internet_gateways(filters={'attachment.vpc-id': vpc.id})
-        if len(igws) > 0:
-            return igws[0]
-        else:
-            return None
-
-    def add_igw(self, vpc, name):
-        if not self.get_igw(vpc):
-            igw = self.conn.create_internet_gateway()
-            self.conn.attach_internet_gateway(igw.id, vpc.id)
-            igw.add_tag('Name', name)
-            return igw
-        return False
 
     def delete_vpc(self, vpc):
         subnets = self.conn.get_all_subnets(filters=[('vpcId', vpc.id)])
         for subnet in subnets:
             vpc.delete_subnet(subnet)
-        igw = self.get_igw(vpc)
+        igw = vpc.get_igw()
         if igw:
             self.conn.detach_internet_gateway(igw.id, vpc.id)
             self.conn.delete_internet_gateway(igw.id)

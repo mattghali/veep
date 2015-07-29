@@ -242,4 +242,20 @@ class Vpc(boto.vpc.vpc.VPC):
             self.region.conn.delete_security_group(group_id=id)
             return True
 
+    def get_tables(self):
+        return self.region.conn.get_all_route_tables(filters=[('vpc_id', self.id)])
 
+    def get_igw(self):
+        igws = self.region.conn.get_all_internet_gateways(filters={'attachment.vpc-id': self.id})
+        if len(igws) > 0:
+            return igws[0]
+        else:
+            return None
+
+    def add_igw(self):
+        if not self.get_igw():
+            igw = self.region.conn.create_internet_gateway()
+            self.region.conn.attach_internet_gateway(igw.id, self.id)
+            igw.add_tag('Name', self.get_name())
+            return igw
+        return False
