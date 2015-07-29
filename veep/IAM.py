@@ -4,16 +4,37 @@ import boto.iam, datetime, json, uuid
 
 
 class P_any(str):
+    """Instances of this object are used to define Principals in a Statement.
+    This object takes no arguments at constuction and creates the special
+    Principal type of `*` (any).
+
+    Args: None.
+    """
     def __new__(cls):
         return str.__new__(cls, '*')
 
 class P_aws(dict):
+    """Instances of this object are used to define Principals in a Statement.
+    This object takes an arn argument at construction and creates a Principal
+    type of "AWS": <arn>.
+
+    Args:
+        param1  (str or list) One or more ARNs.
+    """
     def __init__(self, args):
         if type(args) == list or type(args) == tuple: self.update({'AWS': args})
         if type(args) == str: self.update({'AWS': [args]})
 
 
 class Policy(dict):
+    """Contains one or more Statement objects and returns an object
+    suitable for passing as a policy to IAM api calls.
+
+    **kwargs:
+        id (str): Policy ID (optional)
+        version (str): Policy version (optional)
+        statements (list): one or more Statement instances
+    """
     def __init__(self, **kwargs):
         self.update({ 'Id': kwargs.get('id', str(uuid.uuid4())),
                       'Version': kwargs.get('version', '2012-10-17')})
@@ -31,6 +52,15 @@ class Policy(dict):
 
 
 class Statement(dict):
+    """Container assembling principals, condtions, actions and resources.
+
+    **kwargs:
+        sid (str): Statement ID (optional)
+        effect (str): Effect- Allow/Deny (optional)
+        principal (str): instance of Principal object (optional)
+        actions (list): one or more actions
+        resources (list): one or more resource ARNs
+    """
     def __init__(self, **kwargs):
         self.update({ 'Sid': kwargs.get('sid', str(uuid.uuid4())),
                       'Effect': kwargs.get('effect', 'Allow'),
@@ -49,11 +79,21 @@ class Statement(dict):
 
 
 class Condition(dict):
+    """Instance defines a condition applied to a Statement.
+
+    Args:
+        cond_test (str): An IAM condition.
+        val_type (str): Key for value from request
+        val_data (str): Value for comparison
+    """
     def __init__(self, cond_test, val_type, val_data):
         self.update({cond_test: { val_type: val_data }})
 
 
 class Certificate(object):
+    """Object returned by get_certificates(), with expiration date
+    converted into a datetime.datetime() object.
+    """
     def __init__(self, conn, **kwargs):
         self.conn = conn
         self.upload_date = kwargs.get('upload_date', None)
@@ -75,13 +115,25 @@ class Certificate(object):
         return str(self)
 
     def delete(self):
+        """Deletes the certificate from the IAM cert store."""
         return self.conn.delete_server_cert(self.name)
 
-    def update(self, name=self.name, path=self.path):
+    def update(self, **kwargs):
+        """Updates the name and/or path attribute of an existing certificate.
+
+        **kwargs:
+            name (str): New name for certificate. (optional)
+            path (str): New path for certificate. (optional)
+        """
+        name = kwargs.get('name', self.name)
+        path = kwargs.get('path', self.path)
         return self.conn.update_server_cert(self.name, new_cert_name=name, new_path=path)
 
 
 class Profile(object):
+    """Object returned by create_profile() and get_profile(), with creation
+    date converted into a datetime.datetime() object.
+    """
     def __init__(self, conn, **kwargs):
         self.conn = conn
         self.instance_profile_name = kwargs.get('instance_profile_name', None)
@@ -103,10 +155,18 @@ class Profile(object):
         return str(self)
 
     def add_role(self, role):
+        """Add a Role to this Profile. 
+
+        Args:
+            role (Role): Instance of Role object to attach to profile.
+        """
         self.conn.add_role_to_instance_profile(self.name, role.name)
         
 
 class Role(object):
+    """Object returned by create_role() and get_role(), with creation
+    date converted into a datetime.datetime() object.
+    """
     def __init__(self, conn, **kwargs):
         self.conn = conn
         self.role_name = kwargs.get('role_name', None)
@@ -129,12 +189,33 @@ class Role(object):
 
 
 def get_certificates(conn):
+    """Yields a list of server certificates stored in the account as
+    Certificate object instances.
+
+    Args:
+        conn (boto.iam.connection): an IAM connection instance
+
+    Returns:
+        iterator of Certificate instances.
+    """
     ret = conn.list_server_certs()
     for i in ret['list_server_certificates_response']['list_server_certificates_result']['server_certificate_metadata_list']:
         yield Certificate(conn, **i)
 
 
 def create_profile(conn, **kwargs):
+    """Create an instance profile.
+
+    Args:
+        conn (boto.iam.connection): an IAM connection instance
+
+    **kwargs:
+        name (str): Name of profile to create.
+        path (str): Optional path for profile.
+
+    Returns:
+        instance of Profile
+    """
     name = kwargs.get('name', None)
     path = kwargs.get('path', '/instance/')
 
@@ -144,6 +225,17 @@ def create_profile(conn, **kwargs):
 
 
 def get_profile(conn, **kwargs):
+    """Find an instance profile by name.
+
+    Args:
+        conn (boto.iam.connection): an IAM connection instance
+
+    **kwargs:
+        name (str): Name of profile to select.
+
+    Returns:
+        instance of Profile
+    """
     name = kwargs.get('name', None)
 
     try:
@@ -158,6 +250,18 @@ def get_profile(conn, **kwargs):
 
 
 def create_role(conn, **kwargs):
+    """Create a role.
+
+    Args:
+        conn (boto.iam.connection): an IAM connection instance
+
+    **kwargs:
+        name (str): Name of role to create.
+        path (str): Optional path for role.
+
+    Returns:
+        instance of Role
+    """
     name = kwargs.get('name', None)
     path = kwargs.get('path', '/instance/')
     assume_role_policy_document = kwargs.get('assume_role_policy_document', None)
@@ -168,6 +272,17 @@ def create_role(conn, **kwargs):
 
 
 def get_role(conn, **kwargs):
+    """Find role by name.
+
+    Args:
+        conn (boto.iam.connection): an IAM connection instance
+
+    **kwargs:
+        name (str): Name of role to select.
+
+    Returns:
+        instance of Role
+    """
     name = kwargs.get('name', None)
 
     try:
@@ -182,5 +297,13 @@ def get_role(conn, **kwargs):
 
 
 def connect(region='us-west-2'):
+    """Create IAM connection object
+
+    Args:
+        region (str): Name of region to connect to (optional)
+
+    Returns:
+        instance of boto.iam.connection
+    """
     return boto.iam.connect_to_region(region)
 
