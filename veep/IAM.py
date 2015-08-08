@@ -69,13 +69,14 @@ class Statement(dict):
                       'Resource': kwargs.get('resources', None)})
 
         conditions = kwargs.get('conditions', [])
-        if type(conditions) == list:
-            t = dict()
-            for c in conditions:
-                  t.update(c)
-            self.update({'Condition': t})
-        else:
-            self.update({'Condition': conditions})
+        if conditions:
+            if type(conditions) == list:
+                t = dict()
+                for c in conditions:
+                    t.update(c)
+                self.update({'Condition': t})
+            else:
+                self.update({'Condition': conditions})
 
 
 class Condition(dict):
