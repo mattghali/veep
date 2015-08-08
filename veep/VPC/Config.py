@@ -1,9 +1,7 @@
 #!/usr/bin/env python
 
-import netaddr 
+from LocalConfig import *
 
-
-depot = 'depot.example.com'
 
 blacklists = {
     'region': [ 'cn-north-1', 'us-gov-west-1' ],
