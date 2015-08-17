@@ -51,11 +51,8 @@ class Region(boto.vpc.RegionInfo):
         return region_mapping[self.name]
 
     def get_zones(self):
-        zones = []
-        zone_list = self.ec2conn.get_all_zones()
-        for zone in zone_list:
-            if zone.name not in Config.blacklists['az']: zones.append(zone)
-        return zones
+        zonelist = self.ec2conn.get_all_zones()
+        return [ z for z in zonelist if z.name not in Config.blacklists['az'] ]
 
     def find_vpcs(self, **kwargs):
         """Collect a list of managed vpcs in the current region.
