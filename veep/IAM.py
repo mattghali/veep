@@ -296,6 +296,18 @@ def get_role(conn, **kwargs):
     p = r['get_role_response']['get_role_result']['role']
     return Role(conn, **p)
 
+def get_user_arn(conn):
+    """Returns arn for effective IAM user
+
+    Args:
+        conn (boto.iam.connection): an IAM connection instance
+
+    Returns:
+        (str) AWS account arn
+    """
+
+    getuser = conn.get_user()
+    return getuser['get_user_response']['get_user_result']['user']['arn']
 
 def connect(region='us-west-2'):
     """Create IAM connection object
