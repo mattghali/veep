@@ -34,6 +34,9 @@ class Vpc(boto.vpc.vpc.VPC):
     def set_env(self, data):
         self.v.add_tag('Environment', data)
 
+    def get_cidr(self):
+        return netaddr.IPNetwork(self.cidr_block)
+
     def get_tiers(self, name=False):
         tiertag = self.tags.get('Tiers', '')
         tiers = []
