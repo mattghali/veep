@@ -5,7 +5,7 @@ from LocalConfig import *
 
 blacklists = {
     'region': [ 'cn-north-1', 'us-gov-west-1' ],
-    'az':     [ 'ap-northeast-1a', 'us-west-1b' ]
+    'az':     [ 'ap-northeast-1a', 'us-east-1b' ]
 }
 
 userdata = ''.join([ '#!/usr/bin/env bash\n\n',
