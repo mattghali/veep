@@ -116,7 +116,7 @@ class Vpc(boto.vpc.vpc.VPC):
     def add_subnet(self, name, zone, cidr_block):
         subnet = self.connection.create_subnet(self.id, str(cidr_block), availability_zone=zone)
         # subnet isnt avail immediately, state nevr updates
-        time.sleep(3)
+        time.sleep(2)
         while subnet.state == 'pending':
             subnets = self.connection.get_all_subnets(filters={'vpcId': self.id})
             for i in subnets:
