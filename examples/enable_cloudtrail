@@ -6,6 +6,7 @@ from veep import Config, IAM, SNS, VPC
 import boto.exception, boto.sns, boto.sqs, boto.cloudtrail, boto.s3, boto.logs
 
 
+# Cloudwatch service principals
 ct_princ = IAM.P_aws([
           "arn:aws:iam::903692715234:root",
           "arn:aws:iam::859597730677:root",
@@ -25,6 +26,7 @@ def create_bucket(conn, region, name):
                                 principal=principal,
                                 actions=['s3:GetBucketAcl'],
                                 resources=['arn:aws:s3:::' + name])
+
     statement2 = IAM.Statement(sid='CloudTrailWrite',
                                 principal=principal,
                                 actions=['s3:PutObject'],
@@ -32,24 +34,30 @@ def create_bucket(conn, region, name):
                                 conditions=IAM.Condition('StringEquals',
                                             's3:x-amz-acl',
                                             'bucket-owner-full-control'))
+
     policy = IAM.Policy(statements=[statement1, statement2])
+
     bucket = conn.get_bucket(name)
     bucket.set_policy(str(policy))
     return bucket
 
 
 def create_role(conn, name):
+    arn = IAM.get_user_arn(conn)
+    uid = arn.split(':')[4]
     assume_statement = IAM.Statement(principal={'Service': 'cloudtrail.amazonaws.com'},
                                      sid='AssumeRole', actions=['sts:AssumeRole'])
     assume_statement.pop('Resource')
     assume_policy = IAM.Policy(statements=[assume_statement])
     role = IAM.create_role(conn, name=name, path='/service/', assume_role_policy_document=str(assume_policy))
+
     statement = IAM.Statement(sid='CloudTrailCreatePutLog',
                                actions=['logs:CreateLogStream', 'logs:PutLogEvents'],
-                               resources=['arn:aws:logs:' + r.name + '::log-group:CloudTrail/logs:*'
+                               resources=['arn:aws:logs:' + r.name + ':' + uid + ':log-group:CloudTrail/logs:*'
                                             for r in VPC.get_regions()])
     statement.pop('Principal')
     policy = IAM.Policy(id='CloudTrailLogs', statements=[statement])
+
     conn.put_role_policy(role.name, 'CloudTrailLogs', policy)
     return role
 
@@ -85,19 +93,22 @@ if __name__ == '__main__':
         role = create_role(iamconn, name='Cloudtrail_CloudwatchLogs')
 
 
-    #for region in VPC.get_regions():
-    for region in [ VPC.Region('us-west-2')]:
+    for region in VPC.get_regions():
+        print "in region", region.name
         # Create SNS topic
         snsconn = SNS.connect(region.name)
         topic = SNS.get_topic(snsconn, 'cloudtrail')
         if not topic:
             topic = create_topic(snsconn, 'cloudtrail')
 
-        # Create Cloudwatch Logs log group
+        # Create Cloudwatch Logs log group if region is supported. If support gets added later,
+        # it's OK to re-run script, log groups will be added whereever they are missing.
         logconn = boto.logs.connect_to_region(region.name)
-        if len(logconn.describe_log_groups('CloudTrail/logs')['logGroups']) < 1:
-            logconn.create_log_group('CloudTrail/logs')
-        lg_arn = logconn.describe_log_groups('CloudTrail/logs')['logGroups'][0]['arn']
+        lg_arn = ''
+        if logconn:
+            if len(logconn.describe_log_groups('CloudTrail/logs')['logGroups']) < 1:
+                logconn.create_log_group('CloudTrail/logs')
+            lg_arn = logconn.describe_log_groups('CloudTrail/logs')['logGroups'][0]['arn']
 
         # Create trails
         ctconn = boto.cloudtrail.connect_to_region(region.name)
@@ -106,13 +117,22 @@ if __name__ == '__main__':
         for trail in trails:
             if trail['Name'] == region.name:
                 configured = True
-        if not configured:
-            print role.arn, lg_arn
-            ctconn.create_trail(region.name, Config.ct_bucket, s3_key_prefix=region.name,
-                            sns_topic_name=topic.name,
-                            include_global_service_events=(region.name == Config.home_region),
-                            cloud_watch_logs_role_arn=role.arn, cloud_watch_logs_log_group_arn=lg_arn)
-        if not ctconn.get_trail_status('us-west-2')['IsLogging']:
-            ctconn.start_logging(region.name)
 
+        # Stupid region _really_ doesn't support cw logs, others are OK wth null lg_arn
+        if region.name in ['sa-east-1']:
+            role_arn = ''
+        else:
+            role_arn = role.arn
+
+        if not configured:
+            ctconn.create_trail(region.name, Config.ct_bucket, sns_topic_name=topic.name,
+                            include_global_service_events=(region.name == Config.home_region),
+                            cloud_watch_logs_role_arn=role_arn, cloud_watch_logs_log_group_arn=lg_arn)
+        else:
+            ctconn.update_trail(region.name, Config.ct_bucket, sns_topic_name=topic.name,
+                            include_global_service_events=(region.name == Config.home_region),
+                            cloud_watch_logs_role_arn=role_arn, cloud_watch_logs_log_group_arn=lg_arn)
+
+        if not ctconn.get_trail_status(region.name)['IsLogging']:
+            ctconn.start_logging(region.name)
 
