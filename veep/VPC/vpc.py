@@ -209,8 +209,16 @@ class Vpc(boto.vpc.vpc.VPC):
             self.connection.delete_security_group(group_id=id)
             return True
 
-    def get_tables(self):
-        return self.connection.get_all_route_tables(filters=[('vpc_id', self.id)])
+    def get_tables(self, **kwargs):
+        name = kwargs.get('name', None)
+        tables = self.connection.get_all_route_tables(filters=[('vpc_id', self.id)])
+
+        if name:
+            for t in tables:
+                if t.tags.get('Name') == name:
+                    return t
+        else:
+            return tables
 
     def get_igw(self):
         igws = self.connection.get_all_internet_gateways(filters={'attachment.vpc-id': self.id})
