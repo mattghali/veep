@@ -37,28 +37,6 @@ class Vpc(boto.vpc.vpc.VPC):
     def get_cidr(self):
         return netaddr.IPNetwork(self.cidr_block)
 
-    def get_tiers(self, name=False):
-        tiertag = self.tags.get('Tiers', '')
-        tiers = []
-
-        for t in self.decode_tag(tiertag):
-            (t_name, cidr_block) = t
-            tier = Tier(name=t_name, cidr_block=netaddr.IPNetwork(cidr_block))
-            tiers.append(tier)
-
-        subnets = self.connection.get_all_subnets(filters=[('vpcId', self.id)])
-        for subnet in subnets:
-            cidr = netaddr.IPNetwork(subnet.cidr_block)
-            for tier in tiers:
-                if cidr in tier.cidr_block:
-                    tier.subnets.add(subnet)
-        if name:
-            for t in tiers:
-                if t.name == name:
-                    return t
-        else:
-            return tiers
-
     def _wait(self, vpc):
         try:
             while vpc.update() != 'available':
@@ -103,54 +81,39 @@ class Vpc(boto.vpc.vpc.VPC):
         tag = self.encode_tag([ (t.name, t.cidr_block) for t in tiers ])
         self.add_tag('Tiers', tag)
 
+    def get_tiers(self, name=False):
+        tiertag = self.tags.get('Tiers', '')
+        tiers = []
+
+        for t in self.decode_tag(tiertag):
+            (t_name, cidr_block) = t
+            tier = Tier(name=t_name, cidr_block=netaddr.IPNetwork(cidr_block),
+                        connection=self.connection, vpc_id=self.id)
+            tiers.append(tier)
+
+        if name:
+            for t in tiers:
+                if t.name == name:
+                    return t
+        else:
+            return tiers
+
     def add_tier(self, tier_name, cidr_block, subnet_size=21):
-        """Make tier the lowest-level object users need to define when creating a vpc."""
-        tier = Tier(name=tier_name, cidr_block=cidr_block)
-        zone_list = [str(i.name) for i in self.region.get_zones()]
-        tier_subnets = list(cidr_block.subnet(subnet_size))
-        for zone in zone_list:
-            sub_name = tier_name + '-' + zone
-            subnet = self.add_subnet(sub_name, zone, tier_subnets[zone_list.index(zone)])
-            subnet.add_tag('Tier', tier_name)
-            tier.add_subnet(subnet)
+        tier = Tier(name=tier_name, cidr_block=cidr_block, connection=self.connection, vpc_id=self.id)
+        tier.build([z.name for z in self.region.get_zones()], subnet_size)
         self.add_tier_tag(tier)
         return tier
 
-    def add_subnet(self, name, zone, cidr_block):
-        subnet = self.connection.create_subnet(self.id, str(cidr_block), availability_zone=zone)
-        # subnet isnt avail immediately, state nevr updates
-        time.sleep(2)
-        while subnet.state == 'pending':
-            subnets = self.connection.get_all_subnets(filters={'vpcId': self.id})
-            for i in subnets:
-                if i.id == subnet.id:
-                    subnet.state = i.state
-            time.sleep(1)
-        subnet.add_tag('Name', name)
-        return subnet
-
     def delete_tier(self, tier):
-        for subnet in tier.subnets.copy():
-            self.delete_subnet(subnet)
-            tier.del_subnet(subnet)
+        tier.delete()
         self.del_tier_tag(tier)
         return True
 
-    def delete_subnet(self, subnet):
-        self.connection.delete_subnet(subnet.id)
-        return True
-        
     def rename_tier(self, old, new):
-        for tier in self.get_tiers():
-            if tier.name == old:
-                self.del_tier_tag(tier)
-                tier.name = new
-                self.add_tier_tag(tier)
-                for subnet in tier.subnets:
-                    sub_name = tier.name + '-' + subnet.availability_zone
-                    subnet.add_tag('Name', sub_name)
-                    subnet.add_tag('Tier', tier.name)
-                break
+        tier = self.get_tiers(name=old)
+        self.del_tier_tag(tier)
+        tier.rename(new)
+        self.add_tier_tag(tier)
         return tier
 
     def sg_rule(self, **kwargs):

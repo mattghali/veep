@@ -60,10 +60,8 @@ if __name__ == '__main__':
 
             for table in tables:
                 if table.tags.get('Name') == 'Public':
-                    for tier in vpc.get_tiers():
-                        if tier.name == 'frontend':
-                            for subnet in tier.subnets:
-                                region.conn.associate_route_table(table.id, subnet.id)
+                    for tier in vpc.get_tiers(name='frontend'):
+                        tier.associate_table(table)
 
             for tablename in ['NAT', 'Local']:
                 if tablename not in table_names:
@@ -73,13 +71,11 @@ if __name__ == '__main__':
                     if tablename == 'NAT':
                         for tier in vpc.get_tiers():
                             if tier.name in ['application', 'mgmt']:
-                                for subnet in tier.subnets:
-                                    region.conn.associate_route_table(table.id, subnet.id)
+                                tier.associate_table(table)
                     if tablename == 'Local':
                         for tier in vpc.get_tiers():
                             if tier.name == 'private':
-                                for subnet in tier.subnets:
-                                    region.conn.associate_route_table(table.id, subnet.id)
+                                tier.associate_table(table)
 
 
             # Create SNS topics, SQS Queue, subscribe to topics
