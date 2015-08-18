@@ -19,8 +19,8 @@ vpc = region.create_vpc(env='prod', cidr_block='10.0.0.0/16')
 # Subnets in the tier will be consecutive /22 blocks from that /18.
 tier = vpc.add_tier('frontend', list(vpc.get_cidr().subnet(18))[0], subnet_size=22)
 
-# create_vpc() initalized a "Public" route table
-table = vpc.get_tables()[0]
+# create_vpc() initalized a route table
+table = vpc.get_tables(name='Public')
 
 # Associate route table with Tier subnets
 tier.associate_table(table)
