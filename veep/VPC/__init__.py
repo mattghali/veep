@@ -12,8 +12,8 @@ __all__ = [ 'Config', 'Region', 'Tier', 'Vpc' ]
 
 def find(**kwargs):
     """Find VPCs by name or ID across all regions."""
-    vpc_ids = kwargs.get('vpc_ids', list())
-    vpc_names = kwargs.get('vpc_names', list())
+    vpc_ids = kwargs.get('ids', list())
+    vpc_names = kwargs.get('names', list())
     vpcs = list()
 
     if type(vpc_ids) == str: vpc_ids = [vpc_ids]
@@ -35,6 +35,10 @@ def find(**kwargs):
                 for v in res:
                     if not v in vpcs: vpcs.append(v)
                 break
+
+    if not vpc_id and not vpc_ids:
+        for region in get_regions():
+            res.extend(region.find_vpcs())
 
     return vpcs
 
