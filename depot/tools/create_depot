@@ -9,9 +9,14 @@ def make_roles():
         role = IAM.get_role(conn, name=role_name)
         if not role:
             role = IAM.create_role(conn, name=role_name, path='/instance/')
+        profile = IAM.get_profile(conn, name=role_name)
+        if not profile:
+            profile = IAM.create_profile(conn, name=role_name, path='/instance/')
+            profile.add_role(role)
 
     admin_role = IAM.get_role(conn, name='AdminInstance')
     generic_role = IAM.get_role(conn, name='GenericInstance')
+
     return (admin_role.arn, generic_role.arn)
 
 
