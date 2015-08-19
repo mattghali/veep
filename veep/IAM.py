@@ -95,8 +95,8 @@ class Certificate(object):
     """Object returned by get_certificates(), with expiration date
     converted into a datetime.datetime() object.
     """
-    def __init__(self, conn, **kwargs):
-        self.conn = conn
+    def __init__(self, connection, **kwargs):
+        self.connection = connection
         self.upload_date = kwargs.get('upload_date', None)
         self.server_certificate_id = kwargs.get('server_certificate_id', None)
         self.server_certificate_name = kwargs.get('server_certificate_name', None)
@@ -117,7 +117,7 @@ class Certificate(object):
 
     def delete(self):
         """Deletes the certificate from the IAM cert store."""
-        return self.conn.delete_server_cert(self.name)
+        return self.connection.delete_server_cert(self.name)
 
     def update(self, **kwargs):
         """Updates the name and/or path attribute of an existing certificate.
@@ -128,15 +128,15 @@ class Certificate(object):
         """
         name = kwargs.get('name', self.name)
         path = kwargs.get('path', self.path)
-        return self.conn.update_server_cert(self.name, new_cert_name=name, new_path=path)
+        return self.connection.update_server_cert(self.name, new_cert_name=name, new_path=path)
 
 
 class Profile(object):
     """Object returned by create_profile() and get_profile(), with creation
     date converted into a datetime.datetime() object.
     """
-    def __init__(self, conn, **kwargs):
-        self.conn = conn
+    def __init__(self, connection, **kwargs):
+        self.connection = connection
         self.instance_profile_name = kwargs.get('instance_profile_name', None)
         self.instance_profile_id = kwargs.get('instance_profile_id', None)
         self.roles = kwargs.get('roles', [])
@@ -161,15 +161,15 @@ class Profile(object):
         Args:
             role (Role): Instance of Role object to attach to profile.
         """
-        self.conn.add_role_to_instance_profile(self.name, role.name)
+        self.connection.add_role_to_instance_profile(self.name, role.name)
         
 
 class Role(object):
     """Object returned by create_role() and get_role(), with creation
     date converted into a datetime.datetime() object.
     """
-    def __init__(self, conn, **kwargs):
-        self.conn = conn
+    def __init__(self, connection, **kwargs):
+        self.connection = connection
         self.role_name = kwargs.get('role_name', None)
         self.role_id = kwargs.get('role_id', None)
         self.assume_role_policy_document = kwargs.get('assume_role_policy_document', None)
@@ -189,134 +189,120 @@ class Role(object):
         return str(self)
 
 
-def get_certificates(conn):
-    """Yields a list of server certificates stored in the account as
-    Certificate object instances.
-
-    Args:
-        conn (boto.iam.connection): an IAM connection instance
+def connect(**kwargs):
+    """Create veep.IAM connection object
 
     Returns:
-        iterator of Certificate instances.
+        instance of veep.IAM.IAMConnection
     """
-    ret = conn.list_server_certs()
-    for i in ret['list_server_certificates_response']['list_server_certificates_result']['server_certificate_metadata_list']:
-        yield Certificate(conn, **i)
+    return IAMConnection(**kwargs)
 
 
-def create_profile(conn, **kwargs):
-    """Create an instance profile.
+class IAMConnection(boto.iam.IAMConnection):
+    def __init__(self, aws_access_key_id=None, aws_secret_access_key=None, **kwargs):
+        super(IAMConnection, self).__init__(aws_access_key_id, aws_secret_access_key, **kwargs)
 
-    Args:
-        conn (boto.iam.connection): an IAM connection instance
+    def list_server_certs(self):
+        """Yields a list of server certificates stored in the account as
+        Certificate object instances.
 
-    **kwargs:
-        name (str): Name of profile to create.
-        path (str): Optional path for profile.
-
-    Returns:
-        instance of Profile
-    """
-    name = kwargs.get('name', None)
-    path = kwargs.get('path', '/instance/')
-
-    r = conn.create_instance_profile(name, path)
-    p = r['create_instance_profile_response']['create_instance_profile_result']['instance_profile']
-    return Profile(conn, **p)
+        Returns:
+            iterator of Certificate instances.
+        """
+        ret = super(IAMConnection, self).list_server_certs()
+        for i in ret['list_server_certificates_response']['list_server_certificates_result']['server_certificate_metadata_list']:
+            yield Certificate(self, **i)
 
 
-def get_profile(conn, **kwargs):
-    """Find an instance profile by name.
+    def create_instance_profile(self, name, **kwargs):
+        """Create an instance profile.
 
-    Args:
-        conn (boto.iam.connection): an IAM connection instance
+        args:
+            name (str): Name of profile to create.
 
-    **kwargs:
-        name (str): Name of profile to select.
+        **kwargs:
+            path (str): Optional path for profile.
 
-    Returns:
-        instance of Profile
-    """
-    name = kwargs.get('name', None)
+        Returns:
+            instance of Profile
+        """
+        path = kwargs.get('path', '/instance/')
 
-    try:
-        r = conn.get_instance_profile(name)
-    except boto.exception.BotoServerError, e:
-        if e[0] == 404:
-            return None
-        else: raise e
-
-    p = r['get_instance_profile_response']['get_instance_profile_result']['instance_profile']
-    return Profile(conn, **p)
+        r = super(IAMConnection, self).create_instance_profile(name, path)
+        p = r['create_instance_profile_response']['create_instance_profile_result']['instance_profile']
+        return Profile(self, **p)
 
 
-def create_role(conn, **kwargs):
-    """Create a role.
+    def get_instance_profile(self, name):
+        """Find an instance profile by name.
 
-    Args:
-        conn (boto.iam.connection): an IAM connection instance
+        args:
+            name (str): Name of profile to select.
 
-    **kwargs:
-        name (str): Name of role to create.
-        path (str): Optional path for role.
+        Returns:
+            instance of Profile
+        """
 
-    Returns:
-        instance of Role
-    """
-    name = kwargs.get('name', None)
-    path = kwargs.get('path', '/instance/')
-    assume_role_policy_document = kwargs.get('assume_role_policy_document', None)
+        try:
+            r = super(IAMConnection, self).get_instance_profile(name)
+        except boto.exception.BotoServerError, e:
+            if e[0] == 404:
+                return None
+            else: raise e
 
-    r = conn.create_role(name, path=path, assume_role_policy_document=assume_role_policy_document)
-    p = r['create_role_response']['create_role_result']['role']
-    return Role(conn, **p)
+        p = r['get_instance_profile_response']['get_instance_profile_result']['instance_profile']
+        return Profile(self, **p)
 
 
-def get_role(conn, **kwargs):
-    """Find role by name.
+    def create_role(self, name, **kwargs):
+        """Create a role.
 
-    Args:
-        conn (boto.iam.connection): an IAM connection instance
+        args:
+            name (str): Name of role to create.
 
-    **kwargs:
-        name (str): Name of role to select.
+        **kwargs:
+            path (str): Optional path for role.
+            assume_role_policy_document (str): A polcy document.
 
-    Returns:
-        instance of Role
-    """
-    name = kwargs.get('name', None)
+        Returns:
+            instance of Role
+        """
+        path = kwargs.get('path', '/instance/')
+        assume_role_policy_document = kwargs.get('assume_role_policy_document', None)
 
-    try:
-        r = conn.get_role(name)
-    except boto.exception.BotoServerError, e:
-        if e[0] == 404:
-            return None
-        else: raise e
+        r = super(IAMConnection, self).create_role(name, path=path,
+                                        assume_role_policy_document=assume_role_policy_document)
+        p = r['create_role_response']['create_role_result']['role']
+        return Role(self, **p)
 
-    p = r['get_role_response']['get_role_result']['role']
-    return Role(conn, **p)
 
-def get_user_arn(conn):
-    """Returns arn for effective IAM user
+    def get_role(self, name):
+        """Find role by name.
 
-    Args:
-        conn (boto.iam.connection): an IAM connection instance
+        args:
+            name (str): Name of role to select.
 
-    Returns:
-        (str) AWS account arn
-    """
+        Returns:
+            instance of Role
+        """
 
-    getuser = conn.get_user()
-    return getuser['get_user_response']['get_user_result']['user']['arn']
+        try:
+            r = super(IAMConnection, self).get_role(name)
+        except boto.exception.BotoServerError, e:
+            if e[0] == 404:
+                return None
+            else: raise e
 
-def connect(region='us-west-2'):
-    """Create IAM connection object
+        p = r['get_role_response']['get_role_result']['role']
+        return Role(self, **p)
 
-    Args:
-        region (str): Name of region to connect to (optional)
+    def get_user_arn(self):
+        """Returns arn for effective IAM user
 
-    Returns:
-        instance of boto.iam.connection
-    """
-    return boto.iam.connect_to_region(region)
+        Returns:
+            (str) AWS account arn
+        """
+
+        getuser = self.get_user()
+        return getuser['get_user_response']['get_user_result']['user']['arn']
 

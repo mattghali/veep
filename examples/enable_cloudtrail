@@ -43,13 +43,13 @@ def create_bucket(conn, region, name):
 
 
 def create_role(conn, name):
-    arn = IAM.get_user_arn(conn)
+    arn = conn.get_user_arn()
     uid = arn.split(':')[4]
     assume_statement = IAM.Statement(principal={'Service': 'cloudtrail.amazonaws.com'},
                                      sid='AssumeRole', actions=['sts:AssumeRole'])
     assume_statement.pop('Resource')
     assume_policy = IAM.Policy(statements=[assume_statement])
-    role = IAM.create_role(conn, name=name, path='/service/', assume_role_policy_document=str(assume_policy))
+    role = conn.create_role(name, path='/service/', assume_role_policy_document=str(assume_policy))
 
     statement = IAM.Statement(sid='CloudTrailCreatePutLog',
                                actions=['logs:CreateLogStream', 'logs:PutLogEvents'],
@@ -88,7 +88,7 @@ if __name__ == '__main__':
 
     # Create cloudtrail role for cloudwatch logs
     iamconn = IAM.connect()
-    role = IAM.get_role(iamconn, name='Cloudtrail_CloudwatchLogs')
+    role = iamconn.get_role('Cloudtrail_CloudwatchLogs')
     if not role:
         role = create_role(iamconn, name='Cloudtrail_CloudwatchLogs')
 

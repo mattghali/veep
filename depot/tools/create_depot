@@ -6,16 +6,16 @@ import boto.exception, boto.s3
 def make_roles():
     conn = IAM.connect()
     for role_name in ['GenericInstance', 'AdminInstance']:
-        role = IAM.get_role(conn, name=role_name)
+        role = conn.get_role(role_name)
         if not role:
-            role = IAM.create_role(conn, name=role_name, path='/instance/')
-        profile = IAM.get_profile(conn, name=role_name)
+            role = conn.create_role(role_name, path='/instance/')
+        profile = conn.get_instance_profile(role_name)
         if not profile:
-            profile = IAM.create_profile(conn, name=role_name, path='/instance/')
+            profile = conn.create_instance_profile(role_name, path='/instance/')
             profile.add_role(role)
 
-    admin_role = IAM.get_role(conn, name='AdminInstance')
-    generic_role = IAM.get_role(conn, name='GenericInstance')
+    admin_role = conn.get_role('AdminInstance')
+    generic_role = conn.get_role('GenericInstance')
 
     return (admin_role.arn, generic_role.arn)
 
