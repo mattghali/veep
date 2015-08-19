@@ -220,6 +220,25 @@ class Vpc(boto.vpc.vpc.VPC):
         else:
             return tables
 
+    def create_table(self, **kwargs):
+        name = kwargs.get('name', None)
+
+        if name:
+            table = self.connection.create_route_table(self.id)
+            table.add_tag('Name', name)
+            return table
+
+    def delete_table(self, table=None, **kwargs):
+        name = kwargs.get('name', None)
+        id = kwargs.get('id', None)
+
+        if name:
+            table = self.get_tables(name=name)
+        if table:
+            id = table.id
+        if id:
+            self.connection.delete_route_table(id)
+
     def get_igw(self):
         igws = self.connection.get_all_internet_gateways(filters={'attachment.vpc-id': self.id})
         if len(igws) > 0:
