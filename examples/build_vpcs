@@ -70,14 +70,14 @@ if __name__ == '__main__':
                         tier.associate_table(table)
 
             # Create SNS topics, SQS Queue, subscribe to topics
-            snsconn = SNS.connect(region.name)
+            snsconn = SNS.connect_to_region(region.name)
             sqsconn = boto.sqs.connect_to_region(region.name)
 
             as_res_name = vpc.get_name() + '-autoscaling'
 
-            asgtopic = SNS.get_topic(snsconn, as_res_name)
+            asgtopic = snsconn.get_topic(as_res_name)
             if not asgtopic:
-                asgtopic = SNS.create_topic(snsconn, as_res_name)
+                asgtopic = snsconn.create_topic(as_res_name)
 
             queues = sqsconn.get_all_queues(prefix=vpc.get_name())
             asgqueue = False

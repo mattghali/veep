@@ -63,7 +63,7 @@ def create_role(conn, name):
 
 
 def create_topic(conn, name):
-    topic = SNS.create_topic(conn, name)
+    topic = conn.create_topic(name)
     principal = ct_princ
     statement = IAM.Statement(sid='CloudTrailSNSPolicy',
                               principal=principal,
@@ -96,8 +96,8 @@ if __name__ == '__main__':
     for region in VPC.get_regions():
         print "in region", region.name
         # Create SNS topic
-        snsconn = SNS.connect(region.name)
-        topic = SNS.get_topic(snsconn, 'cloudtrail')
+        snsconn = SNS.connect_to_region(region.name)
+        topic = snsconn.get_topic('cloudtrail')
         if not topic:
             topic = create_topic(snsconn, 'cloudtrail')
 

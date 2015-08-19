@@ -80,8 +80,8 @@ if __name__ == '__main__':
             autoscale = region.asconn.create_auto_scaling_group(asg)
 
             # Add SNS notification config to asg
-            snsconn = SNS.connect(region.name)
-            asgtopic = SNS.get_topic(snsconn, vpc.get_name() + '-autoscaling')
+            snsconn = SNS.connect_to_region(region.name)
+            asgtopic = snsconn.get_topic(vpc.get_name() + '-autoscaling')
             if asgtopic:
                 notification_types = [ 'autoscaling:EC2_INSTANCE_LAUNCH',
                                        'autoscaling:EC2_INSTANCE_LAUNCH_ERROR',
