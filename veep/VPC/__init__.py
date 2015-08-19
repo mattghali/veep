@@ -50,3 +50,10 @@ def get_regions():
         if r.name in Config.blacklists['region']: regions.remove(r)
     return regions
 
+
+def connect_to_region(region, **kwargs):
+    regions = get_regions()
+    for r in regions:
+        if r.name == region: return r
+    return None
+

@@ -188,6 +188,13 @@ class Role(object):
     def __repr__(self):
         return str(self)
 
+def connect_to_region(region, **kwargs):
+    """Create veep.IAM connection object
+
+    Returns:
+        instance of veep.IAM.IAMConnection
+    """
+    return IAMConnection(**kwargs)
 
 def connect(**kwargs):
     """Create veep.IAM connection object
