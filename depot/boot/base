@@ -1,0 +1,13 @@
+export PATH=$PATH:/opt/aws/bin
+export INSTID=$(ec2-metadata -i | cut -d\  -f2)
+export AZ=$(ec2-metadata -z | cut -d\  -f2)
+export REGION=${AZ%?}
+
+tags() { aws ec2 describe-tags --region $REGION --output text \
+                    --filters "Name=resource-id,Values=$INSTID" \
+                              "Name=key,Values=$1" | cut -f5; }
+
+case "$(tags Type)" in
+    'nat') aws s3 cp s3://depot.snark.net/boot/nat - | sh -x;;
+        *) aws s3 cp s3://depot.snark.net/boot/generic - | sh -x;;
+esac

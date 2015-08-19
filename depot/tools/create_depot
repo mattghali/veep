@@ -1,0 +1,51 @@
+#!/usr/bin/env python
+
+from veep import Config, IAM, VPC
+import boto.exception, boto.s3
+
+def make_roles():
+    conn = IAM.connect()
+    for role_name in ['GenericInstance', 'AdminInstance']:
+        role = IAM.get_role(conn, name=role_name)
+        if not role:
+            role = IAM.create_role(conn, name=role_name, path='/instance/')
+
+    admin_role = IAM.get_role(conn, name='AdminInstance')
+    generic_role = IAM.get_role(conn, name='GenericInstance')
+    return (admin_role.arn, generic_role.arn)
+
+
+def make_bucket(role_arns):
+    (admin_arn, generic_arn) = role_arns
+    conn = boto.s3.connect_to_region(Config.home_region)
+    bucket_arn = 'arn:aws:s3:::' + Config.depot
+    try:
+        bucket = conn.get_bucket(Config.depot)
+    except boto.exception.S3ResponseError, e:
+        if e[0] == 404:
+            bucket = conn.create_bucket(Config.depot, location=Config.home_region)
+
+    statements = list()
+    statements.append(IAM.Statement(sid='AllowList',
+                                    principal=IAM.P_aws([admin_arn, generic_arn]),
+                                    actions=['s3:List*'],
+                                    resources=[bucket_arn]))
+
+    statements.append(IAM.Statement(sid='AllowGet',
+                                    principal=IAM.P_aws([admin_arn, generic_arn]),
+                                    actions=['s3:Get*'],
+                                    resources=[bucket_arn + '/*']))
+
+    statements.append(IAM.Statement(sid='AllowPut',
+                                    principal=IAM.P_aws([admin_arn]),
+                                    actions=['s3:Put*', 's3:Delete*', 's3:Abort*', 's3:Restore*'],
+                                    resources=[bucket_arn + '/*']))
+
+    policy = IAM.Policy(id='BucketPolicy', statements=statements)
+    bucket.set_policy(str(policy))
+    return bucket
+    
+    
+if __name__ == '__main__':
+
+    bucket = make_bucket(make_roles())
