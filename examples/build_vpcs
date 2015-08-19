@@ -19,9 +19,6 @@ env_list = [ 'dev', 'prod' ]
 # subnet length to allocate per-vpc (need space for all environments)
 vpc_block = 16
 
-# tiers to create in each vpc
-tier_list = [ 'frontend', 'application', 'private', 'mgmt' ]
-
 # subnet length to allocate to each tier
 tier_block = 18
 
@@ -50,33 +47,27 @@ if __name__ == '__main__':
     
             tier_subnets = list(vpc_netblock.subnet(tier_block))
 
+            tier_list = [ 'frontend', 'application', 'mgmt', 'private' ]
             for t in tier_list:
                 if t not in [tier.name for tier in vpc.get_tiers()]:
                     tier = vpc.add_tier(t, tier_subnets[tier_list.index(t)], subnet_size=az_block)
                     print "create tier", tier.name
 
-            tables = region.conn.get_all_route_tables(filters=[('vpc_id', vpc.id)])
-            table_names = [table.tags.get('Name') for table in tables]
-
-            for table in tables:
-                if table.tags.get('Name') == 'Public':
-                    for tier in vpc.get_tiers(name='frontend'):
+                    if tier.name == 'frontend':
+                        table = vpc.get_tables(name='Public')
                         tier.associate_table(table)
 
-            for tablename in ['NAT', 'Local']:
-                if tablename not in table_names:
-                    table = region.conn.create_route_table(vpc.id)
-                    time.sleep(1)
-                    table.add_tag('Name', tablename)
-                    if tablename == 'NAT':
-                        for tier in vpc.get_tiers():
-                            if tier.name in ['application', 'mgmt']:
-                                tier.associate_table(table)
-                    if tablename == 'Local':
-                        for tier in vpc.get_tiers():
-                            if tier.name == 'private':
-                                tier.associate_table(table)
+                    if tier.name == 'private':
+                        table = vpc.get_tables(name='Local')
+                        if not table:
+                            table = vpc.create_table(name='Local')
+                        tier.associate_table(table)
 
+                    if tier.name in ['application', 'mgmt']:
+                        table = vpc.get_tables(name='NAT')
+                        if not table:
+                            table = vpc.create_table(name='NAT')
+                        tier.associate_table(table)
 
             # Create SNS topics, SQS Queue, subscribe to topics
             snsconn = SNS.connect(region.name)
