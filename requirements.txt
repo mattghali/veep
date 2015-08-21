@@ -1,7 +1,4 @@
 boto
 datetime
-json
 netaddr
-sys
-time
 uuid
