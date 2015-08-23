@@ -37,19 +37,19 @@ title: veep
         <h1>
 <a id="veep" class="anchor" href="#veep" aria-hidden="true"><span class="octicon octicon-link"></span></a>veep</h1>
 
-<p>Automation for AWS VPC management, built on top of boto.</p>
-
-<p>At its core, veep contains a set of objects subclassing familiar boto objects, adding convenience methods. It also contains a set of helper functions written to make common AWS operations more convenient. Most of the library is built around managing multiple VPCs across multiple regions as painless as possible, reducing the opportunity for config drift across vpcs and regions. Inside VPC you will find a hierarchy of objects and associated methods:</p>
+<p>veep contains a set of objects subclassing familiar boto objects, adding convenience methods. It also contains a set of helper functions written to make common AWS operations more convenient. Most of the library is built around managing multiple VPCs across multiple regions as painless as possible, reducing the opportunity for config drift across vpcs and regions. Inside VPC you will find a hierarchy of objects and associated methods:</p>
 
 <ul>
 <li>Region</li>
 <li>VPC</li>
 <li>Tier</li>
+<li>IAM</li>
+<li>SNS</li>
 </ul>
 
  <div id="main_content_wrap" class="inner">
-   <h2>blog posts</h2>
-   <ul class="posts">
+   <h3>blog posts</h3>
+   <ul>
      {% for post in site.posts %}
        <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>
      {% endfor %}
