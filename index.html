@@ -44,37 +44,14 @@
 <li>Tier</li>
 </ul>
 
-<p>Region and VPC objects should be instantly familiar to anyone who uses boto. The Tier object is a veep abstraction not shared with boto. Tiers allow easy mapping of a set of access policies across all availability zones in a VPC.</p>
-
-<p>Instances can be broken down into a small number of groups with specific access policy requirements. For instance, in a typical web app architecture, you might have a set of web servers which require direct inbound access from clients on the internet. Behind this set of web servers, another set of app servers need no direct inbound connectivity, but must talk to external services for things like boot-time patching. Commonly these app servers would sit behind NAT instead of an AWS Internet Gateway. Other things might need no external connectivity at all, like VPC Service Endpoints. Or you may want a small set of admin instances as bastion hosts between the rest of your VPC and a VPN tunnel. Tiers are an abstraction of this mapping between policies implemented via Route Tables and the set of AZs in a VPC's region.</p>
-
-<div class="highlight highlight-python"><pre><span class="pl-c"># Create a new 'prod' environment VPC in us-west-2</span>
-region <span class="pl-k">=</span> veep.VPC.Region(<span class="pl-s"><span class="pl-pds">'</span>us-west-2<span class="pl-pds">'</span></span>)
-vpc <span class="pl-k">=</span> region.create_vpc(<span class="pl-smi">env</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">'</span>prod<span class="pl-pds">'</span></span>, <span class="pl-smi">cidr_block</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">'</span>10.0.0.0/16<span class="pl-pds">'</span></span>)
-
-<span class="pl-c"># Add a tier allocated from the first /18 of the VPC's ip space.</span>
-<span class="pl-c"># Subnets in the tier will be consecutive /22 blocks from that /18.</span>
-tier <span class="pl-k">=</span> vpc.add_tier(<span class="pl-s"><span class="pl-pds">'</span>frontend<span class="pl-pds">'</span></span>, <span class="pl-c1">list</span>(vpc.get_cidr().subnet(<span class="pl-c1">18</span>))[<span class="pl-c1">0</span>], <span class="pl-smi">subnet_size</span><span class="pl-k">=</span><span class="pl-c1">22</span>)
-
-<span class="pl-c"># create_vpc() initalized a route table</span>
-table <span class="pl-k">=</span> vpc.get_tables(<span class="pl-smi">name</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">'</span>Public<span class="pl-pds">'</span></span>)
-
-<span class="pl-c"># Associate route table with Tier subnets</span>
-tier.associate_table(table)
-
-<span class="pl-c"># Et voila, you have a subnet for each AZ, associated with your route table:</span>
-<span class="pl-k">&gt;&gt;&gt;</span> <span class="pl-k">for</span> s <span class="pl-k">in</span> tier.subnets:
-...     <span class="pl-k">print</span> s.tags.get(<span class="pl-s"><span class="pl-pds">'</span>Name<span class="pl-pds">'</span></span>), s.cidr_block
-... 
-frontend<span class="pl-k">-</span>us<span class="pl-k">-</span>west<span class="pl-k">-</span><span class="pl-c1">2</span>b <span class="pl-c1">10.0</span>.<span class="pl-c1">4.0</span><span class="pl-k">/</span><span class="pl-c1">22</span>
-frontend<span class="pl-k">-</span>us<span class="pl-k">-</span>west<span class="pl-k">-</span><span class="pl-c1">2</span>c <span class="pl-c1">10.0</span>.<span class="pl-c1">8.0</span><span class="pl-k">/</span><span class="pl-c1">22</span>
-frontend<span class="pl-k">-</span>us<span class="pl-k">-</span>west<span class="pl-k">-</span><span class="pl-c1">2</span>a <span class="pl-c1">10.0</span>.<span class="pl-c1">0.0</span><span class="pl-k">/</span><span class="pl-c1">22</span></pre></div>
-
-<p>To see Tiers in action check out examples/build_vpcs</p>
-
-<p>There is also a Config class which contains common configuration for your organization. This class imports LocalConfig, which tries to isolate attributes likely to be similar for most library users from attributes which will definitely change per user. Likely there is a better long-term solution for this config data, like home directory .ini files.</p>
-      </section>
-    </div>
+ <div id="main_content_wrap" class="inner">
+   <h1>Blog Posts</h1>
+   <ul class="posts">
+     {% for post in site.posts %}
+       <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>
+     {% endfor %}
+   </ul>
+ </div>
 
     <!-- FOOTER  -->
     <div id="footer_wrap" class="outer">
