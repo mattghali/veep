@@ -14,6 +14,8 @@ tags: usage
 <li><a href="tier.html" aria-hidden="true">Tier</a></li>
 </ul>
 
+<p>Here's a quick introduction to using veep to build a VPC, containing a single 'frontend' tier across us-west-2's availability zones.</p>
+
 <div class="highlight highlight-python"><pre><span class="pl-c"># Create a new 'prod' environment VPC in us-west-2</span>
 region <span class="pl-k">=</span> veep.VPC.Region(<span class="pl-s"><span class="pl-pds">'</span>us-west-2<span class="pl-pds">'</span></span>)
 vpc <span class="pl-k">=</span> region.create_vpc(<span class="pl-smi">env</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">'</span>prod<span class="pl-pds">'</span></span>, <span class="pl-smi">cidr_block</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">'</span>10.0.0.0/16<span class="pl-pds">'</span></span>)
@@ -36,6 +38,6 @@ frontend<span class="pl-k">-</span>us<span class="pl-k">-</span>west<span class=
 frontend<span class="pl-k">-</span>us<span class="pl-k">-</span>west<span class="pl-k">-</span><span class="pl-c1">2</span>c <span class="pl-c1">10.0</span>.<span class="pl-c1">8.0</span><span class="pl-k">/</span><span class="pl-c1">22</span>
 frontend<span class="pl-k">-</span>us<span class="pl-k">-</span>west<span class="pl-k">-</span><span class="pl-c1">2</span>a <span class="pl-c1">10.0</span>.<span class="pl-c1">0.0</span><span class="pl-k">/</span><span class="pl-c1">22</span></pre></div>
 
-<p>There is also a Config class which contains common configuration for your organization. This class imports LocalConfig, which tries to isolate attributes likely to be similar for most library users from attributes which will definitely change per user. Likely there is a better long-term solution for this config data, like home directory .ini files.</p>
+
       </section>
     </div>

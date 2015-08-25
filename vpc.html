@@ -4,3 +4,15 @@ layout: default
 category: vpc
 tags: usage
 ---
+
+<h3>Methods and attributes exposed by veep.VPC</h3>
+<strong>veep.VPC.get_regions()</strong>
+<p>Returns a list of <a href="region.html">veep.VPC.region</a> objects for all non-blacklisted regions (see <a href="config.html">veep.Config.blacklists</a>).
+
+<strong>veep.VPC.find(ids=list, names=list)</strong>
+<p>Returns a list of veep.VPC.vpc objects matching the parameters specified. With no parameters, the function returns all "Managed" vpcs- these are vpcs with an "Environment" tag as assigned by veep at creation time.</p>
+
+<strong>veep.VPC.connect_to_region(name)</strong>
+<p>returns a <a href="region.html">veep.VPC.Region</a> object connected to the region specified by name.</p>
+
+<h3>Methods and attributes of the veep.VPC.vpc object</h3>
