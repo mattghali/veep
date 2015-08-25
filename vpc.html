@@ -6,13 +6,71 @@ tags: usage
 ---
 
 <h3>Methods and attributes exposed by veep.VPC</h3>
-<strong>veep.VPC.get_regions()</strong>
-<p>Returns a list of <a href="region.html">veep.VPC.region</a> objects for all non-blacklisted regions (see <a href="config.html">veep.Config.blacklists</a>).
+<strong>get_regions()</strong>
+<p>Returns a list of <a href="region.html">veep.VPC.region</a> objects for all non-blacklisted regions (see <a href="config.html">veep.Config.blacklists</a>).</p>
 
-<strong>veep.VPC.find(ids=list, names=list)</strong>
+<strong>find(<i>ids=list, names=list</i>)</strong>
 <p>Returns a list of veep.VPC.vpc objects matching the parameters specified. With no parameters, the function returns all "Managed" vpcs- these are vpcs with an "Environment" tag as assigned by veep at creation time.</p>
 
-<strong>veep.VPC.connect_to_region(name)</strong>
+<strong>connect_to_region(<i>name</i>)</strong>
 <p>returns a <a href="region.html">veep.VPC.Region</a> object connected to the region specified by name.</p>
 
 <h3>Methods and attributes of the veep.VPC.vpc object</h3>
+<strong>get_name()</strong>
+<p>returns the vpc's name (contents of the Name tag, defaults to the concat of region name and vpc env).</p>
+
+<strong>set_name(<i>name</i>)</strong>
+<p>Sets the vpc's name.</p>
+
+<strong>get_env()</strong>
+<p>returns the vpc's environment name (Contents of the Environment tag).</p>
+
+<strong>set_env(<i>env</i>)</strong>
+<p>sets the vpc's environment name</p>
+
+<strong>get_cidr()</strong>
+<p>returns the cidr block allocated to the vpc.</p>
+
+<strong>get_igw()</strong>
+<p>returns the Internet Gateway attached to this vpc.</p>
+
+<strong>add_igw()</strong>
+<p>Creates a new Internet Gateway and attaches it to this vpc, returning it on success.</p>
+
+<strong>get_tiers(name=<i>name</i>)</strong>
+<p>Returns a list of Tier objects contained in this vpc.</p>
+
+<strong>add_tier(<i>tier_name, cidr_block, subnet_size=21</i>)</strong>
+<p>Creates a new Tier object and associates it with this vpc. Subnets for each availability zone will be created out of cidr_block, of subnet_size.</p>
+
+<strong>delete_tier(<i>tier</i>)</strong>
+<p>Removes a tier and its associated subnets from this vpc.</p>
+
+<strong>rename_tier(<i>old, new</i>)</strong>
+<p>Renames an existing tier by name.</p>
+
+<strong>get_tables(name=<i>name</i>)</strong>
+<p>Returns route tables associated with this vpc. If <i>name</i> is specified, only return matching tables.</p>
+
+<strong>create_table(name=<i>name</i>)</strong>
+<p>Creates a new route table, named <i>name</i>, and associates it with this vpc.</p>
+
+<strong>delete_table(table=<i>table</i>, name=<i>name</i>, id=<i>id</i>)</strong>
+<p>Deletes a route table associated with this vpc. Select by passing either a table, it's name or ID.</p>
+
+<strong>sg_rule(**kwargs)</strong>
+<p>text</p>
+
+<strong>get_secgrps(**kwargs)</strong>
+<p>text</p>
+
+<strong>create_secgrp(**kwargs)</strong>
+<p>text</p>
+
+<strong>update_secgrp(**kwargs)</strong>
+<p>text</p>
+
+<strong>delete_secgrp(**kwargs)</strong>
+<p>text</p>
+
+
