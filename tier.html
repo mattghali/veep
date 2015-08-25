@@ -4,3 +4,8 @@ layout: default
 category: tier
 tags: usage
 ---
+
+<p>Region and VPC objects should be instantly familiar to anyone who uses boto. The Tier object is a veep abstraction not shared with boto. Tiers allow easy mapping of a set of access policies across all availability zones in a VPC.</p>
+
+<p>Instances can be broken down into a small number of groups with specific access policy requirements. For instance, in a typical web app architecture, you might have a set of web servers which require direct inbound access from clients on the internet. Behind this set of web servers, another set of app servers need no direct inbound connectivity, but must talk to external services for things like boot-time patching. Commonly these app servers would sit behind NAT instead of an AWS Internet Gateway. Other things might need no external connectivity at all, like VPC Service Endpoints. Or you may want a small set of admin instances as bastion hosts between the rest of your VPC and a VPN tunnel. Tiers are an abstraction of this mapping between policies implemented via Route Tables and the set of AZs in a VPC's region.</p>
+
