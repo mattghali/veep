@@ -4,3 +4,1923 @@ layout: default
 category: iam
 tags: usage
 ---
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="veep.html"><font color="#ffffff">veep</font></a>.IAM</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/Users/mghali/work/veep/veep/IAM.py">/Users/mghali/work/veep/veep/IAM.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="boto.html">boto</a><br>
+</td><td width="25%" valign=top><a href="datetime.html">datetime</a><br>
+</td><td width="25%" valign=top><a href="json.html">json</a><br>
+</td><td width="25%" valign=top><a href="uuid.html">uuid</a><br>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="__builtin__.html#dict">__builtin__.dict</a>(<a href="__builtin__.html#object">__builtin__.object</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="veep.IAM.html#Condition">Condition</a>
+</font></dt><dt><font face="helvetica, arial"><a href="veep.IAM.html#P_aws">P_aws</a>
+</font></dt><dt><font face="helvetica, arial"><a href="veep.IAM.html#Policy">Policy</a>
+</font></dt><dt><font face="helvetica, arial"><a href="veep.IAM.html#Statement">Statement</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="__builtin__.html#object">__builtin__.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="veep.IAM.html#Certificate">Certificate</a>
+</font></dt><dt><font face="helvetica, arial"><a href="veep.IAM.html#Profile">Profile</a>
+</font></dt><dt><font face="helvetica, arial"><a href="veep.IAM.html#Role">Role</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="__builtin__.html#str">__builtin__.str</a>(<a href="__builtin__.html#basestring">__builtin__.basestring</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="veep.IAM.html#P_any">P_any</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="boto.iam.connection.html#IAMConnection">boto.iam.connection.IAMConnection</a>(<a href="boto.connection.html#AWSQueryConnection">boto.connection.AWSQueryConnection</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="veep.IAM.html#IAMConnection">IAMConnection</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Certificate">class <strong>Certificate</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Object&nbsp;returned&nbsp;by&nbsp;get_certificates(),&nbsp;with&nbsp;expiration&nbsp;date<br>
+converted&nbsp;into&nbsp;a&nbsp;datetime.datetime()&nbsp;<a href="__builtin__.html#object">object</a>.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Certificate-__init__"><strong>__init__</strong></a>(self, connection, **kwargs)</dt></dl>
+
+<dl><dt><a name="Certificate-__repr__"><strong>__repr__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Certificate-__str__"><strong>__str__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Certificate-delete"><strong>delete</strong></a>(self)</dt><dd><tt>Deletes&nbsp;the&nbsp;certificate&nbsp;from&nbsp;the&nbsp;IAM&nbsp;cert&nbsp;store.</tt></dd></dl>
+
+<dl><dt><a name="Certificate-update"><strong>update</strong></a>(self, **kwargs)</dt><dd><tt>Updates&nbsp;the&nbsp;name&nbsp;and/or&nbsp;path&nbsp;attribute&nbsp;of&nbsp;an&nbsp;existing&nbsp;certificate.<br>
+&nbsp;<br>
+**kwargs:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;name&nbsp;(<a href="__builtin__.html#str">str</a>):&nbsp;New&nbsp;name&nbsp;for&nbsp;certificate.&nbsp;(optional)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;path&nbsp;(<a href="__builtin__.html#str">str</a>):&nbsp;New&nbsp;path&nbsp;for&nbsp;certificate.&nbsp;(optional)</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Condition">class <strong>Condition</strong></a>(<a href="__builtin__.html#dict">__builtin__.dict</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Instance&nbsp;defines&nbsp;a&nbsp;condition&nbsp;applied&nbsp;to&nbsp;a&nbsp;<a href="#Statement">Statement</a>.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;cond_test&nbsp;(<a href="__builtin__.html#str">str</a>):&nbsp;An&nbsp;IAM&nbsp;condition.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;val_type&nbsp;(<a href="__builtin__.html#str">str</a>):&nbsp;Key&nbsp;for&nbsp;value&nbsp;from&nbsp;request<br>
+&nbsp;&nbsp;&nbsp;&nbsp;val_data&nbsp;(<a href="__builtin__.html#str">str</a>):&nbsp;Value&nbsp;for&nbsp;comparison<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="veep.IAM.html#Condition">Condition</a></dd>
+<dd><a href="__builtin__.html#dict">__builtin__.dict</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="Condition-__init__"><strong>__init__</strong></a>(self, cond_test, val_type, val_data)</dt></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Methods inherited from <a href="__builtin__.html#dict">__builtin__.dict</a>:<br>
+<dl><dt><a name="Condition-__cmp__"><strong>__cmp__</strong></a>(...)</dt><dd><tt>x.<a href="#Condition-__cmp__">__cmp__</a>(y)&nbsp;&lt;==&gt;&nbsp;cmp(x,y)</tt></dd></dl>
+
+<dl><dt><a name="Condition-__contains__"><strong>__contains__</strong></a>(...)</dt><dd><tt>D.<a href="#Condition-__contains__">__contains__</a>(k)&nbsp;-&gt;&nbsp;True&nbsp;if&nbsp;D&nbsp;has&nbsp;a&nbsp;key&nbsp;k,&nbsp;else&nbsp;False</tt></dd></dl>
+
+<dl><dt><a name="Condition-__delitem__"><strong>__delitem__</strong></a>(...)</dt><dd><tt>x.<a href="#Condition-__delitem__">__delitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;del&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="Condition-__eq__"><strong>__eq__</strong></a>(...)</dt><dd><tt>x.<a href="#Condition-__eq__">__eq__</a>(y)&nbsp;&lt;==&gt;&nbsp;x==y</tt></dd></dl>
+
+<dl><dt><a name="Condition-__ge__"><strong>__ge__</strong></a>(...)</dt><dd><tt>x.<a href="#Condition-__ge__">__ge__</a>(y)&nbsp;&lt;==&gt;&nbsp;x&gt;=y</tt></dd></dl>
+
+<dl><dt><a name="Condition-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#Condition-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="Condition-__getitem__"><strong>__getitem__</strong></a>(...)</dt><dd><tt>x.<a href="#Condition-__getitem__">__getitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="Condition-__gt__"><strong>__gt__</strong></a>(...)</dt><dd><tt>x.<a href="#Condition-__gt__">__gt__</a>(y)&nbsp;&lt;==&gt;&nbsp;x&gt;y</tt></dd></dl>
+
+<dl><dt><a name="Condition-__iter__"><strong>__iter__</strong></a>(...)</dt><dd><tt>x.<a href="#Condition-__iter__">__iter__</a>()&nbsp;&lt;==&gt;&nbsp;iter(x)</tt></dd></dl>
+
+<dl><dt><a name="Condition-__le__"><strong>__le__</strong></a>(...)</dt><dd><tt>x.<a href="#Condition-__le__">__le__</a>(y)&nbsp;&lt;==&gt;&nbsp;x&lt;=y</tt></dd></dl>
+
+<dl><dt><a name="Condition-__len__"><strong>__len__</strong></a>(...)</dt><dd><tt>x.<a href="#Condition-__len__">__len__</a>()&nbsp;&lt;==&gt;&nbsp;len(x)</tt></dd></dl>
+
+<dl><dt><a name="Condition-__lt__"><strong>__lt__</strong></a>(...)</dt><dd><tt>x.<a href="#Condition-__lt__">__lt__</a>(y)&nbsp;&lt;==&gt;&nbsp;x&lt;y</tt></dd></dl>
+
+<dl><dt><a name="Condition-__ne__"><strong>__ne__</strong></a>(...)</dt><dd><tt>x.<a href="#Condition-__ne__">__ne__</a>(y)&nbsp;&lt;==&gt;&nbsp;x!=y</tt></dd></dl>
+
+<dl><dt><a name="Condition-__repr__"><strong>__repr__</strong></a>(...)</dt><dd><tt>x.<a href="#Condition-__repr__">__repr__</a>()&nbsp;&lt;==&gt;&nbsp;repr(x)</tt></dd></dl>
+
+<dl><dt><a name="Condition-__setitem__"><strong>__setitem__</strong></a>(...)</dt><dd><tt>x.<a href="#Condition-__setitem__">__setitem__</a>(i,&nbsp;y)&nbsp;&lt;==&gt;&nbsp;x[i]=y</tt></dd></dl>
+
+<dl><dt><a name="Condition-__sizeof__"><strong>__sizeof__</strong></a>(...)</dt><dd><tt>D.<a href="#Condition-__sizeof__">__sizeof__</a>()&nbsp;-&gt;&nbsp;size&nbsp;of&nbsp;D&nbsp;in&nbsp;memory,&nbsp;in&nbsp;bytes</tt></dd></dl>
+
+<dl><dt><a name="Condition-clear"><strong>clear</strong></a>(...)</dt><dd><tt>D.<a href="#Condition-clear">clear</a>()&nbsp;-&gt;&nbsp;None.&nbsp;&nbsp;Remove&nbsp;all&nbsp;items&nbsp;from&nbsp;D.</tt></dd></dl>
+
+<dl><dt><a name="Condition-copy"><strong>copy</strong></a>(...)</dt><dd><tt>D.<a href="#Condition-copy">copy</a>()&nbsp;-&gt;&nbsp;a&nbsp;shallow&nbsp;copy&nbsp;of&nbsp;D</tt></dd></dl>
+
+<dl><dt><a name="Condition-fromkeys"><strong>fromkeys</strong></a>(...)</dt><dd><tt><a href="__builtin__.html#dict">dict</a>.<a href="#Condition-fromkeys">fromkeys</a>(S[,v])&nbsp;-&gt;&nbsp;New&nbsp;<a href="__builtin__.html#dict">dict</a>&nbsp;with&nbsp;keys&nbsp;from&nbsp;S&nbsp;and&nbsp;values&nbsp;equal&nbsp;to&nbsp;v.<br>
+v&nbsp;defaults&nbsp;to&nbsp;None.</tt></dd></dl>
+
+<dl><dt><a name="Condition-get"><strong>get</strong></a>(...)</dt><dd><tt>D.<a href="#Condition-get">get</a>(k[,d])&nbsp;-&gt;&nbsp;D[k]&nbsp;if&nbsp;k&nbsp;in&nbsp;D,&nbsp;else&nbsp;d.&nbsp;&nbsp;d&nbsp;defaults&nbsp;to&nbsp;None.</tt></dd></dl>
+
+<dl><dt><a name="Condition-has_key"><strong>has_key</strong></a>(...)</dt><dd><tt>D.<a href="#Condition-has_key">has_key</a>(k)&nbsp;-&gt;&nbsp;True&nbsp;if&nbsp;D&nbsp;has&nbsp;a&nbsp;key&nbsp;k,&nbsp;else&nbsp;False</tt></dd></dl>
+
+<dl><dt><a name="Condition-items"><strong>items</strong></a>(...)</dt><dd><tt>D.<a href="#Condition-items">items</a>()&nbsp;-&gt;&nbsp;list&nbsp;of&nbsp;D's&nbsp;(key,&nbsp;value)&nbsp;pairs,&nbsp;as&nbsp;2-tuples</tt></dd></dl>
+
+<dl><dt><a name="Condition-iteritems"><strong>iteritems</strong></a>(...)</dt><dd><tt>D.<a href="#Condition-iteritems">iteritems</a>()&nbsp;-&gt;&nbsp;an&nbsp;iterator&nbsp;over&nbsp;the&nbsp;(key,&nbsp;value)&nbsp;items&nbsp;of&nbsp;D</tt></dd></dl>
+
+<dl><dt><a name="Condition-iterkeys"><strong>iterkeys</strong></a>(...)</dt><dd><tt>D.<a href="#Condition-iterkeys">iterkeys</a>()&nbsp;-&gt;&nbsp;an&nbsp;iterator&nbsp;over&nbsp;the&nbsp;keys&nbsp;of&nbsp;D</tt></dd></dl>
+
+<dl><dt><a name="Condition-itervalues"><strong>itervalues</strong></a>(...)</dt><dd><tt>D.<a href="#Condition-itervalues">itervalues</a>()&nbsp;-&gt;&nbsp;an&nbsp;iterator&nbsp;over&nbsp;the&nbsp;values&nbsp;of&nbsp;D</tt></dd></dl>
+
+<dl><dt><a name="Condition-keys"><strong>keys</strong></a>(...)</dt><dd><tt>D.<a href="#Condition-keys">keys</a>()&nbsp;-&gt;&nbsp;list&nbsp;of&nbsp;D's&nbsp;keys</tt></dd></dl>
+
+<dl><dt><a name="Condition-pop"><strong>pop</strong></a>(...)</dt><dd><tt>D.<a href="#Condition-pop">pop</a>(k[,d])&nbsp;-&gt;&nbsp;v,&nbsp;remove&nbsp;specified&nbsp;key&nbsp;and&nbsp;return&nbsp;the&nbsp;corresponding&nbsp;value.<br>
+If&nbsp;key&nbsp;is&nbsp;not&nbsp;found,&nbsp;d&nbsp;is&nbsp;returned&nbsp;if&nbsp;given,&nbsp;otherwise&nbsp;KeyError&nbsp;is&nbsp;raised</tt></dd></dl>
+
+<dl><dt><a name="Condition-popitem"><strong>popitem</strong></a>(...)</dt><dd><tt>D.<a href="#Condition-popitem">popitem</a>()&nbsp;-&gt;&nbsp;(k,&nbsp;v),&nbsp;remove&nbsp;and&nbsp;return&nbsp;some&nbsp;(key,&nbsp;value)&nbsp;pair&nbsp;as&nbsp;a<br>
+2-tuple;&nbsp;but&nbsp;raise&nbsp;KeyError&nbsp;if&nbsp;D&nbsp;is&nbsp;empty.</tt></dd></dl>
+
+<dl><dt><a name="Condition-setdefault"><strong>setdefault</strong></a>(...)</dt><dd><tt>D.<a href="#Condition-setdefault">setdefault</a>(k[,d])&nbsp;-&gt;&nbsp;D.<a href="#Condition-get">get</a>(k,d),&nbsp;also&nbsp;set&nbsp;D[k]=d&nbsp;if&nbsp;k&nbsp;not&nbsp;in&nbsp;D</tt></dd></dl>
+
+<dl><dt><a name="Condition-update"><strong>update</strong></a>(...)</dt><dd><tt>D.<a href="#Condition-update">update</a>([E,&nbsp;]**F)&nbsp;-&gt;&nbsp;None.&nbsp;&nbsp;Update&nbsp;D&nbsp;from&nbsp;<a href="__builtin__.html#dict">dict</a>/iterable&nbsp;E&nbsp;and&nbsp;F.<br>
+If&nbsp;E&nbsp;present&nbsp;and&nbsp;has&nbsp;a&nbsp;.<a href="#Condition-keys">keys</a>()&nbsp;method,&nbsp;does:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;k&nbsp;in&nbsp;E:&nbsp;D[k]&nbsp;=&nbsp;E[k]<br>
+If&nbsp;E&nbsp;present&nbsp;and&nbsp;lacks&nbsp;.<a href="#Condition-keys">keys</a>()&nbsp;method,&nbsp;does:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;(k,&nbsp;v)&nbsp;in&nbsp;E:&nbsp;D[k]&nbsp;=&nbsp;v<br>
+In&nbsp;either&nbsp;case,&nbsp;this&nbsp;is&nbsp;followed&nbsp;by:&nbsp;for&nbsp;k&nbsp;in&nbsp;F:&nbsp;D[k]&nbsp;=&nbsp;F[k]</tt></dd></dl>
+
+<dl><dt><a name="Condition-values"><strong>values</strong></a>(...)</dt><dd><tt>D.<a href="#Condition-values">values</a>()&nbsp;-&gt;&nbsp;list&nbsp;of&nbsp;D's&nbsp;values</tt></dd></dl>
+
+<dl><dt><a name="Condition-viewitems"><strong>viewitems</strong></a>(...)</dt><dd><tt>D.<a href="#Condition-viewitems">viewitems</a>()&nbsp;-&gt;&nbsp;a&nbsp;set-like&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;providing&nbsp;a&nbsp;view&nbsp;on&nbsp;D's&nbsp;items</tt></dd></dl>
+
+<dl><dt><a name="Condition-viewkeys"><strong>viewkeys</strong></a>(...)</dt><dd><tt>D.<a href="#Condition-viewkeys">viewkeys</a>()&nbsp;-&gt;&nbsp;a&nbsp;set-like&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;providing&nbsp;a&nbsp;view&nbsp;on&nbsp;D's&nbsp;keys</tt></dd></dl>
+
+<dl><dt><a name="Condition-viewvalues"><strong>viewvalues</strong></a>(...)</dt><dd><tt>D.<a href="#Condition-viewvalues">viewvalues</a>()&nbsp;-&gt;&nbsp;an&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;providing&nbsp;a&nbsp;view&nbsp;on&nbsp;D's&nbsp;values</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="__builtin__.html#dict">__builtin__.dict</a>:<br>
+<dl><dt><strong>__hash__</strong> = None</dl>
+
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object&gt;<dd><tt>T.<a href="#Condition-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="IAMConnection">class <strong>IAMConnection</strong></a>(<a href="boto.iam.connection.html#IAMConnection">boto.iam.connection.IAMConnection</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="veep.IAM.html#IAMConnection">IAMConnection</a></dd>
+<dd><a href="boto.iam.connection.html#IAMConnection">boto.iam.connection.IAMConnection</a></dd>
+<dd><a href="boto.connection.html#AWSQueryConnection">boto.connection.AWSQueryConnection</a></dd>
+<dd><a href="boto.connection.html#AWSAuthConnection">boto.connection.AWSAuthConnection</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="IAMConnection-__init__"><strong>__init__</strong></a>(self, aws_access_key_id<font color="#909090">=None</font>, aws_secret_access_key<font color="#909090">=None</font>, **kwargs)</dt></dl>
+
+<dl><dt><a name="IAMConnection-create_instance_profile"><strong>create_instance_profile</strong></a>(self, name, **kwargs)</dt><dd><tt>Create&nbsp;an&nbsp;instance&nbsp;profile.<br>
+&nbsp;<br>
+args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;name&nbsp;(<a href="__builtin__.html#str">str</a>):&nbsp;Name&nbsp;of&nbsp;profile&nbsp;to&nbsp;create.<br>
+&nbsp;<br>
+**kwargs:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;path&nbsp;(<a href="__builtin__.html#str">str</a>):&nbsp;Optional&nbsp;path&nbsp;for&nbsp;profile.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;instance&nbsp;of&nbsp;<a href="#Profile">Profile</a></tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-create_role"><strong>create_role</strong></a>(self, name, **kwargs)</dt><dd><tt>Create&nbsp;a&nbsp;role.<br>
+&nbsp;<br>
+args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;name&nbsp;(<a href="__builtin__.html#str">str</a>):&nbsp;Name&nbsp;of&nbsp;role&nbsp;to&nbsp;create.<br>
+&nbsp;<br>
+**kwargs:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;path&nbsp;(<a href="__builtin__.html#str">str</a>):&nbsp;Optional&nbsp;path&nbsp;for&nbsp;role.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;assume_role_policy_document&nbsp;(<a href="__builtin__.html#str">str</a>):&nbsp;A&nbsp;polcy&nbsp;document.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;instance&nbsp;of&nbsp;<a href="#Role">Role</a></tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-get_instance_profile"><strong>get_instance_profile</strong></a>(self, name)</dt><dd><tt>Find&nbsp;an&nbsp;instance&nbsp;profile&nbsp;by&nbsp;name.<br>
+&nbsp;<br>
+args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;name&nbsp;(<a href="__builtin__.html#str">str</a>):&nbsp;Name&nbsp;of&nbsp;profile&nbsp;to&nbsp;select.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;instance&nbsp;of&nbsp;<a href="#Profile">Profile</a></tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-get_role"><strong>get_role</strong></a>(self, name)</dt><dd><tt>Find&nbsp;role&nbsp;by&nbsp;name.<br>
+&nbsp;<br>
+args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;name&nbsp;(<a href="__builtin__.html#str">str</a>):&nbsp;Name&nbsp;of&nbsp;role&nbsp;to&nbsp;select.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;instance&nbsp;of&nbsp;<a href="#Role">Role</a></tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-get_user_arn"><strong>get_user_arn</strong></a>(self)</dt><dd><tt>Returns&nbsp;arn&nbsp;for&nbsp;effective&nbsp;IAM&nbsp;user<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(<a href="__builtin__.html#str">str</a>)&nbsp;AWS&nbsp;account&nbsp;arn</tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-list_server_certs"><strong>list_server_certs</strong></a>(self)</dt><dd><tt>Yields&nbsp;a&nbsp;list&nbsp;of&nbsp;server&nbsp;certificates&nbsp;stored&nbsp;in&nbsp;the&nbsp;account&nbsp;as<br>
+<a href="#Certificate">Certificate</a>&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;instances.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;iterator&nbsp;of&nbsp;<a href="#Certificate">Certificate</a>&nbsp;instances.</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="boto.iam.connection.html#IAMConnection">boto.iam.connection.IAMConnection</a>:<br>
+<dl><dt><a name="IAMConnection-add_role_to_instance_profile"><strong>add_role_to_instance_profile</strong></a>(self, instance_profile_name, role_name)</dt><dd><tt>Adds&nbsp;the&nbsp;specified&nbsp;role&nbsp;to&nbsp;the&nbsp;specified&nbsp;instance&nbsp;profile.<br>
+&nbsp;<br>
+:type&nbsp;instance_profile_name:&nbsp;string<br>
+:param&nbsp;instance_profile_name:&nbsp;Name&nbsp;of&nbsp;the&nbsp;instance&nbsp;profile&nbsp;to&nbsp;update.<br>
+&nbsp;<br>
+:type&nbsp;role_name:&nbsp;string<br>
+:param&nbsp;role_name:&nbsp;Name&nbsp;of&nbsp;the&nbsp;role&nbsp;to&nbsp;add.</tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-add_user_to_group"><strong>add_user_to_group</strong></a>(self, group_name, user_name)</dt><dd><tt>Add&nbsp;a&nbsp;user&nbsp;to&nbsp;a&nbsp;group<br>
+&nbsp;<br>
+:type&nbsp;group_name:&nbsp;string<br>
+:param&nbsp;group_name:&nbsp;The&nbsp;name&nbsp;of&nbsp;the&nbsp;group<br>
+&nbsp;<br>
+:type&nbsp;user_name:&nbsp;string<br>
+:param&nbsp;user_name:&nbsp;The&nbsp;to&nbsp;be&nbsp;added&nbsp;to&nbsp;the&nbsp;group.</tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-create_access_key"><strong>create_access_key</strong></a>(self, user_name<font color="#909090">=None</font>)</dt><dd><tt>Create&nbsp;a&nbsp;new&nbsp;AWS&nbsp;Secret&nbsp;Access&nbsp;Key&nbsp;and&nbsp;corresponding&nbsp;AWS&nbsp;Access&nbsp;Key&nbsp;ID<br>
+for&nbsp;the&nbsp;specified&nbsp;user.&nbsp;&nbsp;The&nbsp;default&nbsp;status&nbsp;for&nbsp;new&nbsp;keys&nbsp;is&nbsp;Active<br>
+&nbsp;<br>
+If&nbsp;the&nbsp;user_name&nbsp;is&nbsp;not&nbsp;specified,&nbsp;the&nbsp;user_name&nbsp;is&nbsp;determined<br>
+implicitly&nbsp;based&nbsp;on&nbsp;the&nbsp;AWS&nbsp;Access&nbsp;Key&nbsp;ID&nbsp;used&nbsp;to&nbsp;sign&nbsp;the&nbsp;request.<br>
+&nbsp;<br>
+:type&nbsp;user_name:&nbsp;string<br>
+:param&nbsp;user_name:&nbsp;The&nbsp;username&nbsp;of&nbsp;the&nbsp;user</tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-create_account_alias"><strong>create_account_alias</strong></a>(self, alias)</dt><dd><tt>Creates&nbsp;a&nbsp;new&nbsp;alias&nbsp;for&nbsp;the&nbsp;AWS&nbsp;account.<br>
+&nbsp;<br>
+For&nbsp;more&nbsp;information&nbsp;on&nbsp;account&nbsp;id&nbsp;aliases,&nbsp;please&nbsp;see<br>
+<a href="http://goo.gl/ToB7G">http://goo.gl/ToB7G</a><br>
+&nbsp;<br>
+:type&nbsp;alias:&nbsp;string<br>
+:param&nbsp;alias:&nbsp;The&nbsp;alias&nbsp;to&nbsp;attach&nbsp;to&nbsp;the&nbsp;account.</tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-create_group"><strong>create_group</strong></a>(self, group_name, path<font color="#909090">='/'</font>)</dt><dd><tt>Create&nbsp;a&nbsp;group.<br>
+&nbsp;<br>
+:type&nbsp;group_name:&nbsp;string<br>
+:param&nbsp;group_name:&nbsp;The&nbsp;name&nbsp;of&nbsp;the&nbsp;new&nbsp;group<br>
+&nbsp;<br>
+:type&nbsp;path:&nbsp;string<br>
+:param&nbsp;path:&nbsp;The&nbsp;path&nbsp;to&nbsp;the&nbsp;group&nbsp;(Optional).&nbsp;&nbsp;Defaults&nbsp;to&nbsp;/.</tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-create_login_profile"><strong>create_login_profile</strong></a>(self, user_name, password)</dt><dd><tt>Creates&nbsp;a&nbsp;login&nbsp;profile&nbsp;for&nbsp;the&nbsp;specified&nbsp;user,&nbsp;give&nbsp;the&nbsp;user&nbsp;the<br>
+ability&nbsp;to&nbsp;access&nbsp;AWS&nbsp;services&nbsp;and&nbsp;the&nbsp;AWS&nbsp;Management&nbsp;Console.<br>
+&nbsp;<br>
+:type&nbsp;user_name:&nbsp;string<br>
+:param&nbsp;user_name:&nbsp;The&nbsp;name&nbsp;of&nbsp;the&nbsp;user<br>
+&nbsp;<br>
+:type&nbsp;password:&nbsp;string<br>
+:param&nbsp;password:&nbsp;The&nbsp;new&nbsp;password&nbsp;for&nbsp;the&nbsp;user</tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-create_saml_provider"><strong>create_saml_provider</strong></a>(self, saml_metadata_document, name)</dt><dd><tt>Creates&nbsp;an&nbsp;IAM&nbsp;entity&nbsp;to&nbsp;describe&nbsp;an&nbsp;identity&nbsp;provider&nbsp;(IdP)<br>
+that&nbsp;supports&nbsp;SAML&nbsp;2.0.<br>
+&nbsp;<br>
+The&nbsp;SAML&nbsp;provider&nbsp;that&nbsp;you&nbsp;create&nbsp;with&nbsp;this&nbsp;operation&nbsp;can&nbsp;be<br>
+used&nbsp;as&nbsp;a&nbsp;principal&nbsp;in&nbsp;a&nbsp;role's&nbsp;trust&nbsp;policy&nbsp;to&nbsp;establish&nbsp;a<br>
+trust&nbsp;relationship&nbsp;between&nbsp;AWS&nbsp;and&nbsp;a&nbsp;SAML&nbsp;identity&nbsp;provider.<br>
+You&nbsp;can&nbsp;create&nbsp;an&nbsp;IAM&nbsp;role&nbsp;that&nbsp;supports&nbsp;Web-based&nbsp;single<br>
+sign-on&nbsp;(SSO)&nbsp;to&nbsp;the&nbsp;AWS&nbsp;Management&nbsp;Console&nbsp;or&nbsp;one&nbsp;that<br>
+supports&nbsp;API&nbsp;access&nbsp;to&nbsp;AWS.<br>
+&nbsp;<br>
+When&nbsp;you&nbsp;create&nbsp;the&nbsp;SAML&nbsp;provider,&nbsp;you&nbsp;upload&nbsp;an&nbsp;a&nbsp;SAML<br>
+metadata&nbsp;document&nbsp;that&nbsp;you&nbsp;get&nbsp;from&nbsp;your&nbsp;IdP&nbsp;and&nbsp;that&nbsp;includes<br>
+the&nbsp;issuer's&nbsp;name,&nbsp;expiration&nbsp;information,&nbsp;and&nbsp;keys&nbsp;that&nbsp;can<br>
+be&nbsp;used&nbsp;to&nbsp;validate&nbsp;the&nbsp;SAML&nbsp;authentication&nbsp;response<br>
+(assertions)&nbsp;that&nbsp;are&nbsp;received&nbsp;from&nbsp;the&nbsp;IdP.&nbsp;You&nbsp;must&nbsp;generate<br>
+the&nbsp;metadata&nbsp;document&nbsp;using&nbsp;the&nbsp;identity&nbsp;management&nbsp;software<br>
+that&nbsp;is&nbsp;used&nbsp;as&nbsp;your&nbsp;organization's&nbsp;IdP.<br>
+This&nbsp;operation&nbsp;requires&nbsp;`Signature&nbsp;Version&nbsp;4`_.<br>
+For&nbsp;more&nbsp;information,&nbsp;see&nbsp;`Giving&nbsp;Console&nbsp;Access&nbsp;Using&nbsp;SAML`_<br>
+and&nbsp;`Creating&nbsp;Temporary&nbsp;Security&nbsp;Credentials&nbsp;for&nbsp;SAML<br>
+Federation`_&nbsp;in&nbsp;the&nbsp;Using&nbsp;Temporary&nbsp;Credentials&nbsp;guide.<br>
+&nbsp;<br>
+:type&nbsp;saml_metadata_document:&nbsp;string<br>
+:param&nbsp;saml_metadata_document:&nbsp;An&nbsp;XML&nbsp;document&nbsp;generated&nbsp;by&nbsp;an&nbsp;identity<br>
+&nbsp;&nbsp;&nbsp;&nbsp;provider&nbsp;(IdP)&nbsp;that&nbsp;supports&nbsp;SAML&nbsp;2.0.&nbsp;The&nbsp;document&nbsp;includes&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;issuer's&nbsp;name,&nbsp;expiration&nbsp;information,&nbsp;and&nbsp;keys&nbsp;that&nbsp;can&nbsp;be&nbsp;used&nbsp;to<br>
+&nbsp;&nbsp;&nbsp;&nbsp;validate&nbsp;the&nbsp;SAML&nbsp;authentication&nbsp;response&nbsp;(assertions)&nbsp;that&nbsp;are<br>
+&nbsp;&nbsp;&nbsp;&nbsp;received&nbsp;from&nbsp;the&nbsp;IdP.&nbsp;You&nbsp;must&nbsp;generate&nbsp;the&nbsp;metadata&nbsp;document<br>
+&nbsp;&nbsp;&nbsp;&nbsp;using&nbsp;the&nbsp;identity&nbsp;management&nbsp;software&nbsp;that&nbsp;is&nbsp;used&nbsp;as&nbsp;your<br>
+&nbsp;&nbsp;&nbsp;&nbsp;organization's&nbsp;IdP.<br>
+For&nbsp;more&nbsp;information,&nbsp;see&nbsp;`Creating&nbsp;Temporary&nbsp;Security&nbsp;Credentials&nbsp;for<br>
+&nbsp;&nbsp;&nbsp;&nbsp;SAML&nbsp;Federation`_&nbsp;in&nbsp;the&nbsp;Using&nbsp;Temporary&nbsp;Security&nbsp;Credentials<br>
+&nbsp;&nbsp;&nbsp;&nbsp;guide.<br>
+&nbsp;<br>
+:type&nbsp;name:&nbsp;string<br>
+:param&nbsp;name:&nbsp;The&nbsp;name&nbsp;of&nbsp;the&nbsp;provider&nbsp;to&nbsp;create.</tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-create_user"><strong>create_user</strong></a>(self, user_name, path<font color="#909090">='/'</font>)</dt><dd><tt>Create&nbsp;a&nbsp;user.<br>
+&nbsp;<br>
+:type&nbsp;user_name:&nbsp;string<br>
+:param&nbsp;user_name:&nbsp;The&nbsp;name&nbsp;of&nbsp;the&nbsp;new&nbsp;user<br>
+&nbsp;<br>
+:type&nbsp;path:&nbsp;string<br>
+:param&nbsp;path:&nbsp;The&nbsp;path&nbsp;in&nbsp;which&nbsp;the&nbsp;user&nbsp;will&nbsp;be&nbsp;created.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Defaults&nbsp;to&nbsp;/.</tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-create_virtual_mfa_device"><strong>create_virtual_mfa_device</strong></a>(self, path, device_name)</dt><dd><tt>Creates&nbsp;a&nbsp;new&nbsp;virtual&nbsp;MFA&nbsp;device&nbsp;for&nbsp;the&nbsp;AWS&nbsp;account.<br>
+&nbsp;<br>
+After&nbsp;creating&nbsp;the&nbsp;virtual&nbsp;MFA,&nbsp;use&nbsp;enable-mfa-device&nbsp;to<br>
+attach&nbsp;the&nbsp;MFA&nbsp;device&nbsp;to&nbsp;an&nbsp;IAM&nbsp;user.<br>
+&nbsp;<br>
+:type&nbsp;path:&nbsp;string<br>
+:param&nbsp;path:&nbsp;The&nbsp;path&nbsp;for&nbsp;the&nbsp;virtual&nbsp;MFA&nbsp;device.<br>
+&nbsp;<br>
+:type&nbsp;device_name:&nbsp;string<br>
+:param&nbsp;device_name:&nbsp;The&nbsp;name&nbsp;of&nbsp;the&nbsp;virtual&nbsp;MFA&nbsp;device.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Used&nbsp;with&nbsp;path&nbsp;to&nbsp;uniquely&nbsp;identify&nbsp;a&nbsp;virtual&nbsp;MFA&nbsp;device.</tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-deactivate_mfa_device"><strong>deactivate_mfa_device</strong></a>(self, user_name, serial_number)</dt><dd><tt>Deactivates&nbsp;the&nbsp;specified&nbsp;MFA&nbsp;device&nbsp;and&nbsp;removes&nbsp;it&nbsp;from<br>
+association&nbsp;with&nbsp;the&nbsp;user.<br>
+&nbsp;<br>
+:type&nbsp;user_name:&nbsp;string<br>
+:param&nbsp;user_name:&nbsp;The&nbsp;username&nbsp;of&nbsp;the&nbsp;user<br>
+&nbsp;<br>
+:type&nbsp;serial_number:&nbsp;string<br>
+:param&nbsp;serial_number:&nbsp;The&nbsp;serial&nbsp;number&nbsp;which&nbsp;uniquely&nbsp;identifies<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;MFA&nbsp;device.</tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-delete_access_key"><strong>delete_access_key</strong></a>(self, access_key_id, user_name<font color="#909090">=None</font>)</dt><dd><tt>Delete&nbsp;an&nbsp;access&nbsp;key&nbsp;associated&nbsp;with&nbsp;a&nbsp;user.<br>
+&nbsp;<br>
+If&nbsp;the&nbsp;user_name&nbsp;is&nbsp;not&nbsp;specified,&nbsp;it&nbsp;is&nbsp;determined&nbsp;implicitly&nbsp;based<br>
+on&nbsp;the&nbsp;AWS&nbsp;Access&nbsp;Key&nbsp;ID&nbsp;used&nbsp;to&nbsp;sign&nbsp;the&nbsp;request.<br>
+&nbsp;<br>
+:type&nbsp;access_key_id:&nbsp;string<br>
+:param&nbsp;access_key_id:&nbsp;The&nbsp;ID&nbsp;of&nbsp;the&nbsp;access&nbsp;key&nbsp;to&nbsp;be&nbsp;deleted.<br>
+&nbsp;<br>
+:type&nbsp;user_name:&nbsp;string<br>
+:param&nbsp;user_name:&nbsp;The&nbsp;username&nbsp;of&nbsp;the&nbsp;user</tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-delete_account_alias"><strong>delete_account_alias</strong></a>(self, alias)</dt><dd><tt>Deletes&nbsp;an&nbsp;alias&nbsp;for&nbsp;the&nbsp;AWS&nbsp;account.<br>
+&nbsp;<br>
+For&nbsp;more&nbsp;information&nbsp;on&nbsp;account&nbsp;id&nbsp;aliases,&nbsp;please&nbsp;see<br>
+<a href="http://goo.gl/ToB7G">http://goo.gl/ToB7G</a><br>
+&nbsp;<br>
+:type&nbsp;alias:&nbsp;string<br>
+:param&nbsp;alias:&nbsp;The&nbsp;alias&nbsp;to&nbsp;remove&nbsp;from&nbsp;the&nbsp;account.</tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-delete_account_password_policy"><strong>delete_account_password_policy</strong></a>(self)</dt><dd><tt>Delete&nbsp;the&nbsp;password&nbsp;policy&nbsp;currently&nbsp;set&nbsp;for&nbsp;the&nbsp;AWS&nbsp;account.</tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-delete_group"><strong>delete_group</strong></a>(self, group_name)</dt><dd><tt>Delete&nbsp;a&nbsp;group.&nbsp;The&nbsp;group&nbsp;must&nbsp;not&nbsp;contain&nbsp;any&nbsp;Users&nbsp;or<br>
+have&nbsp;any&nbsp;attached&nbsp;policies<br>
+&nbsp;<br>
+:type&nbsp;group_name:&nbsp;string<br>
+:param&nbsp;group_name:&nbsp;The&nbsp;name&nbsp;of&nbsp;the&nbsp;group&nbsp;to&nbsp;delete.</tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-delete_group_policy"><strong>delete_group_policy</strong></a>(self, group_name, policy_name)</dt><dd><tt>Deletes&nbsp;the&nbsp;specified&nbsp;policy&nbsp;document&nbsp;for&nbsp;the&nbsp;specified&nbsp;group.<br>
+&nbsp;<br>
+:type&nbsp;group_name:&nbsp;string<br>
+:param&nbsp;group_name:&nbsp;The&nbsp;name&nbsp;of&nbsp;the&nbsp;group&nbsp;the&nbsp;policy&nbsp;is&nbsp;associated&nbsp;with.<br>
+&nbsp;<br>
+:type&nbsp;policy_name:&nbsp;string<br>
+:param&nbsp;policy_name:&nbsp;The&nbsp;policy&nbsp;document&nbsp;to&nbsp;delete.</tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-delete_instance_profile"><strong>delete_instance_profile</strong></a>(self, instance_profile_name)</dt><dd><tt>Deletes&nbsp;the&nbsp;specified&nbsp;instance&nbsp;profile.&nbsp;The&nbsp;instance&nbsp;profile&nbsp;must&nbsp;not<br>
+have&nbsp;an&nbsp;associated&nbsp;role.<br>
+&nbsp;<br>
+:type&nbsp;instance_profile_name:&nbsp;string<br>
+:param&nbsp;instance_profile_name:&nbsp;Name&nbsp;of&nbsp;the&nbsp;instance&nbsp;profile&nbsp;to&nbsp;delete.</tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-delete_login_profile"><strong>delete_login_profile</strong></a>(self, user_name)</dt><dd><tt>Deletes&nbsp;the&nbsp;login&nbsp;profile&nbsp;associated&nbsp;with&nbsp;the&nbsp;specified&nbsp;user.<br>
+&nbsp;<br>
+:type&nbsp;user_name:&nbsp;string<br>
+:param&nbsp;user_name:&nbsp;The&nbsp;name&nbsp;of&nbsp;the&nbsp;user&nbsp;to&nbsp;delete.</tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-delete_role"><strong>delete_role</strong></a>(self, role_name)</dt><dd><tt>Deletes&nbsp;the&nbsp;specified&nbsp;role.&nbsp;The&nbsp;role&nbsp;must&nbsp;not&nbsp;have&nbsp;any&nbsp;policies<br>
+attached.<br>
+&nbsp;<br>
+:type&nbsp;role_name:&nbsp;string<br>
+:param&nbsp;role_name:&nbsp;Name&nbsp;of&nbsp;the&nbsp;role&nbsp;to&nbsp;delete.</tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-delete_role_policy"><strong>delete_role_policy</strong></a>(self, role_name, policy_name)</dt><dd><tt>Deletes&nbsp;the&nbsp;specified&nbsp;policy&nbsp;associated&nbsp;with&nbsp;the&nbsp;specified&nbsp;role.<br>
+&nbsp;<br>
+:type&nbsp;role_name:&nbsp;string<br>
+:param&nbsp;role_name:&nbsp;Name&nbsp;of&nbsp;the&nbsp;role&nbsp;associated&nbsp;with&nbsp;the&nbsp;policy.<br>
+&nbsp;<br>
+:type&nbsp;policy_name:&nbsp;string<br>
+:param&nbsp;policy_name:&nbsp;Name&nbsp;of&nbsp;the&nbsp;policy&nbsp;to&nbsp;delete.</tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-delete_saml_provider"><strong>delete_saml_provider</strong></a>(self, saml_provider_arn)</dt><dd><tt>Deletes&nbsp;a&nbsp;SAML&nbsp;provider.<br>
+&nbsp;<br>
+Deleting&nbsp;the&nbsp;provider&nbsp;does&nbsp;not&nbsp;update&nbsp;any&nbsp;roles&nbsp;that&nbsp;reference<br>
+the&nbsp;SAML&nbsp;provider&nbsp;as&nbsp;a&nbsp;principal&nbsp;in&nbsp;their&nbsp;trust&nbsp;policies.&nbsp;Any<br>
+attempt&nbsp;to&nbsp;assume&nbsp;a&nbsp;role&nbsp;that&nbsp;references&nbsp;a&nbsp;SAML&nbsp;provider&nbsp;that<br>
+has&nbsp;been&nbsp;deleted&nbsp;will&nbsp;fail.<br>
+This&nbsp;operation&nbsp;requires&nbsp;`Signature&nbsp;Version&nbsp;4`_.<br>
+&nbsp;<br>
+:type&nbsp;saml_provider_arn:&nbsp;string<br>
+:param&nbsp;saml_provider_arn:&nbsp;The&nbsp;Amazon&nbsp;Resource&nbsp;Name&nbsp;(ARN)&nbsp;of&nbsp;the&nbsp;SAML<br>
+&nbsp;&nbsp;&nbsp;&nbsp;provider&nbsp;to&nbsp;delete.</tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-delete_server_cert"><strong>delete_server_cert</strong></a>(self, cert_name)</dt><dd><tt>Delete&nbsp;the&nbsp;specified&nbsp;server&nbsp;certificate.<br>
+&nbsp;<br>
+:type&nbsp;cert_name:&nbsp;string<br>
+:param&nbsp;cert_name:&nbsp;The&nbsp;name&nbsp;of&nbsp;the&nbsp;server&nbsp;certificate&nbsp;you&nbsp;want<br>
+&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;delete.</tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-delete_signing_cert"><strong>delete_signing_cert</strong></a>(self, cert_id, user_name<font color="#909090">=None</font>)</dt><dd><tt>Delete&nbsp;a&nbsp;signing&nbsp;certificate&nbsp;associated&nbsp;with&nbsp;a&nbsp;user.<br>
+&nbsp;<br>
+If&nbsp;the&nbsp;user_name&nbsp;is&nbsp;not&nbsp;specified,&nbsp;it&nbsp;is&nbsp;determined&nbsp;implicitly&nbsp;based<br>
+on&nbsp;the&nbsp;AWS&nbsp;Access&nbsp;Key&nbsp;ID&nbsp;used&nbsp;to&nbsp;sign&nbsp;the&nbsp;request.<br>
+&nbsp;<br>
+:type&nbsp;user_name:&nbsp;string<br>
+:param&nbsp;user_name:&nbsp;The&nbsp;username&nbsp;of&nbsp;the&nbsp;user<br>
+&nbsp;<br>
+:type&nbsp;cert_id:&nbsp;string<br>
+:param&nbsp;cert_id:&nbsp;The&nbsp;ID&nbsp;of&nbsp;the&nbsp;certificate.</tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-delete_user"><strong>delete_user</strong></a>(self, user_name)</dt><dd><tt>Delete&nbsp;a&nbsp;user&nbsp;including&nbsp;the&nbsp;user's&nbsp;path,&nbsp;GUID&nbsp;and&nbsp;ARN.<br>
+&nbsp;<br>
+If&nbsp;the&nbsp;user_name&nbsp;is&nbsp;not&nbsp;specified,&nbsp;the&nbsp;user_name&nbsp;is&nbsp;determined<br>
+implicitly&nbsp;based&nbsp;on&nbsp;the&nbsp;AWS&nbsp;Access&nbsp;Key&nbsp;ID&nbsp;used&nbsp;to&nbsp;sign&nbsp;the&nbsp;request.<br>
+&nbsp;<br>
+:type&nbsp;user_name:&nbsp;string<br>
+:param&nbsp;user_name:&nbsp;The&nbsp;name&nbsp;of&nbsp;the&nbsp;user&nbsp;to&nbsp;delete.</tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-delete_user_policy"><strong>delete_user_policy</strong></a>(self, user_name, policy_name)</dt><dd><tt>Deletes&nbsp;the&nbsp;specified&nbsp;policy&nbsp;document&nbsp;for&nbsp;the&nbsp;specified&nbsp;user.<br>
+&nbsp;<br>
+:type&nbsp;user_name:&nbsp;string<br>
+:param&nbsp;user_name:&nbsp;The&nbsp;name&nbsp;of&nbsp;the&nbsp;user&nbsp;the&nbsp;policy&nbsp;is&nbsp;associated&nbsp;with.<br>
+&nbsp;<br>
+:type&nbsp;policy_name:&nbsp;string<br>
+:param&nbsp;policy_name:&nbsp;The&nbsp;policy&nbsp;document&nbsp;to&nbsp;delete.</tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-enable_mfa_device"><strong>enable_mfa_device</strong></a>(self, user_name, serial_number, auth_code_1, auth_code_2)</dt><dd><tt>Enables&nbsp;the&nbsp;specified&nbsp;MFA&nbsp;device&nbsp;and&nbsp;associates&nbsp;it&nbsp;with&nbsp;the<br>
+specified&nbsp;user.<br>
+&nbsp;<br>
+:type&nbsp;user_name:&nbsp;string<br>
+:param&nbsp;user_name:&nbsp;The&nbsp;username&nbsp;of&nbsp;the&nbsp;user<br>
+&nbsp;<br>
+:type&nbsp;serial_number:&nbsp;string<br>
+:param&nbsp;serial_number:&nbsp;The&nbsp;serial&nbsp;number&nbsp;which&nbsp;uniquely&nbsp;identifies<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;MFA&nbsp;device.<br>
+&nbsp;<br>
+:type&nbsp;auth_code_1:&nbsp;string<br>
+:param&nbsp;auth_code_1:&nbsp;An&nbsp;authentication&nbsp;code&nbsp;emitted&nbsp;by&nbsp;the&nbsp;device.<br>
+&nbsp;<br>
+:type&nbsp;auth_code_2:&nbsp;string<br>
+:param&nbsp;auth_code_2:&nbsp;A&nbsp;subsequent&nbsp;authentication&nbsp;code&nbsp;emitted<br>
+&nbsp;&nbsp;&nbsp;&nbsp;by&nbsp;the&nbsp;device.</tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-generate_credential_report"><strong>generate_credential_report</strong></a>(self)</dt><dd><tt>Generates&nbsp;a&nbsp;credential&nbsp;report&nbsp;for&nbsp;an&nbsp;account<br>
+&nbsp;<br>
+A&nbsp;new&nbsp;credential&nbsp;report&nbsp;can&nbsp;only&nbsp;be&nbsp;generated&nbsp;every&nbsp;4&nbsp;hours.&nbsp;If&nbsp;one<br>
+hasn't&nbsp;been&nbsp;generated&nbsp;in&nbsp;the&nbsp;last&nbsp;4&nbsp;hours&nbsp;then&nbsp;get_credential_report<br>
+will&nbsp;error&nbsp;when&nbsp;called</tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-get_account_alias"><strong>get_account_alias</strong></a>(self)</dt><dd><tt>Get&nbsp;the&nbsp;alias&nbsp;for&nbsp;the&nbsp;current&nbsp;account.<br>
+&nbsp;<br>
+This&nbsp;is&nbsp;referred&nbsp;to&nbsp;in&nbsp;the&nbsp;docs&nbsp;as&nbsp;list_account_aliases,<br>
+but&nbsp;it&nbsp;seems&nbsp;you&nbsp;can&nbsp;only&nbsp;have&nbsp;one&nbsp;account&nbsp;alias&nbsp;currently.<br>
+&nbsp;<br>
+For&nbsp;more&nbsp;information&nbsp;on&nbsp;account&nbsp;id&nbsp;aliases,&nbsp;please&nbsp;see<br>
+<a href="http://goo.gl/ToB7G">http://goo.gl/ToB7G</a></tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-get_account_password_policy"><strong>get_account_password_policy</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;password&nbsp;policy&nbsp;for&nbsp;the&nbsp;AWS&nbsp;account.</tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-get_account_summary"><strong>get_account_summary</strong></a>(self)</dt><dd><tt>Get&nbsp;the&nbsp;alias&nbsp;for&nbsp;the&nbsp;current&nbsp;account.<br>
+&nbsp;<br>
+This&nbsp;is&nbsp;referred&nbsp;to&nbsp;in&nbsp;the&nbsp;docs&nbsp;as&nbsp;list_account_aliases,<br>
+but&nbsp;it&nbsp;seems&nbsp;you&nbsp;can&nbsp;only&nbsp;have&nbsp;one&nbsp;account&nbsp;alias&nbsp;currently.<br>
+&nbsp;<br>
+For&nbsp;more&nbsp;information&nbsp;on&nbsp;account&nbsp;id&nbsp;aliases,&nbsp;please&nbsp;see<br>
+<a href="http://goo.gl/ToB7G">http://goo.gl/ToB7G</a></tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-get_all_access_keys"><strong>get_all_access_keys</strong></a>(self, user_name, marker<font color="#909090">=None</font>, max_items<font color="#909090">=None</font>)</dt><dd><tt>Get&nbsp;all&nbsp;access&nbsp;keys&nbsp;associated&nbsp;with&nbsp;an&nbsp;account.<br>
+&nbsp;<br>
+:type&nbsp;user_name:&nbsp;string<br>
+:param&nbsp;user_name:&nbsp;The&nbsp;username&nbsp;of&nbsp;the&nbsp;user<br>
+&nbsp;<br>
+:type&nbsp;marker:&nbsp;string<br>
+:param&nbsp;marker:&nbsp;Use&nbsp;this&nbsp;only&nbsp;when&nbsp;paginating&nbsp;results&nbsp;and&nbsp;only<br>
+&nbsp;&nbsp;&nbsp;&nbsp;in&nbsp;follow-up&nbsp;request&nbsp;after&nbsp;you've&nbsp;received&nbsp;a&nbsp;response<br>
+&nbsp;&nbsp;&nbsp;&nbsp;where&nbsp;the&nbsp;results&nbsp;are&nbsp;truncated.&nbsp;&nbsp;Set&nbsp;this&nbsp;to&nbsp;the&nbsp;value&nbsp;of<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;Marker&nbsp;element&nbsp;in&nbsp;the&nbsp;response&nbsp;you&nbsp;just&nbsp;received.<br>
+&nbsp;<br>
+:type&nbsp;max_items:&nbsp;int<br>
+:param&nbsp;max_items:&nbsp;Use&nbsp;this&nbsp;only&nbsp;when&nbsp;paginating&nbsp;results&nbsp;to&nbsp;indicate<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;maximum&nbsp;number&nbsp;of&nbsp;groups&nbsp;you&nbsp;want&nbsp;in&nbsp;the&nbsp;response.</tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-get_all_group_policies"><strong>get_all_group_policies</strong></a>(self, group_name, marker<font color="#909090">=None</font>, max_items<font color="#909090">=None</font>)</dt><dd><tt>List&nbsp;the&nbsp;names&nbsp;of&nbsp;the&nbsp;policies&nbsp;associated&nbsp;with&nbsp;the&nbsp;specified&nbsp;group.<br>
+&nbsp;<br>
+:type&nbsp;group_name:&nbsp;string<br>
+:param&nbsp;group_name:&nbsp;The&nbsp;name&nbsp;of&nbsp;the&nbsp;group&nbsp;the&nbsp;policy&nbsp;is&nbsp;associated&nbsp;with.<br>
+&nbsp;<br>
+:type&nbsp;marker:&nbsp;string<br>
+:param&nbsp;marker:&nbsp;Use&nbsp;this&nbsp;only&nbsp;when&nbsp;paginating&nbsp;results&nbsp;and&nbsp;only<br>
+&nbsp;&nbsp;&nbsp;&nbsp;in&nbsp;follow-up&nbsp;request&nbsp;after&nbsp;you've&nbsp;received&nbsp;a&nbsp;response<br>
+&nbsp;&nbsp;&nbsp;&nbsp;where&nbsp;the&nbsp;results&nbsp;are&nbsp;truncated.&nbsp;&nbsp;Set&nbsp;this&nbsp;to&nbsp;the&nbsp;value&nbsp;of<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;Marker&nbsp;element&nbsp;in&nbsp;the&nbsp;response&nbsp;you&nbsp;just&nbsp;received.<br>
+&nbsp;<br>
+:type&nbsp;max_items:&nbsp;int<br>
+:param&nbsp;max_items:&nbsp;Use&nbsp;this&nbsp;only&nbsp;when&nbsp;paginating&nbsp;results&nbsp;to&nbsp;indicate<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;maximum&nbsp;number&nbsp;of&nbsp;groups&nbsp;you&nbsp;want&nbsp;in&nbsp;the&nbsp;response.</tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-get_all_groups"><strong>get_all_groups</strong></a>(self, path_prefix<font color="#909090">='/'</font>, marker<font color="#909090">=None</font>, max_items<font color="#909090">=None</font>)</dt><dd><tt>List&nbsp;the&nbsp;groups&nbsp;that&nbsp;have&nbsp;the&nbsp;specified&nbsp;path&nbsp;prefix.<br>
+&nbsp;<br>
+:type&nbsp;path_prefix:&nbsp;string<br>
+:param&nbsp;path_prefix:&nbsp;If&nbsp;provided,&nbsp;only&nbsp;groups&nbsp;whose&nbsp;paths&nbsp;match<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;provided&nbsp;prefix&nbsp;will&nbsp;be&nbsp;returned.<br>
+&nbsp;<br>
+:type&nbsp;marker:&nbsp;string<br>
+:param&nbsp;marker:&nbsp;Use&nbsp;this&nbsp;only&nbsp;when&nbsp;paginating&nbsp;results&nbsp;and&nbsp;only<br>
+&nbsp;&nbsp;&nbsp;&nbsp;in&nbsp;follow-up&nbsp;request&nbsp;after&nbsp;you've&nbsp;received&nbsp;a&nbsp;response<br>
+&nbsp;&nbsp;&nbsp;&nbsp;where&nbsp;the&nbsp;results&nbsp;are&nbsp;truncated.&nbsp;&nbsp;Set&nbsp;this&nbsp;to&nbsp;the&nbsp;value&nbsp;of<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;Marker&nbsp;element&nbsp;in&nbsp;the&nbsp;response&nbsp;you&nbsp;just&nbsp;received.<br>
+&nbsp;<br>
+:type&nbsp;max_items:&nbsp;int<br>
+:param&nbsp;max_items:&nbsp;Use&nbsp;this&nbsp;only&nbsp;when&nbsp;paginating&nbsp;results&nbsp;to&nbsp;indicate<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;maximum&nbsp;number&nbsp;of&nbsp;groups&nbsp;you&nbsp;want&nbsp;in&nbsp;the&nbsp;response.</tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-get_all_mfa_devices"><strong>get_all_mfa_devices</strong></a>(self, user_name, marker<font color="#909090">=None</font>, max_items<font color="#909090">=None</font>)</dt><dd><tt>Get&nbsp;all&nbsp;MFA&nbsp;devices&nbsp;associated&nbsp;with&nbsp;an&nbsp;account.<br>
+&nbsp;<br>
+:type&nbsp;user_name:&nbsp;string<br>
+:param&nbsp;user_name:&nbsp;The&nbsp;username&nbsp;of&nbsp;the&nbsp;user<br>
+&nbsp;<br>
+:type&nbsp;marker:&nbsp;string<br>
+:param&nbsp;marker:&nbsp;Use&nbsp;this&nbsp;only&nbsp;when&nbsp;paginating&nbsp;results&nbsp;and&nbsp;only<br>
+&nbsp;&nbsp;&nbsp;&nbsp;in&nbsp;follow-up&nbsp;request&nbsp;after&nbsp;you've&nbsp;received&nbsp;a&nbsp;response<br>
+&nbsp;&nbsp;&nbsp;&nbsp;where&nbsp;the&nbsp;results&nbsp;are&nbsp;truncated.&nbsp;&nbsp;Set&nbsp;this&nbsp;to&nbsp;the&nbsp;value&nbsp;of<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;Marker&nbsp;element&nbsp;in&nbsp;the&nbsp;response&nbsp;you&nbsp;just&nbsp;received.<br>
+&nbsp;<br>
+:type&nbsp;max_items:&nbsp;int<br>
+:param&nbsp;max_items:&nbsp;Use&nbsp;this&nbsp;only&nbsp;when&nbsp;paginating&nbsp;results&nbsp;to&nbsp;indicate<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;maximum&nbsp;number&nbsp;of&nbsp;groups&nbsp;you&nbsp;want&nbsp;in&nbsp;the&nbsp;response.</tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-get_all_server_certs"><strong>get_all_server_certs</strong></a> = list_server_certs(self, path_prefix<font color="#909090">='/'</font>, marker<font color="#909090">=None</font>, max_items<font color="#909090">=None</font>)</dt><dd><tt>Lists&nbsp;the&nbsp;server&nbsp;certificates&nbsp;that&nbsp;have&nbsp;the&nbsp;specified&nbsp;path&nbsp;prefix.<br>
+If&nbsp;none&nbsp;exist,&nbsp;the&nbsp;action&nbsp;returns&nbsp;an&nbsp;empty&nbsp;list.<br>
+&nbsp;<br>
+:type&nbsp;path_prefix:&nbsp;string<br>
+:param&nbsp;path_prefix:&nbsp;If&nbsp;provided,&nbsp;only&nbsp;certificates&nbsp;whose&nbsp;paths&nbsp;match<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;provided&nbsp;prefix&nbsp;will&nbsp;be&nbsp;returned.<br>
+&nbsp;<br>
+:type&nbsp;marker:&nbsp;string<br>
+:param&nbsp;marker:&nbsp;Use&nbsp;this&nbsp;only&nbsp;when&nbsp;paginating&nbsp;results&nbsp;and&nbsp;only<br>
+&nbsp;&nbsp;&nbsp;&nbsp;in&nbsp;follow-up&nbsp;request&nbsp;after&nbsp;you've&nbsp;received&nbsp;a&nbsp;response<br>
+&nbsp;&nbsp;&nbsp;&nbsp;where&nbsp;the&nbsp;results&nbsp;are&nbsp;truncated.&nbsp;&nbsp;Set&nbsp;this&nbsp;to&nbsp;the&nbsp;value&nbsp;of<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;Marker&nbsp;element&nbsp;in&nbsp;the&nbsp;response&nbsp;you&nbsp;just&nbsp;received.<br>
+&nbsp;<br>
+:type&nbsp;max_items:&nbsp;int<br>
+:param&nbsp;max_items:&nbsp;Use&nbsp;this&nbsp;only&nbsp;when&nbsp;paginating&nbsp;results&nbsp;to&nbsp;indicate<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;maximum&nbsp;number&nbsp;of&nbsp;groups&nbsp;you&nbsp;want&nbsp;in&nbsp;the&nbsp;response.</tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-get_all_signing_certs"><strong>get_all_signing_certs</strong></a>(self, marker<font color="#909090">=None</font>, max_items<font color="#909090">=None</font>, user_name<font color="#909090">=None</font>)</dt><dd><tt>Get&nbsp;all&nbsp;signing&nbsp;certificates&nbsp;associated&nbsp;with&nbsp;an&nbsp;account.<br>
+&nbsp;<br>
+If&nbsp;the&nbsp;user_name&nbsp;is&nbsp;not&nbsp;specified,&nbsp;it&nbsp;is&nbsp;determined&nbsp;implicitly&nbsp;based<br>
+on&nbsp;the&nbsp;AWS&nbsp;Access&nbsp;Key&nbsp;ID&nbsp;used&nbsp;to&nbsp;sign&nbsp;the&nbsp;request.<br>
+&nbsp;<br>
+:type&nbsp;marker:&nbsp;string<br>
+:param&nbsp;marker:&nbsp;Use&nbsp;this&nbsp;only&nbsp;when&nbsp;paginating&nbsp;results&nbsp;and&nbsp;only<br>
+&nbsp;&nbsp;&nbsp;&nbsp;in&nbsp;follow-up&nbsp;request&nbsp;after&nbsp;you've&nbsp;received&nbsp;a&nbsp;response<br>
+&nbsp;&nbsp;&nbsp;&nbsp;where&nbsp;the&nbsp;results&nbsp;are&nbsp;truncated.&nbsp;&nbsp;Set&nbsp;this&nbsp;to&nbsp;the&nbsp;value&nbsp;of<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;Marker&nbsp;element&nbsp;in&nbsp;the&nbsp;response&nbsp;you&nbsp;just&nbsp;received.<br>
+&nbsp;<br>
+:type&nbsp;max_items:&nbsp;int<br>
+:param&nbsp;max_items:&nbsp;Use&nbsp;this&nbsp;only&nbsp;when&nbsp;paginating&nbsp;results&nbsp;to&nbsp;indicate<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;maximum&nbsp;number&nbsp;of&nbsp;groups&nbsp;you&nbsp;want&nbsp;in&nbsp;the&nbsp;response.<br>
+&nbsp;<br>
+:type&nbsp;user_name:&nbsp;string<br>
+:param&nbsp;user_name:&nbsp;The&nbsp;username&nbsp;of&nbsp;the&nbsp;user</tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-get_all_user_policies"><strong>get_all_user_policies</strong></a>(self, user_name, marker<font color="#909090">=None</font>, max_items<font color="#909090">=None</font>)</dt><dd><tt>List&nbsp;the&nbsp;names&nbsp;of&nbsp;the&nbsp;policies&nbsp;associated&nbsp;with&nbsp;the&nbsp;specified&nbsp;user.<br>
+&nbsp;<br>
+:type&nbsp;user_name:&nbsp;string<br>
+:param&nbsp;user_name:&nbsp;The&nbsp;name&nbsp;of&nbsp;the&nbsp;user&nbsp;the&nbsp;policy&nbsp;is&nbsp;associated&nbsp;with.<br>
+&nbsp;<br>
+:type&nbsp;marker:&nbsp;string<br>
+:param&nbsp;marker:&nbsp;Use&nbsp;this&nbsp;only&nbsp;when&nbsp;paginating&nbsp;results&nbsp;and&nbsp;only<br>
+&nbsp;&nbsp;&nbsp;&nbsp;in&nbsp;follow-up&nbsp;request&nbsp;after&nbsp;you've&nbsp;received&nbsp;a&nbsp;response<br>
+&nbsp;&nbsp;&nbsp;&nbsp;where&nbsp;the&nbsp;results&nbsp;are&nbsp;truncated.&nbsp;&nbsp;Set&nbsp;this&nbsp;to&nbsp;the&nbsp;value&nbsp;of<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;Marker&nbsp;element&nbsp;in&nbsp;the&nbsp;response&nbsp;you&nbsp;just&nbsp;received.<br>
+&nbsp;<br>
+:type&nbsp;max_items:&nbsp;int<br>
+:param&nbsp;max_items:&nbsp;Use&nbsp;this&nbsp;only&nbsp;when&nbsp;paginating&nbsp;results&nbsp;to&nbsp;indicate<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;maximum&nbsp;number&nbsp;of&nbsp;groups&nbsp;you&nbsp;want&nbsp;in&nbsp;the&nbsp;response.</tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-get_all_users"><strong>get_all_users</strong></a>(self, path_prefix<font color="#909090">='/'</font>, marker<font color="#909090">=None</font>, max_items<font color="#909090">=None</font>)</dt><dd><tt>List&nbsp;the&nbsp;users&nbsp;that&nbsp;have&nbsp;the&nbsp;specified&nbsp;path&nbsp;prefix.<br>
+&nbsp;<br>
+:type&nbsp;path_prefix:&nbsp;string<br>
+:param&nbsp;path_prefix:&nbsp;If&nbsp;provided,&nbsp;only&nbsp;users&nbsp;whose&nbsp;paths&nbsp;match<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;provided&nbsp;prefix&nbsp;will&nbsp;be&nbsp;returned.<br>
+&nbsp;<br>
+:type&nbsp;marker:&nbsp;string<br>
+:param&nbsp;marker:&nbsp;Use&nbsp;this&nbsp;only&nbsp;when&nbsp;paginating&nbsp;results&nbsp;and&nbsp;only<br>
+&nbsp;&nbsp;&nbsp;&nbsp;in&nbsp;follow-up&nbsp;request&nbsp;after&nbsp;you've&nbsp;received&nbsp;a&nbsp;response<br>
+&nbsp;&nbsp;&nbsp;&nbsp;where&nbsp;the&nbsp;results&nbsp;are&nbsp;truncated.&nbsp;&nbsp;Set&nbsp;this&nbsp;to&nbsp;the&nbsp;value&nbsp;of<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;Marker&nbsp;element&nbsp;in&nbsp;the&nbsp;response&nbsp;you&nbsp;just&nbsp;received.<br>
+&nbsp;<br>
+:type&nbsp;max_items:&nbsp;int<br>
+:param&nbsp;max_items:&nbsp;Use&nbsp;this&nbsp;only&nbsp;when&nbsp;paginating&nbsp;results&nbsp;to&nbsp;indicate<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;maximum&nbsp;number&nbsp;of&nbsp;groups&nbsp;you&nbsp;want&nbsp;in&nbsp;the&nbsp;response.</tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-get_credential_report"><strong>get_credential_report</strong></a>(self)</dt><dd><tt>Retrieves&nbsp;a&nbsp;credential&nbsp;report&nbsp;for&nbsp;an&nbsp;account<br>
+&nbsp;<br>
+A&nbsp;report&nbsp;must&nbsp;have&nbsp;been&nbsp;generated&nbsp;in&nbsp;the&nbsp;last&nbsp;4&nbsp;hours&nbsp;to&nbsp;succeed.<br>
+The&nbsp;report&nbsp;is&nbsp;returned&nbsp;as&nbsp;a&nbsp;base64&nbsp;encoded&nbsp;blob&nbsp;within&nbsp;the&nbsp;response.</tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-get_group"><strong>get_group</strong></a>(self, group_name, marker<font color="#909090">=None</font>, max_items<font color="#909090">=None</font>)</dt><dd><tt>Return&nbsp;a&nbsp;list&nbsp;of&nbsp;users&nbsp;that&nbsp;are&nbsp;in&nbsp;the&nbsp;specified&nbsp;group.<br>
+&nbsp;<br>
+:type&nbsp;group_name:&nbsp;string<br>
+:param&nbsp;group_name:&nbsp;The&nbsp;name&nbsp;of&nbsp;the&nbsp;group&nbsp;whose&nbsp;information&nbsp;should<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;be&nbsp;returned.<br>
+:type&nbsp;marker:&nbsp;string<br>
+:param&nbsp;marker:&nbsp;Use&nbsp;this&nbsp;only&nbsp;when&nbsp;paginating&nbsp;results&nbsp;and&nbsp;only<br>
+&nbsp;&nbsp;&nbsp;&nbsp;in&nbsp;follow-up&nbsp;request&nbsp;after&nbsp;you've&nbsp;received&nbsp;a&nbsp;response<br>
+&nbsp;&nbsp;&nbsp;&nbsp;where&nbsp;the&nbsp;results&nbsp;are&nbsp;truncated.&nbsp;&nbsp;Set&nbsp;this&nbsp;to&nbsp;the&nbsp;value&nbsp;of<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;Marker&nbsp;element&nbsp;in&nbsp;the&nbsp;response&nbsp;you&nbsp;just&nbsp;received.<br>
+&nbsp;<br>
+:type&nbsp;max_items:&nbsp;int<br>
+:param&nbsp;max_items:&nbsp;Use&nbsp;this&nbsp;only&nbsp;when&nbsp;paginating&nbsp;results&nbsp;to&nbsp;indicate<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;maximum&nbsp;number&nbsp;of&nbsp;groups&nbsp;you&nbsp;want&nbsp;in&nbsp;the&nbsp;response.</tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-get_group_policy"><strong>get_group_policy</strong></a>(self, group_name, policy_name)</dt><dd><tt>Retrieves&nbsp;the&nbsp;specified&nbsp;policy&nbsp;document&nbsp;for&nbsp;the&nbsp;specified&nbsp;group.<br>
+&nbsp;<br>
+:type&nbsp;group_name:&nbsp;string<br>
+:param&nbsp;group_name:&nbsp;The&nbsp;name&nbsp;of&nbsp;the&nbsp;group&nbsp;the&nbsp;policy&nbsp;is&nbsp;associated&nbsp;with.<br>
+&nbsp;<br>
+:type&nbsp;policy_name:&nbsp;string<br>
+:param&nbsp;policy_name:&nbsp;The&nbsp;policy&nbsp;document&nbsp;to&nbsp;get.</tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-get_groups_for_user"><strong>get_groups_for_user</strong></a>(self, user_name, marker<font color="#909090">=None</font>, max_items<font color="#909090">=None</font>)</dt><dd><tt>List&nbsp;the&nbsp;groups&nbsp;that&nbsp;a&nbsp;specified&nbsp;user&nbsp;belongs&nbsp;to.<br>
+&nbsp;<br>
+:type&nbsp;user_name:&nbsp;string<br>
+:param&nbsp;user_name:&nbsp;The&nbsp;name&nbsp;of&nbsp;the&nbsp;user&nbsp;to&nbsp;list&nbsp;groups&nbsp;for.<br>
+&nbsp;<br>
+:type&nbsp;marker:&nbsp;string<br>
+:param&nbsp;marker:&nbsp;Use&nbsp;this&nbsp;only&nbsp;when&nbsp;paginating&nbsp;results&nbsp;and&nbsp;only<br>
+&nbsp;&nbsp;&nbsp;&nbsp;in&nbsp;follow-up&nbsp;request&nbsp;after&nbsp;you've&nbsp;received&nbsp;a&nbsp;response<br>
+&nbsp;&nbsp;&nbsp;&nbsp;where&nbsp;the&nbsp;results&nbsp;are&nbsp;truncated.&nbsp;&nbsp;Set&nbsp;this&nbsp;to&nbsp;the&nbsp;value&nbsp;of<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;Marker&nbsp;element&nbsp;in&nbsp;the&nbsp;response&nbsp;you&nbsp;just&nbsp;received.<br>
+&nbsp;<br>
+:type&nbsp;max_items:&nbsp;int<br>
+:param&nbsp;max_items:&nbsp;Use&nbsp;this&nbsp;only&nbsp;when&nbsp;paginating&nbsp;results&nbsp;to&nbsp;indicate<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;maximum&nbsp;number&nbsp;of&nbsp;groups&nbsp;you&nbsp;want&nbsp;in&nbsp;the&nbsp;response.</tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-get_login_profiles"><strong>get_login_profiles</strong></a>(self, user_name)</dt><dd><tt>Retrieves&nbsp;the&nbsp;login&nbsp;profile&nbsp;for&nbsp;the&nbsp;specified&nbsp;user.<br>
+&nbsp;<br>
+:type&nbsp;user_name:&nbsp;string<br>
+:param&nbsp;user_name:&nbsp;The&nbsp;username&nbsp;of&nbsp;the&nbsp;user</tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-get_response"><strong>get_response</strong></a>(self, action, params, path<font color="#909090">='/'</font>, parent<font color="#909090">=None</font>, verb<font color="#909090">='POST'</font>, list_marker<font color="#909090">='Set'</font>)</dt><dd><tt>Utility&nbsp;method&nbsp;to&nbsp;handle&nbsp;calls&nbsp;to&nbsp;IAM&nbsp;and&nbsp;parsing&nbsp;of&nbsp;responses.</tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-get_role_policy"><strong>get_role_policy</strong></a>(self, role_name, policy_name)</dt><dd><tt>Retrieves&nbsp;the&nbsp;specified&nbsp;policy&nbsp;document&nbsp;for&nbsp;the&nbsp;specified&nbsp;role.<br>
+&nbsp;<br>
+:type&nbsp;role_name:&nbsp;string<br>
+:param&nbsp;role_name:&nbsp;Name&nbsp;of&nbsp;the&nbsp;role&nbsp;associated&nbsp;with&nbsp;the&nbsp;policy.<br>
+&nbsp;<br>
+:type&nbsp;policy_name:&nbsp;string<br>
+:param&nbsp;policy_name:&nbsp;Name&nbsp;of&nbsp;the&nbsp;policy&nbsp;to&nbsp;get.</tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-get_saml_provider"><strong>get_saml_provider</strong></a>(self, saml_provider_arn)</dt><dd><tt>Returns&nbsp;the&nbsp;SAML&nbsp;provider&nbsp;metadocument&nbsp;that&nbsp;was&nbsp;uploaded&nbsp;when<br>
+the&nbsp;provider&nbsp;was&nbsp;created&nbsp;or&nbsp;updated.<br>
+This&nbsp;operation&nbsp;requires&nbsp;`Signature&nbsp;Version&nbsp;4`_.<br>
+&nbsp;<br>
+:type&nbsp;saml_provider_arn:&nbsp;string<br>
+:param&nbsp;saml_provider_arn:&nbsp;The&nbsp;Amazon&nbsp;Resource&nbsp;Name&nbsp;(ARN)&nbsp;of&nbsp;the&nbsp;SAML<br>
+&nbsp;&nbsp;&nbsp;&nbsp;provider&nbsp;to&nbsp;get&nbsp;information&nbsp;about.</tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-get_server_certificate"><strong>get_server_certificate</strong></a>(self, cert_name)</dt><dd><tt>Retrieves&nbsp;information&nbsp;about&nbsp;the&nbsp;specified&nbsp;server&nbsp;certificate.<br>
+&nbsp;<br>
+:type&nbsp;cert_name:&nbsp;string<br>
+:param&nbsp;cert_name:&nbsp;The&nbsp;name&nbsp;of&nbsp;the&nbsp;server&nbsp;certificate&nbsp;you&nbsp;want<br>
+&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;retrieve&nbsp;information&nbsp;about.</tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-get_signin_url"><strong>get_signin_url</strong></a>(self, service<font color="#909090">='ec2'</font>)</dt><dd><tt>Get&nbsp;the&nbsp;URL&nbsp;where&nbsp;IAM&nbsp;users&nbsp;can&nbsp;use&nbsp;their&nbsp;login&nbsp;profile&nbsp;to&nbsp;sign&nbsp;in<br>
+to&nbsp;this&nbsp;account's&nbsp;console.<br>
+&nbsp;<br>
+:type&nbsp;service:&nbsp;string<br>
+:param&nbsp;service:&nbsp;Default&nbsp;service&nbsp;to&nbsp;go&nbsp;to&nbsp;in&nbsp;the&nbsp;console.</tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-get_user"><strong>get_user</strong></a>(self, user_name<font color="#909090">=None</font>)</dt><dd><tt>Retrieve&nbsp;information&nbsp;about&nbsp;the&nbsp;specified&nbsp;user.<br>
+&nbsp;<br>
+If&nbsp;the&nbsp;user_name&nbsp;is&nbsp;not&nbsp;specified,&nbsp;the&nbsp;user_name&nbsp;is&nbsp;determined<br>
+implicitly&nbsp;based&nbsp;on&nbsp;the&nbsp;AWS&nbsp;Access&nbsp;Key&nbsp;ID&nbsp;used&nbsp;to&nbsp;sign&nbsp;the&nbsp;request.<br>
+&nbsp;<br>
+:type&nbsp;user_name:&nbsp;string<br>
+:param&nbsp;user_name:&nbsp;The&nbsp;name&nbsp;of&nbsp;the&nbsp;user&nbsp;to&nbsp;retrieve.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;not&nbsp;specified,&nbsp;defaults&nbsp;to&nbsp;user&nbsp;making&nbsp;request.</tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-get_user_policy"><strong>get_user_policy</strong></a>(self, user_name, policy_name)</dt><dd><tt>Retrieves&nbsp;the&nbsp;specified&nbsp;policy&nbsp;document&nbsp;for&nbsp;the&nbsp;specified&nbsp;user.<br>
+&nbsp;<br>
+:type&nbsp;user_name:&nbsp;string<br>
+:param&nbsp;user_name:&nbsp;The&nbsp;name&nbsp;of&nbsp;the&nbsp;user&nbsp;the&nbsp;policy&nbsp;is&nbsp;associated&nbsp;with.<br>
+&nbsp;<br>
+:type&nbsp;policy_name:&nbsp;string<br>
+:param&nbsp;policy_name:&nbsp;The&nbsp;policy&nbsp;document&nbsp;to&nbsp;get.</tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-list_instance_profiles"><strong>list_instance_profiles</strong></a>(self, path_prefix<font color="#909090">=None</font>, marker<font color="#909090">=None</font>, max_items<font color="#909090">=None</font>)</dt><dd><tt>Lists&nbsp;the&nbsp;instance&nbsp;profiles&nbsp;that&nbsp;have&nbsp;the&nbsp;specified&nbsp;path&nbsp;prefix.&nbsp;If<br>
+there&nbsp;are&nbsp;none,&nbsp;the&nbsp;action&nbsp;returns&nbsp;an&nbsp;empty&nbsp;list.<br>
+&nbsp;<br>
+:type&nbsp;path_prefix:&nbsp;string<br>
+:param&nbsp;path_prefix:&nbsp;The&nbsp;path&nbsp;prefix&nbsp;for&nbsp;filtering&nbsp;the&nbsp;results.&nbsp;For<br>
+&nbsp;&nbsp;&nbsp;&nbsp;example:&nbsp;/application_abc/component_xyz/,&nbsp;which&nbsp;would&nbsp;get&nbsp;all<br>
+&nbsp;&nbsp;&nbsp;&nbsp;instance&nbsp;profiles&nbsp;whose&nbsp;path&nbsp;starts&nbsp;with<br>
+&nbsp;&nbsp;&nbsp;&nbsp;/application_abc/component_xyz/.<br>
+&nbsp;<br>
+:type&nbsp;marker:&nbsp;string<br>
+:param&nbsp;marker:&nbsp;Use&nbsp;this&nbsp;parameter&nbsp;only&nbsp;when&nbsp;paginating&nbsp;results,&nbsp;and<br>
+&nbsp;&nbsp;&nbsp;&nbsp;only&nbsp;in&nbsp;a&nbsp;subsequent&nbsp;request&nbsp;after&nbsp;you've&nbsp;received&nbsp;a&nbsp;response<br>
+&nbsp;&nbsp;&nbsp;&nbsp;where&nbsp;the&nbsp;results&nbsp;are&nbsp;truncated.&nbsp;Set&nbsp;it&nbsp;to&nbsp;the&nbsp;value&nbsp;of&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Marker&nbsp;element&nbsp;in&nbsp;the&nbsp;response&nbsp;you&nbsp;just&nbsp;received.<br>
+&nbsp;<br>
+:type&nbsp;max_items:&nbsp;int<br>
+:param&nbsp;max_items:&nbsp;Use&nbsp;this&nbsp;parameter&nbsp;only&nbsp;when&nbsp;paginating&nbsp;results&nbsp;to<br>
+&nbsp;&nbsp;&nbsp;&nbsp;indicate&nbsp;the&nbsp;maximum&nbsp;number&nbsp;of&nbsp;user&nbsp;names&nbsp;you&nbsp;want&nbsp;in&nbsp;the&nbsp;response.</tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-list_instance_profiles_for_role"><strong>list_instance_profiles_for_role</strong></a>(self, role_name, marker<font color="#909090">=None</font>, max_items<font color="#909090">=None</font>)</dt><dd><tt>Lists&nbsp;the&nbsp;instance&nbsp;profiles&nbsp;that&nbsp;have&nbsp;the&nbsp;specified&nbsp;associated&nbsp;role.&nbsp;If<br>
+there&nbsp;are&nbsp;none,&nbsp;the&nbsp;action&nbsp;returns&nbsp;an&nbsp;empty&nbsp;list.<br>
+&nbsp;<br>
+:type&nbsp;role_name:&nbsp;string<br>
+:param&nbsp;role_name:&nbsp;The&nbsp;name&nbsp;of&nbsp;the&nbsp;role&nbsp;to&nbsp;list&nbsp;instance&nbsp;profiles&nbsp;for.<br>
+&nbsp;<br>
+:type&nbsp;marker:&nbsp;string<br>
+:param&nbsp;marker:&nbsp;Use&nbsp;this&nbsp;parameter&nbsp;only&nbsp;when&nbsp;paginating&nbsp;results,&nbsp;and<br>
+&nbsp;&nbsp;&nbsp;&nbsp;only&nbsp;in&nbsp;a&nbsp;subsequent&nbsp;request&nbsp;after&nbsp;you've&nbsp;received&nbsp;a&nbsp;response<br>
+&nbsp;&nbsp;&nbsp;&nbsp;where&nbsp;the&nbsp;results&nbsp;are&nbsp;truncated.&nbsp;Set&nbsp;it&nbsp;to&nbsp;the&nbsp;value&nbsp;of&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Marker&nbsp;element&nbsp;in&nbsp;the&nbsp;response&nbsp;you&nbsp;just&nbsp;received.<br>
+&nbsp;<br>
+:type&nbsp;max_items:&nbsp;int<br>
+:param&nbsp;max_items:&nbsp;Use&nbsp;this&nbsp;parameter&nbsp;only&nbsp;when&nbsp;paginating&nbsp;results&nbsp;to<br>
+&nbsp;&nbsp;&nbsp;&nbsp;indicate&nbsp;the&nbsp;maximum&nbsp;number&nbsp;of&nbsp;user&nbsp;names&nbsp;you&nbsp;want&nbsp;in&nbsp;the&nbsp;response.</tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-list_role_policies"><strong>list_role_policies</strong></a>(self, role_name, marker<font color="#909090">=None</font>, max_items<font color="#909090">=None</font>)</dt><dd><tt>Lists&nbsp;the&nbsp;names&nbsp;of&nbsp;the&nbsp;policies&nbsp;associated&nbsp;with&nbsp;the&nbsp;specified&nbsp;role.&nbsp;If<br>
+there&nbsp;are&nbsp;none,&nbsp;the&nbsp;action&nbsp;returns&nbsp;an&nbsp;empty&nbsp;list.<br>
+&nbsp;<br>
+:type&nbsp;role_name:&nbsp;string<br>
+:param&nbsp;role_name:&nbsp;The&nbsp;name&nbsp;of&nbsp;the&nbsp;role&nbsp;to&nbsp;list&nbsp;policies&nbsp;for.<br>
+&nbsp;<br>
+:type&nbsp;marker:&nbsp;string<br>
+:param&nbsp;marker:&nbsp;Use&nbsp;this&nbsp;parameter&nbsp;only&nbsp;when&nbsp;paginating&nbsp;results,&nbsp;and<br>
+&nbsp;&nbsp;&nbsp;&nbsp;only&nbsp;in&nbsp;a&nbsp;subsequent&nbsp;request&nbsp;after&nbsp;you've&nbsp;received&nbsp;a&nbsp;response<br>
+&nbsp;&nbsp;&nbsp;&nbsp;where&nbsp;the&nbsp;results&nbsp;are&nbsp;truncated.&nbsp;Set&nbsp;it&nbsp;to&nbsp;the&nbsp;value&nbsp;of&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;marker&nbsp;element&nbsp;in&nbsp;the&nbsp;response&nbsp;you&nbsp;just&nbsp;received.<br>
+&nbsp;<br>
+:type&nbsp;max_items:&nbsp;int<br>
+:param&nbsp;max_items:&nbsp;Use&nbsp;this&nbsp;parameter&nbsp;only&nbsp;when&nbsp;paginating&nbsp;results&nbsp;to<br>
+&nbsp;&nbsp;&nbsp;&nbsp;indicate&nbsp;the&nbsp;maximum&nbsp;number&nbsp;of&nbsp;user&nbsp;names&nbsp;you&nbsp;want&nbsp;in&nbsp;the&nbsp;response.</tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-list_roles"><strong>list_roles</strong></a>(self, path_prefix<font color="#909090">=None</font>, marker<font color="#909090">=None</font>, max_items<font color="#909090">=None</font>)</dt><dd><tt>Lists&nbsp;the&nbsp;roles&nbsp;that&nbsp;have&nbsp;the&nbsp;specified&nbsp;path&nbsp;prefix.&nbsp;If&nbsp;there&nbsp;are&nbsp;none,<br>
+the&nbsp;action&nbsp;returns&nbsp;an&nbsp;empty&nbsp;list.<br>
+&nbsp;<br>
+:type&nbsp;path_prefix:&nbsp;string<br>
+:param&nbsp;path_prefix:&nbsp;The&nbsp;path&nbsp;prefix&nbsp;for&nbsp;filtering&nbsp;the&nbsp;results.<br>
+&nbsp;<br>
+:type&nbsp;marker:&nbsp;string<br>
+:param&nbsp;marker:&nbsp;Use&nbsp;this&nbsp;parameter&nbsp;only&nbsp;when&nbsp;paginating&nbsp;results,&nbsp;and<br>
+&nbsp;&nbsp;&nbsp;&nbsp;only&nbsp;in&nbsp;a&nbsp;subsequent&nbsp;request&nbsp;after&nbsp;you've&nbsp;received&nbsp;a&nbsp;response<br>
+&nbsp;&nbsp;&nbsp;&nbsp;where&nbsp;the&nbsp;results&nbsp;are&nbsp;truncated.&nbsp;Set&nbsp;it&nbsp;to&nbsp;the&nbsp;value&nbsp;of&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;marker&nbsp;element&nbsp;in&nbsp;the&nbsp;response&nbsp;you&nbsp;just&nbsp;received.<br>
+&nbsp;<br>
+:type&nbsp;max_items:&nbsp;int<br>
+:param&nbsp;max_items:&nbsp;Use&nbsp;this&nbsp;parameter&nbsp;only&nbsp;when&nbsp;paginating&nbsp;results&nbsp;to<br>
+&nbsp;&nbsp;&nbsp;&nbsp;indicate&nbsp;the&nbsp;maximum&nbsp;number&nbsp;of&nbsp;user&nbsp;names&nbsp;you&nbsp;want&nbsp;in&nbsp;the&nbsp;response.</tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-list_saml_providers"><strong>list_saml_providers</strong></a>(self)</dt><dd><tt>Lists&nbsp;the&nbsp;SAML&nbsp;providers&nbsp;in&nbsp;the&nbsp;account.<br>
+This&nbsp;operation&nbsp;requires&nbsp;`Signature&nbsp;Version&nbsp;4`_.</tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-put_group_policy"><strong>put_group_policy</strong></a>(self, group_name, policy_name, policy_json)</dt><dd><tt>Adds&nbsp;or&nbsp;updates&nbsp;the&nbsp;specified&nbsp;policy&nbsp;document&nbsp;for&nbsp;the&nbsp;specified&nbsp;group.<br>
+&nbsp;<br>
+:type&nbsp;group_name:&nbsp;string<br>
+:param&nbsp;group_name:&nbsp;The&nbsp;name&nbsp;of&nbsp;the&nbsp;group&nbsp;the&nbsp;policy&nbsp;is&nbsp;associated&nbsp;with.<br>
+&nbsp;<br>
+:type&nbsp;policy_name:&nbsp;string<br>
+:param&nbsp;policy_name:&nbsp;The&nbsp;policy&nbsp;document&nbsp;to&nbsp;get.<br>
+&nbsp;<br>
+:type&nbsp;policy_json:&nbsp;string<br>
+:param&nbsp;policy_json:&nbsp;The&nbsp;policy&nbsp;document.</tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-put_role_policy"><strong>put_role_policy</strong></a>(self, role_name, policy_name, policy_document)</dt><dd><tt>Adds&nbsp;(or&nbsp;updates)&nbsp;a&nbsp;policy&nbsp;document&nbsp;associated&nbsp;with&nbsp;the&nbsp;specified&nbsp;role.<br>
+&nbsp;<br>
+:type&nbsp;role_name:&nbsp;string<br>
+:param&nbsp;role_name:&nbsp;Name&nbsp;of&nbsp;the&nbsp;role&nbsp;to&nbsp;associate&nbsp;the&nbsp;policy&nbsp;with.<br>
+&nbsp;<br>
+:type&nbsp;policy_name:&nbsp;string<br>
+:param&nbsp;policy_name:&nbsp;Name&nbsp;of&nbsp;the&nbsp;policy&nbsp;document.<br>
+&nbsp;<br>
+:type&nbsp;policy_document:&nbsp;string<br>
+:param&nbsp;policy_document:&nbsp;The&nbsp;policy&nbsp;document.</tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-put_user_policy"><strong>put_user_policy</strong></a>(self, user_name, policy_name, policy_json)</dt><dd><tt>Adds&nbsp;or&nbsp;updates&nbsp;the&nbsp;specified&nbsp;policy&nbsp;document&nbsp;for&nbsp;the&nbsp;specified&nbsp;user.<br>
+&nbsp;<br>
+:type&nbsp;user_name:&nbsp;string<br>
+:param&nbsp;user_name:&nbsp;The&nbsp;name&nbsp;of&nbsp;the&nbsp;user&nbsp;the&nbsp;policy&nbsp;is&nbsp;associated&nbsp;with.<br>
+&nbsp;<br>
+:type&nbsp;policy_name:&nbsp;string<br>
+:param&nbsp;policy_name:&nbsp;The&nbsp;policy&nbsp;document&nbsp;to&nbsp;get.<br>
+&nbsp;<br>
+:type&nbsp;policy_json:&nbsp;string<br>
+:param&nbsp;policy_json:&nbsp;The&nbsp;policy&nbsp;document.</tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-remove_role_from_instance_profile"><strong>remove_role_from_instance_profile</strong></a>(self, instance_profile_name, role_name)</dt><dd><tt>Removes&nbsp;the&nbsp;specified&nbsp;role&nbsp;from&nbsp;the&nbsp;specified&nbsp;instance&nbsp;profile.<br>
+&nbsp;<br>
+:type&nbsp;instance_profile_name:&nbsp;string<br>
+:param&nbsp;instance_profile_name:&nbsp;Name&nbsp;of&nbsp;the&nbsp;instance&nbsp;profile&nbsp;to&nbsp;update.<br>
+&nbsp;<br>
+:type&nbsp;role_name:&nbsp;string<br>
+:param&nbsp;role_name:&nbsp;Name&nbsp;of&nbsp;the&nbsp;role&nbsp;to&nbsp;remove.</tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-remove_user_from_group"><strong>remove_user_from_group</strong></a>(self, group_name, user_name)</dt><dd><tt>Remove&nbsp;a&nbsp;user&nbsp;from&nbsp;a&nbsp;group.<br>
+&nbsp;<br>
+:type&nbsp;group_name:&nbsp;string<br>
+:param&nbsp;group_name:&nbsp;The&nbsp;name&nbsp;of&nbsp;the&nbsp;group<br>
+&nbsp;<br>
+:type&nbsp;user_name:&nbsp;string<br>
+:param&nbsp;user_name:&nbsp;The&nbsp;user&nbsp;to&nbsp;remove&nbsp;from&nbsp;the&nbsp;group.</tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-resync_mfa_device"><strong>resync_mfa_device</strong></a>(self, user_name, serial_number, auth_code_1, auth_code_2)</dt><dd><tt>Syncronizes&nbsp;the&nbsp;specified&nbsp;MFA&nbsp;device&nbsp;with&nbsp;the&nbsp;AWS&nbsp;servers.<br>
+&nbsp;<br>
+:type&nbsp;user_name:&nbsp;string<br>
+:param&nbsp;user_name:&nbsp;The&nbsp;username&nbsp;of&nbsp;the&nbsp;user<br>
+&nbsp;<br>
+:type&nbsp;serial_number:&nbsp;string<br>
+:param&nbsp;serial_number:&nbsp;The&nbsp;serial&nbsp;number&nbsp;which&nbsp;uniquely&nbsp;identifies<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;MFA&nbsp;device.<br>
+&nbsp;<br>
+:type&nbsp;auth_code_1:&nbsp;string<br>
+:param&nbsp;auth_code_1:&nbsp;An&nbsp;authentication&nbsp;code&nbsp;emitted&nbsp;by&nbsp;the&nbsp;device.<br>
+&nbsp;<br>
+:type&nbsp;auth_code_2:&nbsp;string<br>
+:param&nbsp;auth_code_2:&nbsp;A&nbsp;subsequent&nbsp;authentication&nbsp;code&nbsp;emitted<br>
+&nbsp;&nbsp;&nbsp;&nbsp;by&nbsp;the&nbsp;device.</tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-update_access_key"><strong>update_access_key</strong></a>(self, access_key_id, status, user_name<font color="#909090">=None</font>)</dt><dd><tt>Changes&nbsp;the&nbsp;status&nbsp;of&nbsp;the&nbsp;specified&nbsp;access&nbsp;key&nbsp;from&nbsp;Active&nbsp;to&nbsp;Inactive<br>
+or&nbsp;vice&nbsp;versa.&nbsp;&nbsp;This&nbsp;action&nbsp;can&nbsp;be&nbsp;used&nbsp;to&nbsp;disable&nbsp;a&nbsp;user's&nbsp;key&nbsp;as<br>
+part&nbsp;of&nbsp;a&nbsp;key&nbsp;rotation&nbsp;workflow.<br>
+&nbsp;<br>
+If&nbsp;the&nbsp;user_name&nbsp;is&nbsp;not&nbsp;specified,&nbsp;the&nbsp;user_name&nbsp;is&nbsp;determined<br>
+implicitly&nbsp;based&nbsp;on&nbsp;the&nbsp;AWS&nbsp;Access&nbsp;Key&nbsp;ID&nbsp;used&nbsp;to&nbsp;sign&nbsp;the&nbsp;request.<br>
+&nbsp;<br>
+:type&nbsp;access_key_id:&nbsp;string<br>
+:param&nbsp;access_key_id:&nbsp;The&nbsp;ID&nbsp;of&nbsp;the&nbsp;access&nbsp;key.<br>
+&nbsp;<br>
+:type&nbsp;status:&nbsp;string<br>
+:param&nbsp;status:&nbsp;Either&nbsp;Active&nbsp;or&nbsp;Inactive.<br>
+&nbsp;<br>
+:type&nbsp;user_name:&nbsp;string<br>
+:param&nbsp;user_name:&nbsp;The&nbsp;username&nbsp;of&nbsp;user&nbsp;(optional).</tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-update_account_password_policy"><strong>update_account_password_policy</strong></a>(self, allow_users_to_change_password<font color="#909090">=None</font>, hard_expiry<font color="#909090">=None</font>, max_password_age<font color="#909090">=None</font>, minimum_password_length<font color="#909090">=None</font>, password_reuse_prevention<font color="#909090">=None</font>, require_lowercase_characters<font color="#909090">=None</font>, require_numbers<font color="#909090">=None</font>, require_symbols<font color="#909090">=None</font>, require_uppercase_characters<font color="#909090">=None</font>)</dt><dd><tt>Update&nbsp;the&nbsp;password&nbsp;policy&nbsp;for&nbsp;the&nbsp;AWS&nbsp;account.<br>
+&nbsp;<br>
+Notes:&nbsp;unset&nbsp;parameters&nbsp;will&nbsp;be&nbsp;reset&nbsp;to&nbsp;Amazon&nbsp;default&nbsp;settings!<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Most&nbsp;of&nbsp;the&nbsp;password&nbsp;policy&nbsp;settings&nbsp;are&nbsp;enforced&nbsp;the&nbsp;next&nbsp;time&nbsp;your&nbsp;users<br>
+&nbsp;&nbsp;&nbsp;&nbsp;change&nbsp;their&nbsp;passwords.&nbsp;When&nbsp;you&nbsp;set&nbsp;minimum&nbsp;length&nbsp;and&nbsp;character&nbsp;type<br>
+&nbsp;&nbsp;&nbsp;&nbsp;requirements,&nbsp;they&nbsp;are&nbsp;enforced&nbsp;the&nbsp;next&nbsp;time&nbsp;your&nbsp;users&nbsp;change&nbsp;their<br>
+&nbsp;&nbsp;&nbsp;&nbsp;passwords&nbsp;-&nbsp;users&nbsp;are&nbsp;not&nbsp;forced&nbsp;to&nbsp;change&nbsp;their&nbsp;existing&nbsp;passwords,&nbsp;even<br>
+&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;the&nbsp;pre-existing&nbsp;passwords&nbsp;do&nbsp;not&nbsp;adhere&nbsp;to&nbsp;the&nbsp;updated&nbsp;password<br>
+&nbsp;&nbsp;&nbsp;&nbsp;policy.&nbsp;When&nbsp;you&nbsp;set&nbsp;a&nbsp;password&nbsp;expiration&nbsp;period,&nbsp;the&nbsp;expiration&nbsp;period<br>
+&nbsp;&nbsp;&nbsp;&nbsp;is&nbsp;enforced&nbsp;immediately.<br>
+&nbsp;<br>
+:type&nbsp;allow_users_to_change_password:&nbsp;bool<br>
+:param&nbsp;allow_users_to_change_password:&nbsp;Allows&nbsp;all&nbsp;IAM&nbsp;users&nbsp;in&nbsp;your&nbsp;account<br>
+&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;use&nbsp;the&nbsp;AWS&nbsp;Management&nbsp;Console&nbsp;to&nbsp;change&nbsp;their&nbsp;own&nbsp;passwords.<br>
+&nbsp;<br>
+:type&nbsp;hard_expiry:&nbsp;bool<br>
+:param&nbsp;hard_expiry:&nbsp;Prevents&nbsp;IAM&nbsp;users&nbsp;from&nbsp;setting&nbsp;a&nbsp;new&nbsp;password&nbsp;after<br>
+&nbsp;&nbsp;&nbsp;&nbsp;their&nbsp;password&nbsp;has&nbsp;expired.<br>
+&nbsp;<br>
+:type&nbsp;max_password_age:&nbsp;int<br>
+:param&nbsp;max_password_age:&nbsp;The&nbsp;number&nbsp;of&nbsp;days&nbsp;that&nbsp;an&nbsp;IAM&nbsp;user&nbsp;password&nbsp;is&nbsp;valid.<br>
+&nbsp;<br>
+:type&nbsp;minimum_password_length:&nbsp;int<br>
+:param&nbsp;minimum_password_length:&nbsp;The&nbsp;minimum&nbsp;number&nbsp;of&nbsp;characters&nbsp;allowed&nbsp;in<br>
+&nbsp;&nbsp;&nbsp;&nbsp;an&nbsp;IAM&nbsp;user&nbsp;password.<br>
+&nbsp;<br>
+:type&nbsp;password_reuse_prevention:&nbsp;int<br>
+:param&nbsp;password_reuse_prevention:&nbsp;Specifies&nbsp;the&nbsp;number&nbsp;of&nbsp;previous&nbsp;passwords<br>
+&nbsp;&nbsp;&nbsp;&nbsp;that&nbsp;IAM&nbsp;users&nbsp;are&nbsp;prevented&nbsp;from&nbsp;reusing.<br>
+&nbsp;<br>
+:type&nbsp;require_lowercase_characters:&nbsp;bool<br>
+:param&nbsp;require_lowercase_characters:&nbsp;Specifies&nbsp;whether&nbsp;IAM&nbsp;user&nbsp;passwords<br>
+&nbsp;&nbsp;&nbsp;&nbsp;must&nbsp;contain&nbsp;at&nbsp;least&nbsp;one&nbsp;lowercase&nbsp;character&nbsp;from&nbsp;the&nbsp;ISO&nbsp;basic&nbsp;Latin<br>
+&nbsp;&nbsp;&nbsp;&nbsp;alphabet&nbsp;(``a``&nbsp;to&nbsp;``z``).<br>
+&nbsp;<br>
+:type&nbsp;require_numbers:&nbsp;bool<br>
+:param&nbsp;require_numbers:&nbsp;Specifies&nbsp;whether&nbsp;IAM&nbsp;user&nbsp;passwords&nbsp;must&nbsp;contain&nbsp;at<br>
+&nbsp;&nbsp;&nbsp;&nbsp;least&nbsp;one&nbsp;numeric&nbsp;character&nbsp;(``0``&nbsp;to&nbsp;``9``).<br>
+&nbsp;<br>
+:type&nbsp;require_symbols:&nbsp;bool<br>
+:param&nbsp;require_symbols:&nbsp;Specifies&nbsp;whether&nbsp;IAM&nbsp;user&nbsp;passwords&nbsp;must&nbsp;contain&nbsp;at<br>
+&nbsp;&nbsp;&nbsp;&nbsp;least&nbsp;one&nbsp;of&nbsp;the&nbsp;following&nbsp;non-alphanumeric&nbsp;characters:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;``!&nbsp;@&nbsp;#&nbsp;$&nbsp;%&nbsp;^&nbsp;&amp;&nbsp;*&nbsp;(&nbsp;)&nbsp;_&nbsp;+&nbsp;-&nbsp;=&nbsp;[&nbsp;]&nbsp;{&nbsp;}&nbsp;|&nbsp;'``<br>
+&nbsp;<br>
+:type&nbsp;require_uppercase_characters:&nbsp;bool<br>
+:param&nbsp;require_uppercase_characters:&nbsp;Specifies&nbsp;whether&nbsp;IAM&nbsp;user&nbsp;passwords<br>
+&nbsp;&nbsp;&nbsp;&nbsp;must&nbsp;contain&nbsp;at&nbsp;least&nbsp;one&nbsp;uppercase&nbsp;character&nbsp;from&nbsp;the&nbsp;ISO&nbsp;basic&nbsp;Latin<br>
+&nbsp;&nbsp;&nbsp;&nbsp;alphabet&nbsp;(``A``&nbsp;to&nbsp;``Z``).</tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-update_assume_role_policy"><strong>update_assume_role_policy</strong></a>(self, role_name, policy_document)</dt><dd><tt>Updates&nbsp;the&nbsp;policy&nbsp;that&nbsp;grants&nbsp;an&nbsp;entity&nbsp;permission&nbsp;to&nbsp;assume&nbsp;a&nbsp;role.<br>
+Currently,&nbsp;only&nbsp;an&nbsp;Amazon&nbsp;EC2&nbsp;instance&nbsp;can&nbsp;assume&nbsp;a&nbsp;role.<br>
+&nbsp;<br>
+:type&nbsp;role_name:&nbsp;string<br>
+:param&nbsp;role_name:&nbsp;Name&nbsp;of&nbsp;the&nbsp;role&nbsp;to&nbsp;update.<br>
+&nbsp;<br>
+:type&nbsp;policy_document:&nbsp;string<br>
+:param&nbsp;policy_document:&nbsp;The&nbsp;policy&nbsp;that&nbsp;grants&nbsp;an&nbsp;entity&nbsp;permission&nbsp;to<br>
+&nbsp;&nbsp;&nbsp;&nbsp;assume&nbsp;the&nbsp;role.</tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-update_group"><strong>update_group</strong></a>(self, group_name, new_group_name<font color="#909090">=None</font>, new_path<font color="#909090">=None</font>)</dt><dd><tt>Updates&nbsp;name&nbsp;and/or&nbsp;path&nbsp;of&nbsp;the&nbsp;specified&nbsp;group.<br>
+&nbsp;<br>
+:type&nbsp;group_name:&nbsp;string<br>
+:param&nbsp;group_name:&nbsp;The&nbsp;name&nbsp;of&nbsp;the&nbsp;new&nbsp;group<br>
+&nbsp;<br>
+:type&nbsp;new_group_name:&nbsp;string<br>
+:param&nbsp;new_group_name:&nbsp;If&nbsp;provided,&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;group&nbsp;will&nbsp;be<br>
+&nbsp;&nbsp;&nbsp;&nbsp;changed&nbsp;to&nbsp;this&nbsp;name.<br>
+&nbsp;<br>
+:type&nbsp;new_path:&nbsp;string<br>
+:param&nbsp;new_path:&nbsp;If&nbsp;provided,&nbsp;the&nbsp;path&nbsp;of&nbsp;the&nbsp;group&nbsp;will&nbsp;be<br>
+&nbsp;&nbsp;&nbsp;&nbsp;changed&nbsp;to&nbsp;this&nbsp;path.</tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-update_login_profile"><strong>update_login_profile</strong></a>(self, user_name, password)</dt><dd><tt>Resets&nbsp;the&nbsp;password&nbsp;associated&nbsp;with&nbsp;the&nbsp;user's&nbsp;login&nbsp;profile.<br>
+&nbsp;<br>
+:type&nbsp;user_name:&nbsp;string<br>
+:param&nbsp;user_name:&nbsp;The&nbsp;name&nbsp;of&nbsp;the&nbsp;user<br>
+&nbsp;<br>
+:type&nbsp;password:&nbsp;string<br>
+:param&nbsp;password:&nbsp;The&nbsp;new&nbsp;password&nbsp;for&nbsp;the&nbsp;user</tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-update_saml_provider"><strong>update_saml_provider</strong></a>(self, saml_provider_arn, saml_metadata_document)</dt><dd><tt>Updates&nbsp;the&nbsp;metadata&nbsp;document&nbsp;for&nbsp;an&nbsp;existing&nbsp;SAML&nbsp;provider.<br>
+This&nbsp;operation&nbsp;requires&nbsp;`Signature&nbsp;Version&nbsp;4`_.<br>
+&nbsp;<br>
+:type&nbsp;saml_provider_arn:&nbsp;string<br>
+:param&nbsp;saml_provider_arn:&nbsp;The&nbsp;Amazon&nbsp;Resource&nbsp;Name&nbsp;(ARN)&nbsp;of&nbsp;the&nbsp;SAML<br>
+&nbsp;&nbsp;&nbsp;&nbsp;provider&nbsp;to&nbsp;update.<br>
+&nbsp;<br>
+:type&nbsp;saml_metadata_document:&nbsp;string<br>
+:param&nbsp;saml_metadata_document:&nbsp;An&nbsp;XML&nbsp;document&nbsp;generated&nbsp;by&nbsp;an&nbsp;identity<br>
+&nbsp;&nbsp;&nbsp;&nbsp;provider&nbsp;(IdP)&nbsp;that&nbsp;supports&nbsp;SAML&nbsp;2.0.&nbsp;The&nbsp;document&nbsp;includes&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;issuer's&nbsp;name,&nbsp;expiration&nbsp;information,&nbsp;and&nbsp;keys&nbsp;that&nbsp;can&nbsp;be&nbsp;used&nbsp;to<br>
+&nbsp;&nbsp;&nbsp;&nbsp;validate&nbsp;the&nbsp;SAML&nbsp;authentication&nbsp;response&nbsp;(assertions)&nbsp;that&nbsp;are<br>
+&nbsp;&nbsp;&nbsp;&nbsp;received&nbsp;from&nbsp;the&nbsp;IdP.&nbsp;You&nbsp;must&nbsp;generate&nbsp;the&nbsp;metadata&nbsp;document<br>
+&nbsp;&nbsp;&nbsp;&nbsp;using&nbsp;the&nbsp;identity&nbsp;management&nbsp;software&nbsp;that&nbsp;is&nbsp;used&nbsp;as&nbsp;your<br>
+&nbsp;&nbsp;&nbsp;&nbsp;organization's&nbsp;IdP.</tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-update_server_cert"><strong>update_server_cert</strong></a>(self, cert_name, new_cert_name<font color="#909090">=None</font>, new_path<font color="#909090">=None</font>)</dt><dd><tt>Updates&nbsp;the&nbsp;name&nbsp;and/or&nbsp;the&nbsp;path&nbsp;of&nbsp;the&nbsp;specified&nbsp;server&nbsp;certificate.<br>
+&nbsp;<br>
+:type&nbsp;cert_name:&nbsp;string<br>
+:param&nbsp;cert_name:&nbsp;The&nbsp;name&nbsp;of&nbsp;the&nbsp;server&nbsp;certificate&nbsp;that&nbsp;you&nbsp;want<br>
+&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;update.<br>
+&nbsp;<br>
+:type&nbsp;new_cert_name:&nbsp;string<br>
+:param&nbsp;new_cert_name:&nbsp;The&nbsp;new&nbsp;name&nbsp;for&nbsp;the&nbsp;server&nbsp;certificate.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Include&nbsp;this&nbsp;only&nbsp;if&nbsp;you&nbsp;are&nbsp;updating&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;server&nbsp;certificate's&nbsp;name.<br>
+&nbsp;<br>
+:type&nbsp;new_path:&nbsp;string<br>
+:param&nbsp;new_path:&nbsp;If&nbsp;provided,&nbsp;the&nbsp;path&nbsp;of&nbsp;the&nbsp;certificate&nbsp;will&nbsp;be<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;changed&nbsp;to&nbsp;this&nbsp;path.</tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-update_signing_cert"><strong>update_signing_cert</strong></a>(self, cert_id, status, user_name<font color="#909090">=None</font>)</dt><dd><tt>Change&nbsp;the&nbsp;status&nbsp;of&nbsp;the&nbsp;specified&nbsp;signing&nbsp;certificate&nbsp;from<br>
+Active&nbsp;to&nbsp;Inactive&nbsp;or&nbsp;vice&nbsp;versa.<br>
+&nbsp;<br>
+If&nbsp;the&nbsp;user_name&nbsp;is&nbsp;not&nbsp;specified,&nbsp;it&nbsp;is&nbsp;determined&nbsp;implicitly&nbsp;based<br>
+on&nbsp;the&nbsp;AWS&nbsp;Access&nbsp;Key&nbsp;ID&nbsp;used&nbsp;to&nbsp;sign&nbsp;the&nbsp;request.<br>
+&nbsp;<br>
+:type&nbsp;cert_id:&nbsp;string<br>
+:param&nbsp;cert_id:&nbsp;The&nbsp;ID&nbsp;of&nbsp;the&nbsp;signing&nbsp;certificate<br>
+&nbsp;<br>
+:type&nbsp;status:&nbsp;string<br>
+:param&nbsp;status:&nbsp;Either&nbsp;Active&nbsp;or&nbsp;Inactive.<br>
+&nbsp;<br>
+:type&nbsp;user_name:&nbsp;string<br>
+:param&nbsp;user_name:&nbsp;The&nbsp;username&nbsp;of&nbsp;the&nbsp;user</tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-update_user"><strong>update_user</strong></a>(self, user_name, new_user_name<font color="#909090">=None</font>, new_path<font color="#909090">=None</font>)</dt><dd><tt>Updates&nbsp;name&nbsp;and/or&nbsp;path&nbsp;of&nbsp;the&nbsp;specified&nbsp;user.<br>
+&nbsp;<br>
+:type&nbsp;user_name:&nbsp;string<br>
+:param&nbsp;user_name:&nbsp;The&nbsp;name&nbsp;of&nbsp;the&nbsp;user<br>
+&nbsp;<br>
+:type&nbsp;new_user_name:&nbsp;string<br>
+:param&nbsp;new_user_name:&nbsp;If&nbsp;provided,&nbsp;the&nbsp;username&nbsp;of&nbsp;the&nbsp;user&nbsp;will&nbsp;be<br>
+&nbsp;&nbsp;&nbsp;&nbsp;changed&nbsp;to&nbsp;this&nbsp;username.<br>
+&nbsp;<br>
+:type&nbsp;new_path:&nbsp;string<br>
+:param&nbsp;new_path:&nbsp;If&nbsp;provided,&nbsp;the&nbsp;path&nbsp;of&nbsp;the&nbsp;user&nbsp;will&nbsp;be<br>
+&nbsp;&nbsp;&nbsp;&nbsp;changed&nbsp;to&nbsp;this&nbsp;path.</tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-upload_server_cert"><strong>upload_server_cert</strong></a>(self, cert_name, cert_body, private_key, cert_chain<font color="#909090">=None</font>, path<font color="#909090">=None</font>)</dt><dd><tt>Uploads&nbsp;a&nbsp;server&nbsp;certificate&nbsp;entity&nbsp;for&nbsp;the&nbsp;AWS&nbsp;Account.<br>
+The&nbsp;server&nbsp;certificate&nbsp;entity&nbsp;includes&nbsp;a&nbsp;public&nbsp;key&nbsp;certificate,<br>
+a&nbsp;private&nbsp;key,&nbsp;and&nbsp;an&nbsp;optional&nbsp;certificate&nbsp;chain,&nbsp;which&nbsp;should<br>
+all&nbsp;be&nbsp;PEM-encoded.<br>
+&nbsp;<br>
+:type&nbsp;cert_name:&nbsp;string<br>
+:param&nbsp;cert_name:&nbsp;The&nbsp;name&nbsp;for&nbsp;the&nbsp;server&nbsp;certificate.&nbsp;Do&nbsp;not<br>
+&nbsp;&nbsp;&nbsp;&nbsp;include&nbsp;the&nbsp;path&nbsp;in&nbsp;this&nbsp;value.<br>
+&nbsp;<br>
+:type&nbsp;cert_body:&nbsp;string<br>
+:param&nbsp;cert_body:&nbsp;The&nbsp;contents&nbsp;of&nbsp;the&nbsp;public&nbsp;key&nbsp;certificate<br>
+&nbsp;&nbsp;&nbsp;&nbsp;in&nbsp;PEM-encoded&nbsp;format.<br>
+&nbsp;<br>
+:type&nbsp;private_key:&nbsp;string<br>
+:param&nbsp;private_key:&nbsp;The&nbsp;contents&nbsp;of&nbsp;the&nbsp;private&nbsp;key&nbsp;in<br>
+&nbsp;&nbsp;&nbsp;&nbsp;PEM-encoded&nbsp;format.<br>
+&nbsp;<br>
+:type&nbsp;cert_chain:&nbsp;string<br>
+:param&nbsp;cert_chain:&nbsp;The&nbsp;contents&nbsp;of&nbsp;the&nbsp;certificate&nbsp;chain.&nbsp;This<br>
+&nbsp;&nbsp;&nbsp;&nbsp;is&nbsp;typically&nbsp;a&nbsp;concatenation&nbsp;of&nbsp;the&nbsp;PEM-encoded<br>
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;key&nbsp;certificates&nbsp;of&nbsp;the&nbsp;chain.<br>
+&nbsp;<br>
+:type&nbsp;path:&nbsp;string<br>
+:param&nbsp;path:&nbsp;The&nbsp;path&nbsp;for&nbsp;the&nbsp;server&nbsp;certificate.</tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-upload_signing_cert"><strong>upload_signing_cert</strong></a>(self, cert_body, user_name<font color="#909090">=None</font>)</dt><dd><tt>Uploads&nbsp;an&nbsp;X.509&nbsp;signing&nbsp;certificate&nbsp;and&nbsp;associates&nbsp;it&nbsp;with<br>
+the&nbsp;specified&nbsp;user.<br>
+&nbsp;<br>
+If&nbsp;the&nbsp;user_name&nbsp;is&nbsp;not&nbsp;specified,&nbsp;it&nbsp;is&nbsp;determined&nbsp;implicitly&nbsp;based<br>
+on&nbsp;the&nbsp;AWS&nbsp;Access&nbsp;Key&nbsp;ID&nbsp;used&nbsp;to&nbsp;sign&nbsp;the&nbsp;request.<br>
+&nbsp;<br>
+:type&nbsp;cert_body:&nbsp;string<br>
+:param&nbsp;cert_body:&nbsp;The&nbsp;body&nbsp;of&nbsp;the&nbsp;signing&nbsp;certificate.<br>
+&nbsp;<br>
+:type&nbsp;user_name:&nbsp;string<br>
+:param&nbsp;user_name:&nbsp;The&nbsp;username&nbsp;of&nbsp;the&nbsp;user</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="boto.iam.connection.html#IAMConnection">boto.iam.connection.IAMConnection</a>:<br>
+<dl><dt><strong>APIVersion</strong> = '2010-05-08'</dl>
+
+<hr>
+Methods inherited from <a href="boto.connection.html#AWSQueryConnection">boto.connection.AWSQueryConnection</a>:<br>
+<dl><dt><a name="IAMConnection-build_complex_list_params"><strong>build_complex_list_params</strong></a>(self, params, items, label, names)</dt><dd><tt>Serialize&nbsp;a&nbsp;list&nbsp;of&nbsp;structures.<br>
+&nbsp;<br>
+For&nbsp;example::<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;items&nbsp;=&nbsp;[('foo',&nbsp;'bar',&nbsp;'baz'),&nbsp;('foo2',&nbsp;'bar2',&nbsp;'baz2')]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;label&nbsp;=&nbsp;'ParamName.member'<br>
+&nbsp;&nbsp;&nbsp;&nbsp;names&nbsp;=&nbsp;('One',&nbsp;'Two',&nbsp;'Three')<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#IAMConnection-build_complex_list_params">build_complex_list_params</a>(params,&nbsp;items,&nbsp;label,&nbsp;names)<br>
+&nbsp;<br>
+would&nbsp;result&nbsp;in&nbsp;the&nbsp;params&nbsp;<a href="__builtin__.html#dict">dict</a>&nbsp;being&nbsp;updated&nbsp;with&nbsp;these&nbsp;params::<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;ParamName.member.1.One&nbsp;=&nbsp;foo<br>
+&nbsp;&nbsp;&nbsp;&nbsp;ParamName.member.1.Two&nbsp;=&nbsp;bar<br>
+&nbsp;&nbsp;&nbsp;&nbsp;ParamName.member.1.Three&nbsp;=&nbsp;baz<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;ParamName.member.2.One&nbsp;=&nbsp;foo2<br>
+&nbsp;&nbsp;&nbsp;&nbsp;ParamName.member.2.Two&nbsp;=&nbsp;bar2<br>
+&nbsp;&nbsp;&nbsp;&nbsp;ParamName.member.2.Three&nbsp;=&nbsp;baz2<br>
+&nbsp;<br>
+:type&nbsp;params:&nbsp;<a href="__builtin__.html#dict">dict</a><br>
+:param&nbsp;params:&nbsp;The&nbsp;params&nbsp;<a href="__builtin__.html#dict">dict</a>.&nbsp;&nbsp;The&nbsp;complex&nbsp;list&nbsp;params<br>
+&nbsp;&nbsp;&nbsp;&nbsp;will&nbsp;be&nbsp;added&nbsp;to&nbsp;this&nbsp;<a href="__builtin__.html#dict">dict</a>.<br>
+&nbsp;<br>
+:type&nbsp;items:&nbsp;list&nbsp;of&nbsp;tuples<br>
+:param&nbsp;items:&nbsp;The&nbsp;list&nbsp;to&nbsp;serialize.<br>
+&nbsp;<br>
+:type&nbsp;label:&nbsp;string<br>
+:param&nbsp;label:&nbsp;The&nbsp;prefix&nbsp;to&nbsp;apply&nbsp;to&nbsp;the&nbsp;parameter.<br>
+&nbsp;<br>
+:type&nbsp;names:&nbsp;tuple&nbsp;of&nbsp;strings<br>
+:param&nbsp;names:&nbsp;The&nbsp;names&nbsp;associated&nbsp;with&nbsp;each&nbsp;tuple&nbsp;element.</tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-build_list_params"><strong>build_list_params</strong></a>(self, params, items, label)</dt></dl>
+
+<dl><dt><a name="IAMConnection-get_list"><strong>get_list</strong></a>(self, action, params, markers, path<font color="#909090">='/'</font>, parent<font color="#909090">=None</font>, verb<font color="#909090">='GET'</font>)</dt></dl>
+
+<dl><dt><a name="IAMConnection-get_object"><strong>get_object</strong></a>(self, action, params, cls, path<font color="#909090">='/'</font>, parent<font color="#909090">=None</font>, verb<font color="#909090">='GET'</font>)</dt></dl>
+
+<dl><dt><a name="IAMConnection-get_status"><strong>get_status</strong></a>(self, action, params, path<font color="#909090">='/'</font>, parent<font color="#909090">=None</font>, verb<font color="#909090">='GET'</font>)</dt></dl>
+
+<dl><dt><a name="IAMConnection-get_utf8_value"><strong>get_utf8_value</strong></a>(self, value)</dt></dl>
+
+<dl><dt><a name="IAMConnection-make_request"><strong>make_request</strong></a>(self, action, params<font color="#909090">=None</font>, path<font color="#909090">='/'</font>, verb<font color="#909090">='GET'</font>)</dt></dl>
+
+<hr>
+Data and other attributes inherited from <a href="boto.connection.html#AWSQueryConnection">boto.connection.AWSQueryConnection</a>:<br>
+<dl><dt><strong>ResponseError</strong> = &lt;class 'boto.exception.BotoServerError'&gt;</dl>
+
+<hr>
+Methods inherited from <a href="boto.connection.html#AWSAuthConnection">boto.connection.AWSAuthConnection</a>:<br>
+<dl><dt><a name="IAMConnection-__repr__"><strong>__repr__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="IAMConnection-build_base_http_request"><strong>build_base_http_request</strong></a>(self, method, path, auth_path, params<font color="#909090">=None</font>, headers<font color="#909090">=None</font>, data<font color="#909090">=''</font>, host<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="IAMConnection-close"><strong>close</strong></a>(self)</dt><dd><tt>(Optional)&nbsp;Close&nbsp;any&nbsp;open&nbsp;HTTP&nbsp;connections.&nbsp;&nbsp;This&nbsp;is&nbsp;non-destructive,<br>
+and&nbsp;making&nbsp;a&nbsp;new&nbsp;request&nbsp;will&nbsp;open&nbsp;a&nbsp;connection&nbsp;again.</tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-get_http_connection"><strong>get_http_connection</strong></a>(self, host, port, is_secure)</dt></dl>
+
+<dl><dt><a name="IAMConnection-get_path"><strong>get_path</strong></a>(self, path<font color="#909090">='/'</font>)</dt></dl>
+
+<dl><dt><a name="IAMConnection-get_proxy_auth_header"><strong>get_proxy_auth_header</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="IAMConnection-get_proxy_url_with_auth"><strong>get_proxy_url_with_auth</strong></a>(self)</dt><dd><tt>#&nbsp;For&nbsp;passing&nbsp;proxy&nbsp;information&nbsp;to&nbsp;other&nbsp;connection&nbsp;libraries,&nbsp;e.g.&nbsp;cloudsearch2</tt></dd></dl>
+
+<dl><dt><a name="IAMConnection-handle_proxy"><strong>handle_proxy</strong></a>(self, proxy, proxy_port, proxy_user, proxy_pass)</dt></dl>
+
+<dl><dt><a name="IAMConnection-new_http_connection"><strong>new_http_connection</strong></a>(self, host, port, is_secure)</dt></dl>
+
+<dl><dt><a name="IAMConnection-prefix_proxy_to_path"><strong>prefix_proxy_to_path</strong></a>(self, path, host<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="IAMConnection-proxy_ssl"><strong>proxy_ssl</strong></a>(self, host<font color="#909090">=None</font>, port<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="IAMConnection-put_http_connection"><strong>put_http_connection</strong></a>(self, host, port, is_secure, connection)</dt></dl>
+
+<dl><dt><a name="IAMConnection-server_name"><strong>server_name</strong></a>(self, port<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="IAMConnection-set_host_header"><strong>set_host_header</strong></a>(self, request)</dt></dl>
+
+<dl><dt><a name="IAMConnection-set_request_hook"><strong>set_request_hook</strong></a>(self, hook)</dt></dl>
+
+<dl><dt><a name="IAMConnection-skip_proxy"><strong>skip_proxy</strong></a>(self, host)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="boto.connection.html#AWSAuthConnection">boto.connection.AWSAuthConnection</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>access_key</strong></dt>
+</dl>
+<dl><dt><strong>auth_region_name</strong></dt>
+</dl>
+<dl><dt><strong>auth_service_name</strong></dt>
+</dl>
+<dl><dt><strong>aws_access_key_id</strong></dt>
+</dl>
+<dl><dt><strong>aws_secret_access_key</strong></dt>
+</dl>
+<dl><dt><strong>connection</strong></dt>
+</dl>
+<dl><dt><strong>gs_access_key_id</strong></dt>
+</dl>
+<dl><dt><strong>gs_secret_access_key</strong></dt>
+</dl>
+<dl><dt><strong>profile_name</strong></dt>
+</dl>
+<dl><dt><strong>secret_key</strong></dt>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="P_any">class <strong>P_any</strong></a>(<a href="__builtin__.html#str">__builtin__.str</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Instances&nbsp;of&nbsp;this&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;are&nbsp;used&nbsp;to&nbsp;define&nbsp;Principals&nbsp;in&nbsp;a&nbsp;<a href="#Statement">Statement</a>.<br>
+This&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;takes&nbsp;no&nbsp;arguments&nbsp;at&nbsp;constuction&nbsp;and&nbsp;creates&nbsp;the&nbsp;special<br>
+Principal&nbsp;type&nbsp;of&nbsp;`*`&nbsp;(any).<br>
+&nbsp;<br>
+Args:&nbsp;None.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="veep.IAM.html#P_any">P_any</a></dd>
+<dd><a href="__builtin__.html#str">__builtin__.str</a></dd>
+<dd><a href="__builtin__.html#basestring">__builtin__.basestring</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Static methods defined here:<br>
+<dl><dt><a name="P_any-__new__"><strong>__new__</strong></a>(cls)</dt></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Methods inherited from <a href="__builtin__.html#str">__builtin__.str</a>:<br>
+<dl><dt><a name="P_any-__add__"><strong>__add__</strong></a>(...)</dt><dd><tt>x.<a href="#P_any-__add__">__add__</a>(y)&nbsp;&lt;==&gt;&nbsp;x+y</tt></dd></dl>
+
+<dl><dt><a name="P_any-__contains__"><strong>__contains__</strong></a>(...)</dt><dd><tt>x.<a href="#P_any-__contains__">__contains__</a>(y)&nbsp;&lt;==&gt;&nbsp;y&nbsp;in&nbsp;x</tt></dd></dl>
+
+<dl><dt><a name="P_any-__eq__"><strong>__eq__</strong></a>(...)</dt><dd><tt>x.<a href="#P_any-__eq__">__eq__</a>(y)&nbsp;&lt;==&gt;&nbsp;x==y</tt></dd></dl>
+
+<dl><dt><a name="P_any-__format__"><strong>__format__</strong></a>(...)</dt><dd><tt>S.<a href="#P_any-__format__">__format__</a>(format_spec)&nbsp;-&gt;&nbsp;string<br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;formatted&nbsp;version&nbsp;of&nbsp;S&nbsp;as&nbsp;described&nbsp;by&nbsp;format_spec.</tt></dd></dl>
+
+<dl><dt><a name="P_any-__ge__"><strong>__ge__</strong></a>(...)</dt><dd><tt>x.<a href="#P_any-__ge__">__ge__</a>(y)&nbsp;&lt;==&gt;&nbsp;x&gt;=y</tt></dd></dl>
+
+<dl><dt><a name="P_any-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#P_any-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="P_any-__getitem__"><strong>__getitem__</strong></a>(...)</dt><dd><tt>x.<a href="#P_any-__getitem__">__getitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="P_any-__getnewargs__"><strong>__getnewargs__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="P_any-__getslice__"><strong>__getslice__</strong></a>(...)</dt><dd><tt>x.<a href="#P_any-__getslice__">__getslice__</a>(i,&nbsp;j)&nbsp;&lt;==&gt;&nbsp;x[i:j]<br>
+&nbsp;<br>
+Use&nbsp;of&nbsp;negative&nbsp;indices&nbsp;is&nbsp;not&nbsp;supported.</tt></dd></dl>
+
+<dl><dt><a name="P_any-__gt__"><strong>__gt__</strong></a>(...)</dt><dd><tt>x.<a href="#P_any-__gt__">__gt__</a>(y)&nbsp;&lt;==&gt;&nbsp;x&gt;y</tt></dd></dl>
+
+<dl><dt><a name="P_any-__hash__"><strong>__hash__</strong></a>(...)</dt><dd><tt>x.<a href="#P_any-__hash__">__hash__</a>()&nbsp;&lt;==&gt;&nbsp;hash(x)</tt></dd></dl>
+
+<dl><dt><a name="P_any-__le__"><strong>__le__</strong></a>(...)</dt><dd><tt>x.<a href="#P_any-__le__">__le__</a>(y)&nbsp;&lt;==&gt;&nbsp;x&lt;=y</tt></dd></dl>
+
+<dl><dt><a name="P_any-__len__"><strong>__len__</strong></a>(...)</dt><dd><tt>x.<a href="#P_any-__len__">__len__</a>()&nbsp;&lt;==&gt;&nbsp;len(x)</tt></dd></dl>
+
+<dl><dt><a name="P_any-__lt__"><strong>__lt__</strong></a>(...)</dt><dd><tt>x.<a href="#P_any-__lt__">__lt__</a>(y)&nbsp;&lt;==&gt;&nbsp;x&lt;y</tt></dd></dl>
+
+<dl><dt><a name="P_any-__mod__"><strong>__mod__</strong></a>(...)</dt><dd><tt>x.<a href="#P_any-__mod__">__mod__</a>(y)&nbsp;&lt;==&gt;&nbsp;x%y</tt></dd></dl>
+
+<dl><dt><a name="P_any-__mul__"><strong>__mul__</strong></a>(...)</dt><dd><tt>x.<a href="#P_any-__mul__">__mul__</a>(n)&nbsp;&lt;==&gt;&nbsp;x*n</tt></dd></dl>
+
+<dl><dt><a name="P_any-__ne__"><strong>__ne__</strong></a>(...)</dt><dd><tt>x.<a href="#P_any-__ne__">__ne__</a>(y)&nbsp;&lt;==&gt;&nbsp;x!=y</tt></dd></dl>
+
+<dl><dt><a name="P_any-__repr__"><strong>__repr__</strong></a>(...)</dt><dd><tt>x.<a href="#P_any-__repr__">__repr__</a>()&nbsp;&lt;==&gt;&nbsp;repr(x)</tt></dd></dl>
+
+<dl><dt><a name="P_any-__rmod__"><strong>__rmod__</strong></a>(...)</dt><dd><tt>x.<a href="#P_any-__rmod__">__rmod__</a>(y)&nbsp;&lt;==&gt;&nbsp;y%x</tt></dd></dl>
+
+<dl><dt><a name="P_any-__rmul__"><strong>__rmul__</strong></a>(...)</dt><dd><tt>x.<a href="#P_any-__rmul__">__rmul__</a>(n)&nbsp;&lt;==&gt;&nbsp;n*x</tt></dd></dl>
+
+<dl><dt><a name="P_any-__sizeof__"><strong>__sizeof__</strong></a>(...)</dt><dd><tt>S.<a href="#P_any-__sizeof__">__sizeof__</a>()&nbsp;-&gt;&nbsp;size&nbsp;of&nbsp;S&nbsp;in&nbsp;memory,&nbsp;in&nbsp;bytes</tt></dd></dl>
+
+<dl><dt><a name="P_any-__str__"><strong>__str__</strong></a>(...)</dt><dd><tt>x.<a href="#P_any-__str__">__str__</a>()&nbsp;&lt;==&gt;&nbsp;<a href="__builtin__.html#str">str</a>(x)</tt></dd></dl>
+
+<dl><dt><a name="P_any-capitalize"><strong>capitalize</strong></a>(...)</dt><dd><tt>S.<a href="#P_any-capitalize">capitalize</a>()&nbsp;-&gt;&nbsp;string<br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;copy&nbsp;of&nbsp;the&nbsp;string&nbsp;S&nbsp;with&nbsp;only&nbsp;its&nbsp;first&nbsp;character<br>
+capitalized.</tt></dd></dl>
+
+<dl><dt><a name="P_any-center"><strong>center</strong></a>(...)</dt><dd><tt>S.<a href="#P_any-center">center</a>(width[,&nbsp;fillchar])&nbsp;-&gt;&nbsp;string<br>
+&nbsp;<br>
+Return&nbsp;S&nbsp;centered&nbsp;in&nbsp;a&nbsp;string&nbsp;of&nbsp;length&nbsp;width.&nbsp;Padding&nbsp;is<br>
+done&nbsp;using&nbsp;the&nbsp;specified&nbsp;fill&nbsp;character&nbsp;(default&nbsp;is&nbsp;a&nbsp;space)</tt></dd></dl>
+
+<dl><dt><a name="P_any-count"><strong>count</strong></a>(...)</dt><dd><tt>S.<a href="#P_any-count">count</a>(sub[,&nbsp;start[,&nbsp;end]])&nbsp;-&gt;&nbsp;int<br>
+&nbsp;<br>
+Return&nbsp;the&nbsp;number&nbsp;of&nbsp;non-overlapping&nbsp;occurrences&nbsp;of&nbsp;substring&nbsp;sub&nbsp;in<br>
+string&nbsp;S[start:end].&nbsp;&nbsp;Optional&nbsp;arguments&nbsp;start&nbsp;and&nbsp;end&nbsp;are&nbsp;interpreted<br>
+as&nbsp;in&nbsp;slice&nbsp;notation.</tt></dd></dl>
+
+<dl><dt><a name="P_any-decode"><strong>decode</strong></a>(...)</dt><dd><tt>S.<a href="#P_any-decode">decode</a>([encoding[,errors]])&nbsp;-&gt;&nbsp;<a href="__builtin__.html#object">object</a><br>
+&nbsp;<br>
+Decodes&nbsp;S&nbsp;using&nbsp;the&nbsp;codec&nbsp;registered&nbsp;for&nbsp;encoding.&nbsp;encoding&nbsp;defaults<br>
+to&nbsp;the&nbsp;default&nbsp;encoding.&nbsp;errors&nbsp;may&nbsp;be&nbsp;given&nbsp;to&nbsp;set&nbsp;a&nbsp;different&nbsp;error<br>
+handling&nbsp;scheme.&nbsp;Default&nbsp;is&nbsp;'strict'&nbsp;meaning&nbsp;that&nbsp;encoding&nbsp;errors&nbsp;raise<br>
+a&nbsp;UnicodeDecodeError.&nbsp;Other&nbsp;possible&nbsp;values&nbsp;are&nbsp;'ignore'&nbsp;and&nbsp;'replace'<br>
+as&nbsp;well&nbsp;as&nbsp;any&nbsp;other&nbsp;name&nbsp;registered&nbsp;with&nbsp;codecs.register_error&nbsp;that&nbsp;is<br>
+able&nbsp;to&nbsp;handle&nbsp;UnicodeDecodeErrors.</tt></dd></dl>
+
+<dl><dt><a name="P_any-encode"><strong>encode</strong></a>(...)</dt><dd><tt>S.<a href="#P_any-encode">encode</a>([encoding[,errors]])&nbsp;-&gt;&nbsp;<a href="__builtin__.html#object">object</a><br>
+&nbsp;<br>
+Encodes&nbsp;S&nbsp;using&nbsp;the&nbsp;codec&nbsp;registered&nbsp;for&nbsp;encoding.&nbsp;encoding&nbsp;defaults<br>
+to&nbsp;the&nbsp;default&nbsp;encoding.&nbsp;errors&nbsp;may&nbsp;be&nbsp;given&nbsp;to&nbsp;set&nbsp;a&nbsp;different&nbsp;error<br>
+handling&nbsp;scheme.&nbsp;Default&nbsp;is&nbsp;'strict'&nbsp;meaning&nbsp;that&nbsp;encoding&nbsp;errors&nbsp;raise<br>
+a&nbsp;UnicodeEncodeError.&nbsp;Other&nbsp;possible&nbsp;values&nbsp;are&nbsp;'ignore',&nbsp;'replace'&nbsp;and<br>
+'xmlcharrefreplace'&nbsp;as&nbsp;well&nbsp;as&nbsp;any&nbsp;other&nbsp;name&nbsp;registered&nbsp;with<br>
+codecs.register_error&nbsp;that&nbsp;is&nbsp;able&nbsp;to&nbsp;handle&nbsp;UnicodeEncodeErrors.</tt></dd></dl>
+
+<dl><dt><a name="P_any-endswith"><strong>endswith</strong></a>(...)</dt><dd><tt>S.<a href="#P_any-endswith">endswith</a>(suffix[,&nbsp;start[,&nbsp;end]])&nbsp;-&gt;&nbsp;bool<br>
+&nbsp;<br>
+Return&nbsp;True&nbsp;if&nbsp;S&nbsp;ends&nbsp;with&nbsp;the&nbsp;specified&nbsp;suffix,&nbsp;False&nbsp;otherwise.<br>
+With&nbsp;optional&nbsp;start,&nbsp;test&nbsp;S&nbsp;beginning&nbsp;at&nbsp;that&nbsp;position.<br>
+With&nbsp;optional&nbsp;end,&nbsp;stop&nbsp;comparing&nbsp;S&nbsp;at&nbsp;that&nbsp;position.<br>
+suffix&nbsp;can&nbsp;also&nbsp;be&nbsp;a&nbsp;tuple&nbsp;of&nbsp;strings&nbsp;to&nbsp;try.</tt></dd></dl>
+
+<dl><dt><a name="P_any-expandtabs"><strong>expandtabs</strong></a>(...)</dt><dd><tt>S.<a href="#P_any-expandtabs">expandtabs</a>([tabsize])&nbsp;-&gt;&nbsp;string<br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;copy&nbsp;of&nbsp;S&nbsp;where&nbsp;all&nbsp;tab&nbsp;characters&nbsp;are&nbsp;expanded&nbsp;using&nbsp;spaces.<br>
+If&nbsp;tabsize&nbsp;is&nbsp;not&nbsp;given,&nbsp;a&nbsp;tab&nbsp;size&nbsp;of&nbsp;8&nbsp;characters&nbsp;is&nbsp;assumed.</tt></dd></dl>
+
+<dl><dt><a name="P_any-find"><strong>find</strong></a>(...)</dt><dd><tt>S.<a href="#P_any-find">find</a>(sub&nbsp;[,start&nbsp;[,end]])&nbsp;-&gt;&nbsp;int<br>
+&nbsp;<br>
+Return&nbsp;the&nbsp;lowest&nbsp;index&nbsp;in&nbsp;S&nbsp;where&nbsp;substring&nbsp;sub&nbsp;is&nbsp;found,<br>
+such&nbsp;that&nbsp;sub&nbsp;is&nbsp;contained&nbsp;within&nbsp;S[start:end].&nbsp;&nbsp;Optional<br>
+arguments&nbsp;start&nbsp;and&nbsp;end&nbsp;are&nbsp;interpreted&nbsp;as&nbsp;in&nbsp;slice&nbsp;notation.<br>
+&nbsp;<br>
+Return&nbsp;-1&nbsp;on&nbsp;failure.</tt></dd></dl>
+
+<dl><dt><a name="P_any-format"><strong>format</strong></a>(...)</dt><dd><tt>S.<a href="#P_any-format">format</a>(*args,&nbsp;**kwargs)&nbsp;-&gt;&nbsp;string<br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;formatted&nbsp;version&nbsp;of&nbsp;S,&nbsp;using&nbsp;substitutions&nbsp;from&nbsp;args&nbsp;and&nbsp;kwargs.<br>
+The&nbsp;substitutions&nbsp;are&nbsp;identified&nbsp;by&nbsp;braces&nbsp;('{'&nbsp;and&nbsp;'}').</tt></dd></dl>
+
+<dl><dt><a name="P_any-index"><strong>index</strong></a>(...)</dt><dd><tt>S.<a href="#P_any-index">index</a>(sub&nbsp;[,start&nbsp;[,end]])&nbsp;-&gt;&nbsp;int<br>
+&nbsp;<br>
+Like&nbsp;S.<a href="#P_any-find">find</a>()&nbsp;but&nbsp;raise&nbsp;ValueError&nbsp;when&nbsp;the&nbsp;substring&nbsp;is&nbsp;not&nbsp;found.</tt></dd></dl>
+
+<dl><dt><a name="P_any-isalnum"><strong>isalnum</strong></a>(...)</dt><dd><tt>S.<a href="#P_any-isalnum">isalnum</a>()&nbsp;-&gt;&nbsp;bool<br>
+&nbsp;<br>
+Return&nbsp;True&nbsp;if&nbsp;all&nbsp;characters&nbsp;in&nbsp;S&nbsp;are&nbsp;alphanumeric<br>
+and&nbsp;there&nbsp;is&nbsp;at&nbsp;least&nbsp;one&nbsp;character&nbsp;in&nbsp;S,&nbsp;False&nbsp;otherwise.</tt></dd></dl>
+
+<dl><dt><a name="P_any-isalpha"><strong>isalpha</strong></a>(...)</dt><dd><tt>S.<a href="#P_any-isalpha">isalpha</a>()&nbsp;-&gt;&nbsp;bool<br>
+&nbsp;<br>
+Return&nbsp;True&nbsp;if&nbsp;all&nbsp;characters&nbsp;in&nbsp;S&nbsp;are&nbsp;alphabetic<br>
+and&nbsp;there&nbsp;is&nbsp;at&nbsp;least&nbsp;one&nbsp;character&nbsp;in&nbsp;S,&nbsp;False&nbsp;otherwise.</tt></dd></dl>
+
+<dl><dt><a name="P_any-isdigit"><strong>isdigit</strong></a>(...)</dt><dd><tt>S.<a href="#P_any-isdigit">isdigit</a>()&nbsp;-&gt;&nbsp;bool<br>
+&nbsp;<br>
+Return&nbsp;True&nbsp;if&nbsp;all&nbsp;characters&nbsp;in&nbsp;S&nbsp;are&nbsp;digits<br>
+and&nbsp;there&nbsp;is&nbsp;at&nbsp;least&nbsp;one&nbsp;character&nbsp;in&nbsp;S,&nbsp;False&nbsp;otherwise.</tt></dd></dl>
+
+<dl><dt><a name="P_any-islower"><strong>islower</strong></a>(...)</dt><dd><tt>S.<a href="#P_any-islower">islower</a>()&nbsp;-&gt;&nbsp;bool<br>
+&nbsp;<br>
+Return&nbsp;True&nbsp;if&nbsp;all&nbsp;cased&nbsp;characters&nbsp;in&nbsp;S&nbsp;are&nbsp;lowercase&nbsp;and&nbsp;there&nbsp;is<br>
+at&nbsp;least&nbsp;one&nbsp;cased&nbsp;character&nbsp;in&nbsp;S,&nbsp;False&nbsp;otherwise.</tt></dd></dl>
+
+<dl><dt><a name="P_any-isspace"><strong>isspace</strong></a>(...)</dt><dd><tt>S.<a href="#P_any-isspace">isspace</a>()&nbsp;-&gt;&nbsp;bool<br>
+&nbsp;<br>
+Return&nbsp;True&nbsp;if&nbsp;all&nbsp;characters&nbsp;in&nbsp;S&nbsp;are&nbsp;whitespace<br>
+and&nbsp;there&nbsp;is&nbsp;at&nbsp;least&nbsp;one&nbsp;character&nbsp;in&nbsp;S,&nbsp;False&nbsp;otherwise.</tt></dd></dl>
+
+<dl><dt><a name="P_any-istitle"><strong>istitle</strong></a>(...)</dt><dd><tt>S.<a href="#P_any-istitle">istitle</a>()&nbsp;-&gt;&nbsp;bool<br>
+&nbsp;<br>
+Return&nbsp;True&nbsp;if&nbsp;S&nbsp;is&nbsp;a&nbsp;titlecased&nbsp;string&nbsp;and&nbsp;there&nbsp;is&nbsp;at&nbsp;least&nbsp;one<br>
+character&nbsp;in&nbsp;S,&nbsp;i.e.&nbsp;uppercase&nbsp;characters&nbsp;may&nbsp;only&nbsp;follow&nbsp;uncased<br>
+characters&nbsp;and&nbsp;lowercase&nbsp;characters&nbsp;only&nbsp;cased&nbsp;ones.&nbsp;Return&nbsp;False<br>
+otherwise.</tt></dd></dl>
+
+<dl><dt><a name="P_any-isupper"><strong>isupper</strong></a>(...)</dt><dd><tt>S.<a href="#P_any-isupper">isupper</a>()&nbsp;-&gt;&nbsp;bool<br>
+&nbsp;<br>
+Return&nbsp;True&nbsp;if&nbsp;all&nbsp;cased&nbsp;characters&nbsp;in&nbsp;S&nbsp;are&nbsp;uppercase&nbsp;and&nbsp;there&nbsp;is<br>
+at&nbsp;least&nbsp;one&nbsp;cased&nbsp;character&nbsp;in&nbsp;S,&nbsp;False&nbsp;otherwise.</tt></dd></dl>
+
+<dl><dt><a name="P_any-join"><strong>join</strong></a>(...)</dt><dd><tt>S.<a href="#P_any-join">join</a>(iterable)&nbsp;-&gt;&nbsp;string<br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;string&nbsp;which&nbsp;is&nbsp;the&nbsp;concatenation&nbsp;of&nbsp;the&nbsp;strings&nbsp;in&nbsp;the<br>
+iterable.&nbsp;&nbsp;The&nbsp;separator&nbsp;between&nbsp;elements&nbsp;is&nbsp;S.</tt></dd></dl>
+
+<dl><dt><a name="P_any-ljust"><strong>ljust</strong></a>(...)</dt><dd><tt>S.<a href="#P_any-ljust">ljust</a>(width[,&nbsp;fillchar])&nbsp;-&gt;&nbsp;string<br>
+&nbsp;<br>
+Return&nbsp;S&nbsp;left-justified&nbsp;in&nbsp;a&nbsp;string&nbsp;of&nbsp;length&nbsp;width.&nbsp;Padding&nbsp;is<br>
+done&nbsp;using&nbsp;the&nbsp;specified&nbsp;fill&nbsp;character&nbsp;(default&nbsp;is&nbsp;a&nbsp;space).</tt></dd></dl>
+
+<dl><dt><a name="P_any-lower"><strong>lower</strong></a>(...)</dt><dd><tt>S.<a href="#P_any-lower">lower</a>()&nbsp;-&gt;&nbsp;string<br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;copy&nbsp;of&nbsp;the&nbsp;string&nbsp;S&nbsp;converted&nbsp;to&nbsp;lowercase.</tt></dd></dl>
+
+<dl><dt><a name="P_any-lstrip"><strong>lstrip</strong></a>(...)</dt><dd><tt>S.<a href="#P_any-lstrip">lstrip</a>([chars])&nbsp;-&gt;&nbsp;string&nbsp;or&nbsp;unicode<br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;copy&nbsp;of&nbsp;the&nbsp;string&nbsp;S&nbsp;with&nbsp;leading&nbsp;whitespace&nbsp;removed.<br>
+If&nbsp;chars&nbsp;is&nbsp;given&nbsp;and&nbsp;not&nbsp;None,&nbsp;remove&nbsp;characters&nbsp;in&nbsp;chars&nbsp;instead.<br>
+If&nbsp;chars&nbsp;is&nbsp;unicode,&nbsp;S&nbsp;will&nbsp;be&nbsp;converted&nbsp;to&nbsp;unicode&nbsp;before&nbsp;stripping</tt></dd></dl>
+
+<dl><dt><a name="P_any-partition"><strong>partition</strong></a>(...)</dt><dd><tt>S.<a href="#P_any-partition">partition</a>(sep)&nbsp;-&gt;&nbsp;(head,&nbsp;sep,&nbsp;tail)<br>
+&nbsp;<br>
+Search&nbsp;for&nbsp;the&nbsp;separator&nbsp;sep&nbsp;in&nbsp;S,&nbsp;and&nbsp;return&nbsp;the&nbsp;part&nbsp;before&nbsp;it,<br>
+the&nbsp;separator&nbsp;itself,&nbsp;and&nbsp;the&nbsp;part&nbsp;after&nbsp;it.&nbsp;&nbsp;If&nbsp;the&nbsp;separator&nbsp;is&nbsp;not<br>
+found,&nbsp;return&nbsp;S&nbsp;and&nbsp;two&nbsp;empty&nbsp;strings.</tt></dd></dl>
+
+<dl><dt><a name="P_any-replace"><strong>replace</strong></a>(...)</dt><dd><tt>S.<a href="#P_any-replace">replace</a>(old,&nbsp;new[,&nbsp;count])&nbsp;-&gt;&nbsp;string<br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;copy&nbsp;of&nbsp;string&nbsp;S&nbsp;with&nbsp;all&nbsp;occurrences&nbsp;of&nbsp;substring<br>
+old&nbsp;replaced&nbsp;by&nbsp;new.&nbsp;&nbsp;If&nbsp;the&nbsp;optional&nbsp;argument&nbsp;count&nbsp;is<br>
+given,&nbsp;only&nbsp;the&nbsp;first&nbsp;count&nbsp;occurrences&nbsp;are&nbsp;replaced.</tt></dd></dl>
+
+<dl><dt><a name="P_any-rfind"><strong>rfind</strong></a>(...)</dt><dd><tt>S.<a href="#P_any-rfind">rfind</a>(sub&nbsp;[,start&nbsp;[,end]])&nbsp;-&gt;&nbsp;int<br>
+&nbsp;<br>
+Return&nbsp;the&nbsp;highest&nbsp;index&nbsp;in&nbsp;S&nbsp;where&nbsp;substring&nbsp;sub&nbsp;is&nbsp;found,<br>
+such&nbsp;that&nbsp;sub&nbsp;is&nbsp;contained&nbsp;within&nbsp;S[start:end].&nbsp;&nbsp;Optional<br>
+arguments&nbsp;start&nbsp;and&nbsp;end&nbsp;are&nbsp;interpreted&nbsp;as&nbsp;in&nbsp;slice&nbsp;notation.<br>
+&nbsp;<br>
+Return&nbsp;-1&nbsp;on&nbsp;failure.</tt></dd></dl>
+
+<dl><dt><a name="P_any-rindex"><strong>rindex</strong></a>(...)</dt><dd><tt>S.<a href="#P_any-rindex">rindex</a>(sub&nbsp;[,start&nbsp;[,end]])&nbsp;-&gt;&nbsp;int<br>
+&nbsp;<br>
+Like&nbsp;S.<a href="#P_any-rfind">rfind</a>()&nbsp;but&nbsp;raise&nbsp;ValueError&nbsp;when&nbsp;the&nbsp;substring&nbsp;is&nbsp;not&nbsp;found.</tt></dd></dl>
+
+<dl><dt><a name="P_any-rjust"><strong>rjust</strong></a>(...)</dt><dd><tt>S.<a href="#P_any-rjust">rjust</a>(width[,&nbsp;fillchar])&nbsp;-&gt;&nbsp;string<br>
+&nbsp;<br>
+Return&nbsp;S&nbsp;right-justified&nbsp;in&nbsp;a&nbsp;string&nbsp;of&nbsp;length&nbsp;width.&nbsp;Padding&nbsp;is<br>
+done&nbsp;using&nbsp;the&nbsp;specified&nbsp;fill&nbsp;character&nbsp;(default&nbsp;is&nbsp;a&nbsp;space)</tt></dd></dl>
+
+<dl><dt><a name="P_any-rpartition"><strong>rpartition</strong></a>(...)</dt><dd><tt>S.<a href="#P_any-rpartition">rpartition</a>(sep)&nbsp;-&gt;&nbsp;(head,&nbsp;sep,&nbsp;tail)<br>
+&nbsp;<br>
+Search&nbsp;for&nbsp;the&nbsp;separator&nbsp;sep&nbsp;in&nbsp;S,&nbsp;starting&nbsp;at&nbsp;the&nbsp;end&nbsp;of&nbsp;S,&nbsp;and&nbsp;return<br>
+the&nbsp;part&nbsp;before&nbsp;it,&nbsp;the&nbsp;separator&nbsp;itself,&nbsp;and&nbsp;the&nbsp;part&nbsp;after&nbsp;it.&nbsp;&nbsp;If&nbsp;the<br>
+separator&nbsp;is&nbsp;not&nbsp;found,&nbsp;return&nbsp;two&nbsp;empty&nbsp;strings&nbsp;and&nbsp;S.</tt></dd></dl>
+
+<dl><dt><a name="P_any-rsplit"><strong>rsplit</strong></a>(...)</dt><dd><tt>S.<a href="#P_any-rsplit">rsplit</a>([sep&nbsp;[,maxsplit]])&nbsp;-&gt;&nbsp;list&nbsp;of&nbsp;strings<br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;list&nbsp;of&nbsp;the&nbsp;words&nbsp;in&nbsp;the&nbsp;string&nbsp;S,&nbsp;using&nbsp;sep&nbsp;as&nbsp;the<br>
+delimiter&nbsp;string,&nbsp;starting&nbsp;at&nbsp;the&nbsp;end&nbsp;of&nbsp;the&nbsp;string&nbsp;and&nbsp;working<br>
+to&nbsp;the&nbsp;front.&nbsp;&nbsp;If&nbsp;maxsplit&nbsp;is&nbsp;given,&nbsp;at&nbsp;most&nbsp;maxsplit&nbsp;splits&nbsp;are<br>
+done.&nbsp;If&nbsp;sep&nbsp;is&nbsp;not&nbsp;specified&nbsp;or&nbsp;is&nbsp;None,&nbsp;any&nbsp;whitespace&nbsp;string<br>
+is&nbsp;a&nbsp;separator.</tt></dd></dl>
+
+<dl><dt><a name="P_any-rstrip"><strong>rstrip</strong></a>(...)</dt><dd><tt>S.<a href="#P_any-rstrip">rstrip</a>([chars])&nbsp;-&gt;&nbsp;string&nbsp;or&nbsp;unicode<br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;copy&nbsp;of&nbsp;the&nbsp;string&nbsp;S&nbsp;with&nbsp;trailing&nbsp;whitespace&nbsp;removed.<br>
+If&nbsp;chars&nbsp;is&nbsp;given&nbsp;and&nbsp;not&nbsp;None,&nbsp;remove&nbsp;characters&nbsp;in&nbsp;chars&nbsp;instead.<br>
+If&nbsp;chars&nbsp;is&nbsp;unicode,&nbsp;S&nbsp;will&nbsp;be&nbsp;converted&nbsp;to&nbsp;unicode&nbsp;before&nbsp;stripping</tt></dd></dl>
+
+<dl><dt><a name="P_any-split"><strong>split</strong></a>(...)</dt><dd><tt>S.<a href="#P_any-split">split</a>([sep&nbsp;[,maxsplit]])&nbsp;-&gt;&nbsp;list&nbsp;of&nbsp;strings<br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;list&nbsp;of&nbsp;the&nbsp;words&nbsp;in&nbsp;the&nbsp;string&nbsp;S,&nbsp;using&nbsp;sep&nbsp;as&nbsp;the<br>
+delimiter&nbsp;string.&nbsp;&nbsp;If&nbsp;maxsplit&nbsp;is&nbsp;given,&nbsp;at&nbsp;most&nbsp;maxsplit<br>
+splits&nbsp;are&nbsp;done.&nbsp;If&nbsp;sep&nbsp;is&nbsp;not&nbsp;specified&nbsp;or&nbsp;is&nbsp;None,&nbsp;any<br>
+whitespace&nbsp;string&nbsp;is&nbsp;a&nbsp;separator&nbsp;and&nbsp;empty&nbsp;strings&nbsp;are&nbsp;removed<br>
+from&nbsp;the&nbsp;result.</tt></dd></dl>
+
+<dl><dt><a name="P_any-splitlines"><strong>splitlines</strong></a>(...)</dt><dd><tt>S.<a href="#P_any-splitlines">splitlines</a>(keepends=False)&nbsp;-&gt;&nbsp;list&nbsp;of&nbsp;strings<br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;list&nbsp;of&nbsp;the&nbsp;lines&nbsp;in&nbsp;S,&nbsp;breaking&nbsp;at&nbsp;line&nbsp;boundaries.<br>
+Line&nbsp;breaks&nbsp;are&nbsp;not&nbsp;included&nbsp;in&nbsp;the&nbsp;resulting&nbsp;list&nbsp;unless&nbsp;keepends<br>
+is&nbsp;given&nbsp;and&nbsp;true.</tt></dd></dl>
+
+<dl><dt><a name="P_any-startswith"><strong>startswith</strong></a>(...)</dt><dd><tt>S.<a href="#P_any-startswith">startswith</a>(prefix[,&nbsp;start[,&nbsp;end]])&nbsp;-&gt;&nbsp;bool<br>
+&nbsp;<br>
+Return&nbsp;True&nbsp;if&nbsp;S&nbsp;starts&nbsp;with&nbsp;the&nbsp;specified&nbsp;prefix,&nbsp;False&nbsp;otherwise.<br>
+With&nbsp;optional&nbsp;start,&nbsp;test&nbsp;S&nbsp;beginning&nbsp;at&nbsp;that&nbsp;position.<br>
+With&nbsp;optional&nbsp;end,&nbsp;stop&nbsp;comparing&nbsp;S&nbsp;at&nbsp;that&nbsp;position.<br>
+prefix&nbsp;can&nbsp;also&nbsp;be&nbsp;a&nbsp;tuple&nbsp;of&nbsp;strings&nbsp;to&nbsp;try.</tt></dd></dl>
+
+<dl><dt><a name="P_any-strip"><strong>strip</strong></a>(...)</dt><dd><tt>S.<a href="#P_any-strip">strip</a>([chars])&nbsp;-&gt;&nbsp;string&nbsp;or&nbsp;unicode<br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;copy&nbsp;of&nbsp;the&nbsp;string&nbsp;S&nbsp;with&nbsp;leading&nbsp;and&nbsp;trailing<br>
+whitespace&nbsp;removed.<br>
+If&nbsp;chars&nbsp;is&nbsp;given&nbsp;and&nbsp;not&nbsp;None,&nbsp;remove&nbsp;characters&nbsp;in&nbsp;chars&nbsp;instead.<br>
+If&nbsp;chars&nbsp;is&nbsp;unicode,&nbsp;S&nbsp;will&nbsp;be&nbsp;converted&nbsp;to&nbsp;unicode&nbsp;before&nbsp;stripping</tt></dd></dl>
+
+<dl><dt><a name="P_any-swapcase"><strong>swapcase</strong></a>(...)</dt><dd><tt>S.<a href="#P_any-swapcase">swapcase</a>()&nbsp;-&gt;&nbsp;string<br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;copy&nbsp;of&nbsp;the&nbsp;string&nbsp;S&nbsp;with&nbsp;uppercase&nbsp;characters<br>
+converted&nbsp;to&nbsp;lowercase&nbsp;and&nbsp;vice&nbsp;versa.</tt></dd></dl>
+
+<dl><dt><a name="P_any-title"><strong>title</strong></a>(...)</dt><dd><tt>S.<a href="#P_any-title">title</a>()&nbsp;-&gt;&nbsp;string<br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;titlecased&nbsp;version&nbsp;of&nbsp;S,&nbsp;i.e.&nbsp;words&nbsp;start&nbsp;with&nbsp;uppercase<br>
+characters,&nbsp;all&nbsp;remaining&nbsp;cased&nbsp;characters&nbsp;have&nbsp;lowercase.</tt></dd></dl>
+
+<dl><dt><a name="P_any-translate"><strong>translate</strong></a>(...)</dt><dd><tt>S.<a href="#P_any-translate">translate</a>(table&nbsp;[,deletechars])&nbsp;-&gt;&nbsp;string<br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;copy&nbsp;of&nbsp;the&nbsp;string&nbsp;S,&nbsp;where&nbsp;all&nbsp;characters&nbsp;occurring<br>
+in&nbsp;the&nbsp;optional&nbsp;argument&nbsp;deletechars&nbsp;are&nbsp;removed,&nbsp;and&nbsp;the<br>
+remaining&nbsp;characters&nbsp;have&nbsp;been&nbsp;mapped&nbsp;through&nbsp;the&nbsp;given<br>
+translation&nbsp;table,&nbsp;which&nbsp;must&nbsp;be&nbsp;a&nbsp;string&nbsp;of&nbsp;length&nbsp;256&nbsp;or&nbsp;None.<br>
+If&nbsp;the&nbsp;table&nbsp;argument&nbsp;is&nbsp;None,&nbsp;no&nbsp;translation&nbsp;is&nbsp;applied&nbsp;and<br>
+the&nbsp;operation&nbsp;simply&nbsp;removes&nbsp;the&nbsp;characters&nbsp;in&nbsp;deletechars.</tt></dd></dl>
+
+<dl><dt><a name="P_any-upper"><strong>upper</strong></a>(...)</dt><dd><tt>S.<a href="#P_any-upper">upper</a>()&nbsp;-&gt;&nbsp;string<br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;copy&nbsp;of&nbsp;the&nbsp;string&nbsp;S&nbsp;converted&nbsp;to&nbsp;uppercase.</tt></dd></dl>
+
+<dl><dt><a name="P_any-zfill"><strong>zfill</strong></a>(...)</dt><dd><tt>S.<a href="#P_any-zfill">zfill</a>(width)&nbsp;-&gt;&nbsp;string<br>
+&nbsp;<br>
+Pad&nbsp;a&nbsp;numeric&nbsp;string&nbsp;S&nbsp;with&nbsp;zeros&nbsp;on&nbsp;the&nbsp;left,&nbsp;to&nbsp;fill&nbsp;a&nbsp;field<br>
+of&nbsp;the&nbsp;specified&nbsp;width.&nbsp;&nbsp;The&nbsp;string&nbsp;S&nbsp;is&nbsp;never&nbsp;truncated.</tt></dd></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="P_aws">class <strong>P_aws</strong></a>(<a href="__builtin__.html#dict">__builtin__.dict</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Instances&nbsp;of&nbsp;this&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;are&nbsp;used&nbsp;to&nbsp;define&nbsp;Principals&nbsp;in&nbsp;a&nbsp;<a href="#Statement">Statement</a>.<br>
+This&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;takes&nbsp;an&nbsp;arn&nbsp;argument&nbsp;at&nbsp;construction&nbsp;and&nbsp;creates&nbsp;a&nbsp;Principal<br>
+type&nbsp;of&nbsp;"AWS":&nbsp;&lt;arn&gt;.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;param1&nbsp;&nbsp;(<a href="__builtin__.html#str">str</a>&nbsp;or&nbsp;list)&nbsp;One&nbsp;or&nbsp;more&nbsp;ARNs.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="veep.IAM.html#P_aws">P_aws</a></dd>
+<dd><a href="__builtin__.html#dict">__builtin__.dict</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="P_aws-__init__"><strong>__init__</strong></a>(self, args)</dt></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Methods inherited from <a href="__builtin__.html#dict">__builtin__.dict</a>:<br>
+<dl><dt><a name="P_aws-__cmp__"><strong>__cmp__</strong></a>(...)</dt><dd><tt>x.<a href="#P_aws-__cmp__">__cmp__</a>(y)&nbsp;&lt;==&gt;&nbsp;cmp(x,y)</tt></dd></dl>
+
+<dl><dt><a name="P_aws-__contains__"><strong>__contains__</strong></a>(...)</dt><dd><tt>D.<a href="#P_aws-__contains__">__contains__</a>(k)&nbsp;-&gt;&nbsp;True&nbsp;if&nbsp;D&nbsp;has&nbsp;a&nbsp;key&nbsp;k,&nbsp;else&nbsp;False</tt></dd></dl>
+
+<dl><dt><a name="P_aws-__delitem__"><strong>__delitem__</strong></a>(...)</dt><dd><tt>x.<a href="#P_aws-__delitem__">__delitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;del&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="P_aws-__eq__"><strong>__eq__</strong></a>(...)</dt><dd><tt>x.<a href="#P_aws-__eq__">__eq__</a>(y)&nbsp;&lt;==&gt;&nbsp;x==y</tt></dd></dl>
+
+<dl><dt><a name="P_aws-__ge__"><strong>__ge__</strong></a>(...)</dt><dd><tt>x.<a href="#P_aws-__ge__">__ge__</a>(y)&nbsp;&lt;==&gt;&nbsp;x&gt;=y</tt></dd></dl>
+
+<dl><dt><a name="P_aws-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#P_aws-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="P_aws-__getitem__"><strong>__getitem__</strong></a>(...)</dt><dd><tt>x.<a href="#P_aws-__getitem__">__getitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="P_aws-__gt__"><strong>__gt__</strong></a>(...)</dt><dd><tt>x.<a href="#P_aws-__gt__">__gt__</a>(y)&nbsp;&lt;==&gt;&nbsp;x&gt;y</tt></dd></dl>
+
+<dl><dt><a name="P_aws-__iter__"><strong>__iter__</strong></a>(...)</dt><dd><tt>x.<a href="#P_aws-__iter__">__iter__</a>()&nbsp;&lt;==&gt;&nbsp;iter(x)</tt></dd></dl>
+
+<dl><dt><a name="P_aws-__le__"><strong>__le__</strong></a>(...)</dt><dd><tt>x.<a href="#P_aws-__le__">__le__</a>(y)&nbsp;&lt;==&gt;&nbsp;x&lt;=y</tt></dd></dl>
+
+<dl><dt><a name="P_aws-__len__"><strong>__len__</strong></a>(...)</dt><dd><tt>x.<a href="#P_aws-__len__">__len__</a>()&nbsp;&lt;==&gt;&nbsp;len(x)</tt></dd></dl>
+
+<dl><dt><a name="P_aws-__lt__"><strong>__lt__</strong></a>(...)</dt><dd><tt>x.<a href="#P_aws-__lt__">__lt__</a>(y)&nbsp;&lt;==&gt;&nbsp;x&lt;y</tt></dd></dl>
+
+<dl><dt><a name="P_aws-__ne__"><strong>__ne__</strong></a>(...)</dt><dd><tt>x.<a href="#P_aws-__ne__">__ne__</a>(y)&nbsp;&lt;==&gt;&nbsp;x!=y</tt></dd></dl>
+
+<dl><dt><a name="P_aws-__repr__"><strong>__repr__</strong></a>(...)</dt><dd><tt>x.<a href="#P_aws-__repr__">__repr__</a>()&nbsp;&lt;==&gt;&nbsp;repr(x)</tt></dd></dl>
+
+<dl><dt><a name="P_aws-__setitem__"><strong>__setitem__</strong></a>(...)</dt><dd><tt>x.<a href="#P_aws-__setitem__">__setitem__</a>(i,&nbsp;y)&nbsp;&lt;==&gt;&nbsp;x[i]=y</tt></dd></dl>
+
+<dl><dt><a name="P_aws-__sizeof__"><strong>__sizeof__</strong></a>(...)</dt><dd><tt>D.<a href="#P_aws-__sizeof__">__sizeof__</a>()&nbsp;-&gt;&nbsp;size&nbsp;of&nbsp;D&nbsp;in&nbsp;memory,&nbsp;in&nbsp;bytes</tt></dd></dl>
+
+<dl><dt><a name="P_aws-clear"><strong>clear</strong></a>(...)</dt><dd><tt>D.<a href="#P_aws-clear">clear</a>()&nbsp;-&gt;&nbsp;None.&nbsp;&nbsp;Remove&nbsp;all&nbsp;items&nbsp;from&nbsp;D.</tt></dd></dl>
+
+<dl><dt><a name="P_aws-copy"><strong>copy</strong></a>(...)</dt><dd><tt>D.<a href="#P_aws-copy">copy</a>()&nbsp;-&gt;&nbsp;a&nbsp;shallow&nbsp;copy&nbsp;of&nbsp;D</tt></dd></dl>
+
+<dl><dt><a name="P_aws-fromkeys"><strong>fromkeys</strong></a>(...)</dt><dd><tt><a href="__builtin__.html#dict">dict</a>.<a href="#P_aws-fromkeys">fromkeys</a>(S[,v])&nbsp;-&gt;&nbsp;New&nbsp;<a href="__builtin__.html#dict">dict</a>&nbsp;with&nbsp;keys&nbsp;from&nbsp;S&nbsp;and&nbsp;values&nbsp;equal&nbsp;to&nbsp;v.<br>
+v&nbsp;defaults&nbsp;to&nbsp;None.</tt></dd></dl>
+
+<dl><dt><a name="P_aws-get"><strong>get</strong></a>(...)</dt><dd><tt>D.<a href="#P_aws-get">get</a>(k[,d])&nbsp;-&gt;&nbsp;D[k]&nbsp;if&nbsp;k&nbsp;in&nbsp;D,&nbsp;else&nbsp;d.&nbsp;&nbsp;d&nbsp;defaults&nbsp;to&nbsp;None.</tt></dd></dl>
+
+<dl><dt><a name="P_aws-has_key"><strong>has_key</strong></a>(...)</dt><dd><tt>D.<a href="#P_aws-has_key">has_key</a>(k)&nbsp;-&gt;&nbsp;True&nbsp;if&nbsp;D&nbsp;has&nbsp;a&nbsp;key&nbsp;k,&nbsp;else&nbsp;False</tt></dd></dl>
+
+<dl><dt><a name="P_aws-items"><strong>items</strong></a>(...)</dt><dd><tt>D.<a href="#P_aws-items">items</a>()&nbsp;-&gt;&nbsp;list&nbsp;of&nbsp;D's&nbsp;(key,&nbsp;value)&nbsp;pairs,&nbsp;as&nbsp;2-tuples</tt></dd></dl>
+
+<dl><dt><a name="P_aws-iteritems"><strong>iteritems</strong></a>(...)</dt><dd><tt>D.<a href="#P_aws-iteritems">iteritems</a>()&nbsp;-&gt;&nbsp;an&nbsp;iterator&nbsp;over&nbsp;the&nbsp;(key,&nbsp;value)&nbsp;items&nbsp;of&nbsp;D</tt></dd></dl>
+
+<dl><dt><a name="P_aws-iterkeys"><strong>iterkeys</strong></a>(...)</dt><dd><tt>D.<a href="#P_aws-iterkeys">iterkeys</a>()&nbsp;-&gt;&nbsp;an&nbsp;iterator&nbsp;over&nbsp;the&nbsp;keys&nbsp;of&nbsp;D</tt></dd></dl>
+
+<dl><dt><a name="P_aws-itervalues"><strong>itervalues</strong></a>(...)</dt><dd><tt>D.<a href="#P_aws-itervalues">itervalues</a>()&nbsp;-&gt;&nbsp;an&nbsp;iterator&nbsp;over&nbsp;the&nbsp;values&nbsp;of&nbsp;D</tt></dd></dl>
+
+<dl><dt><a name="P_aws-keys"><strong>keys</strong></a>(...)</dt><dd><tt>D.<a href="#P_aws-keys">keys</a>()&nbsp;-&gt;&nbsp;list&nbsp;of&nbsp;D's&nbsp;keys</tt></dd></dl>
+
+<dl><dt><a name="P_aws-pop"><strong>pop</strong></a>(...)</dt><dd><tt>D.<a href="#P_aws-pop">pop</a>(k[,d])&nbsp;-&gt;&nbsp;v,&nbsp;remove&nbsp;specified&nbsp;key&nbsp;and&nbsp;return&nbsp;the&nbsp;corresponding&nbsp;value.<br>
+If&nbsp;key&nbsp;is&nbsp;not&nbsp;found,&nbsp;d&nbsp;is&nbsp;returned&nbsp;if&nbsp;given,&nbsp;otherwise&nbsp;KeyError&nbsp;is&nbsp;raised</tt></dd></dl>
+
+<dl><dt><a name="P_aws-popitem"><strong>popitem</strong></a>(...)</dt><dd><tt>D.<a href="#P_aws-popitem">popitem</a>()&nbsp;-&gt;&nbsp;(k,&nbsp;v),&nbsp;remove&nbsp;and&nbsp;return&nbsp;some&nbsp;(key,&nbsp;value)&nbsp;pair&nbsp;as&nbsp;a<br>
+2-tuple;&nbsp;but&nbsp;raise&nbsp;KeyError&nbsp;if&nbsp;D&nbsp;is&nbsp;empty.</tt></dd></dl>
+
+<dl><dt><a name="P_aws-setdefault"><strong>setdefault</strong></a>(...)</dt><dd><tt>D.<a href="#P_aws-setdefault">setdefault</a>(k[,d])&nbsp;-&gt;&nbsp;D.<a href="#P_aws-get">get</a>(k,d),&nbsp;also&nbsp;set&nbsp;D[k]=d&nbsp;if&nbsp;k&nbsp;not&nbsp;in&nbsp;D</tt></dd></dl>
+
+<dl><dt><a name="P_aws-update"><strong>update</strong></a>(...)</dt><dd><tt>D.<a href="#P_aws-update">update</a>([E,&nbsp;]**F)&nbsp;-&gt;&nbsp;None.&nbsp;&nbsp;Update&nbsp;D&nbsp;from&nbsp;<a href="__builtin__.html#dict">dict</a>/iterable&nbsp;E&nbsp;and&nbsp;F.<br>
+If&nbsp;E&nbsp;present&nbsp;and&nbsp;has&nbsp;a&nbsp;.<a href="#P_aws-keys">keys</a>()&nbsp;method,&nbsp;does:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;k&nbsp;in&nbsp;E:&nbsp;D[k]&nbsp;=&nbsp;E[k]<br>
+If&nbsp;E&nbsp;present&nbsp;and&nbsp;lacks&nbsp;.<a href="#P_aws-keys">keys</a>()&nbsp;method,&nbsp;does:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;(k,&nbsp;v)&nbsp;in&nbsp;E:&nbsp;D[k]&nbsp;=&nbsp;v<br>
+In&nbsp;either&nbsp;case,&nbsp;this&nbsp;is&nbsp;followed&nbsp;by:&nbsp;for&nbsp;k&nbsp;in&nbsp;F:&nbsp;D[k]&nbsp;=&nbsp;F[k]</tt></dd></dl>
+
+<dl><dt><a name="P_aws-values"><strong>values</strong></a>(...)</dt><dd><tt>D.<a href="#P_aws-values">values</a>()&nbsp;-&gt;&nbsp;list&nbsp;of&nbsp;D's&nbsp;values</tt></dd></dl>
+
+<dl><dt><a name="P_aws-viewitems"><strong>viewitems</strong></a>(...)</dt><dd><tt>D.<a href="#P_aws-viewitems">viewitems</a>()&nbsp;-&gt;&nbsp;a&nbsp;set-like&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;providing&nbsp;a&nbsp;view&nbsp;on&nbsp;D's&nbsp;items</tt></dd></dl>
+
+<dl><dt><a name="P_aws-viewkeys"><strong>viewkeys</strong></a>(...)</dt><dd><tt>D.<a href="#P_aws-viewkeys">viewkeys</a>()&nbsp;-&gt;&nbsp;a&nbsp;set-like&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;providing&nbsp;a&nbsp;view&nbsp;on&nbsp;D's&nbsp;keys</tt></dd></dl>
+
+<dl><dt><a name="P_aws-viewvalues"><strong>viewvalues</strong></a>(...)</dt><dd><tt>D.<a href="#P_aws-viewvalues">viewvalues</a>()&nbsp;-&gt;&nbsp;an&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;providing&nbsp;a&nbsp;view&nbsp;on&nbsp;D's&nbsp;values</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="__builtin__.html#dict">__builtin__.dict</a>:<br>
+<dl><dt><strong>__hash__</strong> = None</dl>
+
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object&gt;<dd><tt>T.<a href="#P_aws-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Policy">class <strong>Policy</strong></a>(<a href="__builtin__.html#dict">__builtin__.dict</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Contains&nbsp;one&nbsp;or&nbsp;more&nbsp;<a href="#Statement">Statement</a>&nbsp;objects&nbsp;and&nbsp;returns&nbsp;an&nbsp;<a href="__builtin__.html#object">object</a><br>
+suitable&nbsp;for&nbsp;passing&nbsp;as&nbsp;a&nbsp;policy&nbsp;to&nbsp;IAM&nbsp;api&nbsp;calls.<br>
+&nbsp;<br>
+**kwargs:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;id&nbsp;(<a href="__builtin__.html#str">str</a>):&nbsp;<a href="#Policy">Policy</a>&nbsp;ID&nbsp;(optional)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;version&nbsp;(<a href="__builtin__.html#str">str</a>):&nbsp;<a href="#Policy">Policy</a>&nbsp;version&nbsp;(optional)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;statements&nbsp;(list):&nbsp;one&nbsp;or&nbsp;more&nbsp;<a href="#Statement">Statement</a>&nbsp;instances<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="veep.IAM.html#Policy">Policy</a></dd>
+<dd><a href="__builtin__.html#dict">__builtin__.dict</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="Policy-__init__"><strong>__init__</strong></a>(self, **kwargs)</dt></dl>
+
+<dl><dt><a name="Policy-__repr__"><strong>__repr__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Policy-__str__"><strong>__str__</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Methods inherited from <a href="__builtin__.html#dict">__builtin__.dict</a>:<br>
+<dl><dt><a name="Policy-__cmp__"><strong>__cmp__</strong></a>(...)</dt><dd><tt>x.<a href="#Policy-__cmp__">__cmp__</a>(y)&nbsp;&lt;==&gt;&nbsp;cmp(x,y)</tt></dd></dl>
+
+<dl><dt><a name="Policy-__contains__"><strong>__contains__</strong></a>(...)</dt><dd><tt>D.<a href="#Policy-__contains__">__contains__</a>(k)&nbsp;-&gt;&nbsp;True&nbsp;if&nbsp;D&nbsp;has&nbsp;a&nbsp;key&nbsp;k,&nbsp;else&nbsp;False</tt></dd></dl>
+
+<dl><dt><a name="Policy-__delitem__"><strong>__delitem__</strong></a>(...)</dt><dd><tt>x.<a href="#Policy-__delitem__">__delitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;del&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="Policy-__eq__"><strong>__eq__</strong></a>(...)</dt><dd><tt>x.<a href="#Policy-__eq__">__eq__</a>(y)&nbsp;&lt;==&gt;&nbsp;x==y</tt></dd></dl>
+
+<dl><dt><a name="Policy-__ge__"><strong>__ge__</strong></a>(...)</dt><dd><tt>x.<a href="#Policy-__ge__">__ge__</a>(y)&nbsp;&lt;==&gt;&nbsp;x&gt;=y</tt></dd></dl>
+
+<dl><dt><a name="Policy-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#Policy-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="Policy-__getitem__"><strong>__getitem__</strong></a>(...)</dt><dd><tt>x.<a href="#Policy-__getitem__">__getitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="Policy-__gt__"><strong>__gt__</strong></a>(...)</dt><dd><tt>x.<a href="#Policy-__gt__">__gt__</a>(y)&nbsp;&lt;==&gt;&nbsp;x&gt;y</tt></dd></dl>
+
+<dl><dt><a name="Policy-__iter__"><strong>__iter__</strong></a>(...)</dt><dd><tt>x.<a href="#Policy-__iter__">__iter__</a>()&nbsp;&lt;==&gt;&nbsp;iter(x)</tt></dd></dl>
+
+<dl><dt><a name="Policy-__le__"><strong>__le__</strong></a>(...)</dt><dd><tt>x.<a href="#Policy-__le__">__le__</a>(y)&nbsp;&lt;==&gt;&nbsp;x&lt;=y</tt></dd></dl>
+
+<dl><dt><a name="Policy-__len__"><strong>__len__</strong></a>(...)</dt><dd><tt>x.<a href="#Policy-__len__">__len__</a>()&nbsp;&lt;==&gt;&nbsp;len(x)</tt></dd></dl>
+
+<dl><dt><a name="Policy-__lt__"><strong>__lt__</strong></a>(...)</dt><dd><tt>x.<a href="#Policy-__lt__">__lt__</a>(y)&nbsp;&lt;==&gt;&nbsp;x&lt;y</tt></dd></dl>
+
+<dl><dt><a name="Policy-__ne__"><strong>__ne__</strong></a>(...)</dt><dd><tt>x.<a href="#Policy-__ne__">__ne__</a>(y)&nbsp;&lt;==&gt;&nbsp;x!=y</tt></dd></dl>
+
+<dl><dt><a name="Policy-__setitem__"><strong>__setitem__</strong></a>(...)</dt><dd><tt>x.<a href="#Policy-__setitem__">__setitem__</a>(i,&nbsp;y)&nbsp;&lt;==&gt;&nbsp;x[i]=y</tt></dd></dl>
+
+<dl><dt><a name="Policy-__sizeof__"><strong>__sizeof__</strong></a>(...)</dt><dd><tt>D.<a href="#Policy-__sizeof__">__sizeof__</a>()&nbsp;-&gt;&nbsp;size&nbsp;of&nbsp;D&nbsp;in&nbsp;memory,&nbsp;in&nbsp;bytes</tt></dd></dl>
+
+<dl><dt><a name="Policy-clear"><strong>clear</strong></a>(...)</dt><dd><tt>D.<a href="#Policy-clear">clear</a>()&nbsp;-&gt;&nbsp;None.&nbsp;&nbsp;Remove&nbsp;all&nbsp;items&nbsp;from&nbsp;D.</tt></dd></dl>
+
+<dl><dt><a name="Policy-copy"><strong>copy</strong></a>(...)</dt><dd><tt>D.<a href="#Policy-copy">copy</a>()&nbsp;-&gt;&nbsp;a&nbsp;shallow&nbsp;copy&nbsp;of&nbsp;D</tt></dd></dl>
+
+<dl><dt><a name="Policy-fromkeys"><strong>fromkeys</strong></a>(...)</dt><dd><tt><a href="__builtin__.html#dict">dict</a>.<a href="#Policy-fromkeys">fromkeys</a>(S[,v])&nbsp;-&gt;&nbsp;New&nbsp;<a href="__builtin__.html#dict">dict</a>&nbsp;with&nbsp;keys&nbsp;from&nbsp;S&nbsp;and&nbsp;values&nbsp;equal&nbsp;to&nbsp;v.<br>
+v&nbsp;defaults&nbsp;to&nbsp;None.</tt></dd></dl>
+
+<dl><dt><a name="Policy-get"><strong>get</strong></a>(...)</dt><dd><tt>D.<a href="#Policy-get">get</a>(k[,d])&nbsp;-&gt;&nbsp;D[k]&nbsp;if&nbsp;k&nbsp;in&nbsp;D,&nbsp;else&nbsp;d.&nbsp;&nbsp;d&nbsp;defaults&nbsp;to&nbsp;None.</tt></dd></dl>
+
+<dl><dt><a name="Policy-has_key"><strong>has_key</strong></a>(...)</dt><dd><tt>D.<a href="#Policy-has_key">has_key</a>(k)&nbsp;-&gt;&nbsp;True&nbsp;if&nbsp;D&nbsp;has&nbsp;a&nbsp;key&nbsp;k,&nbsp;else&nbsp;False</tt></dd></dl>
+
+<dl><dt><a name="Policy-items"><strong>items</strong></a>(...)</dt><dd><tt>D.<a href="#Policy-items">items</a>()&nbsp;-&gt;&nbsp;list&nbsp;of&nbsp;D's&nbsp;(key,&nbsp;value)&nbsp;pairs,&nbsp;as&nbsp;2-tuples</tt></dd></dl>
+
+<dl><dt><a name="Policy-iteritems"><strong>iteritems</strong></a>(...)</dt><dd><tt>D.<a href="#Policy-iteritems">iteritems</a>()&nbsp;-&gt;&nbsp;an&nbsp;iterator&nbsp;over&nbsp;the&nbsp;(key,&nbsp;value)&nbsp;items&nbsp;of&nbsp;D</tt></dd></dl>
+
+<dl><dt><a name="Policy-iterkeys"><strong>iterkeys</strong></a>(...)</dt><dd><tt>D.<a href="#Policy-iterkeys">iterkeys</a>()&nbsp;-&gt;&nbsp;an&nbsp;iterator&nbsp;over&nbsp;the&nbsp;keys&nbsp;of&nbsp;D</tt></dd></dl>
+
+<dl><dt><a name="Policy-itervalues"><strong>itervalues</strong></a>(...)</dt><dd><tt>D.<a href="#Policy-itervalues">itervalues</a>()&nbsp;-&gt;&nbsp;an&nbsp;iterator&nbsp;over&nbsp;the&nbsp;values&nbsp;of&nbsp;D</tt></dd></dl>
+
+<dl><dt><a name="Policy-keys"><strong>keys</strong></a>(...)</dt><dd><tt>D.<a href="#Policy-keys">keys</a>()&nbsp;-&gt;&nbsp;list&nbsp;of&nbsp;D's&nbsp;keys</tt></dd></dl>
+
+<dl><dt><a name="Policy-pop"><strong>pop</strong></a>(...)</dt><dd><tt>D.<a href="#Policy-pop">pop</a>(k[,d])&nbsp;-&gt;&nbsp;v,&nbsp;remove&nbsp;specified&nbsp;key&nbsp;and&nbsp;return&nbsp;the&nbsp;corresponding&nbsp;value.<br>
+If&nbsp;key&nbsp;is&nbsp;not&nbsp;found,&nbsp;d&nbsp;is&nbsp;returned&nbsp;if&nbsp;given,&nbsp;otherwise&nbsp;KeyError&nbsp;is&nbsp;raised</tt></dd></dl>
+
+<dl><dt><a name="Policy-popitem"><strong>popitem</strong></a>(...)</dt><dd><tt>D.<a href="#Policy-popitem">popitem</a>()&nbsp;-&gt;&nbsp;(k,&nbsp;v),&nbsp;remove&nbsp;and&nbsp;return&nbsp;some&nbsp;(key,&nbsp;value)&nbsp;pair&nbsp;as&nbsp;a<br>
+2-tuple;&nbsp;but&nbsp;raise&nbsp;KeyError&nbsp;if&nbsp;D&nbsp;is&nbsp;empty.</tt></dd></dl>
+
+<dl><dt><a name="Policy-setdefault"><strong>setdefault</strong></a>(...)</dt><dd><tt>D.<a href="#Policy-setdefault">setdefault</a>(k[,d])&nbsp;-&gt;&nbsp;D.<a href="#Policy-get">get</a>(k,d),&nbsp;also&nbsp;set&nbsp;D[k]=d&nbsp;if&nbsp;k&nbsp;not&nbsp;in&nbsp;D</tt></dd></dl>
+
+<dl><dt><a name="Policy-update"><strong>update</strong></a>(...)</dt><dd><tt>D.<a href="#Policy-update">update</a>([E,&nbsp;]**F)&nbsp;-&gt;&nbsp;None.&nbsp;&nbsp;Update&nbsp;D&nbsp;from&nbsp;<a href="__builtin__.html#dict">dict</a>/iterable&nbsp;E&nbsp;and&nbsp;F.<br>
+If&nbsp;E&nbsp;present&nbsp;and&nbsp;has&nbsp;a&nbsp;.<a href="#Policy-keys">keys</a>()&nbsp;method,&nbsp;does:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;k&nbsp;in&nbsp;E:&nbsp;D[k]&nbsp;=&nbsp;E[k]<br>
+If&nbsp;E&nbsp;present&nbsp;and&nbsp;lacks&nbsp;.<a href="#Policy-keys">keys</a>()&nbsp;method,&nbsp;does:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;(k,&nbsp;v)&nbsp;in&nbsp;E:&nbsp;D[k]&nbsp;=&nbsp;v<br>
+In&nbsp;either&nbsp;case,&nbsp;this&nbsp;is&nbsp;followed&nbsp;by:&nbsp;for&nbsp;k&nbsp;in&nbsp;F:&nbsp;D[k]&nbsp;=&nbsp;F[k]</tt></dd></dl>
+
+<dl><dt><a name="Policy-values"><strong>values</strong></a>(...)</dt><dd><tt>D.<a href="#Policy-values">values</a>()&nbsp;-&gt;&nbsp;list&nbsp;of&nbsp;D's&nbsp;values</tt></dd></dl>
+
+<dl><dt><a name="Policy-viewitems"><strong>viewitems</strong></a>(...)</dt><dd><tt>D.<a href="#Policy-viewitems">viewitems</a>()&nbsp;-&gt;&nbsp;a&nbsp;set-like&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;providing&nbsp;a&nbsp;view&nbsp;on&nbsp;D's&nbsp;items</tt></dd></dl>
+
+<dl><dt><a name="Policy-viewkeys"><strong>viewkeys</strong></a>(...)</dt><dd><tt>D.<a href="#Policy-viewkeys">viewkeys</a>()&nbsp;-&gt;&nbsp;a&nbsp;set-like&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;providing&nbsp;a&nbsp;view&nbsp;on&nbsp;D's&nbsp;keys</tt></dd></dl>
+
+<dl><dt><a name="Policy-viewvalues"><strong>viewvalues</strong></a>(...)</dt><dd><tt>D.<a href="#Policy-viewvalues">viewvalues</a>()&nbsp;-&gt;&nbsp;an&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;providing&nbsp;a&nbsp;view&nbsp;on&nbsp;D's&nbsp;values</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="__builtin__.html#dict">__builtin__.dict</a>:<br>
+<dl><dt><strong>__hash__</strong> = None</dl>
+
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object&gt;<dd><tt>T.<a href="#Policy-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Profile">class <strong>Profile</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Object&nbsp;returned&nbsp;by&nbsp;create_profile()&nbsp;and&nbsp;get_profile(),&nbsp;with&nbsp;creation<br>
+date&nbsp;converted&nbsp;into&nbsp;a&nbsp;datetime.datetime()&nbsp;<a href="__builtin__.html#object">object</a>.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Profile-__init__"><strong>__init__</strong></a>(self, connection, **kwargs)</dt></dl>
+
+<dl><dt><a name="Profile-__repr__"><strong>__repr__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Profile-__str__"><strong>__str__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Profile-add_role"><strong>add_role</strong></a>(self, role)</dt><dd><tt>Add&nbsp;a&nbsp;<a href="#Role">Role</a>&nbsp;to&nbsp;this&nbsp;<a href="#Profile">Profile</a>.&nbsp;<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;role&nbsp;(<a href="#Role">Role</a>):&nbsp;Instance&nbsp;of&nbsp;<a href="#Role">Role</a>&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;to&nbsp;attach&nbsp;to&nbsp;profile.</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Role">class <strong>Role</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Object&nbsp;returned&nbsp;by&nbsp;create_role()&nbsp;and&nbsp;get_role(),&nbsp;with&nbsp;creation<br>
+date&nbsp;converted&nbsp;into&nbsp;a&nbsp;datetime.datetime()&nbsp;<a href="__builtin__.html#object">object</a>.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Role-__init__"><strong>__init__</strong></a>(self, connection, **kwargs)</dt></dl>
+
+<dl><dt><a name="Role-__repr__"><strong>__repr__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Role-__str__"><strong>__str__</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Statement">class <strong>Statement</strong></a>(<a href="__builtin__.html#dict">__builtin__.dict</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Container&nbsp;assembling&nbsp;principals,&nbsp;condtions,&nbsp;actions&nbsp;and&nbsp;resources.<br>
+&nbsp;<br>
+**kwargs:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;sid&nbsp;(<a href="__builtin__.html#str">str</a>):&nbsp;<a href="#Statement">Statement</a>&nbsp;ID&nbsp;(optional)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;effect&nbsp;(<a href="__builtin__.html#str">str</a>):&nbsp;Effect-&nbsp;Allow/Deny&nbsp;(optional)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;principal&nbsp;(<a href="__builtin__.html#str">str</a>):&nbsp;instance&nbsp;of&nbsp;Principal&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;(optional)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;actions&nbsp;(list):&nbsp;one&nbsp;or&nbsp;more&nbsp;actions<br>
+&nbsp;&nbsp;&nbsp;&nbsp;resources&nbsp;(list):&nbsp;one&nbsp;or&nbsp;more&nbsp;resource&nbsp;ARNs<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="veep.IAM.html#Statement">Statement</a></dd>
+<dd><a href="__builtin__.html#dict">__builtin__.dict</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="Statement-__init__"><strong>__init__</strong></a>(self, **kwargs)</dt></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Methods inherited from <a href="__builtin__.html#dict">__builtin__.dict</a>:<br>
+<dl><dt><a name="Statement-__cmp__"><strong>__cmp__</strong></a>(...)</dt><dd><tt>x.<a href="#Statement-__cmp__">__cmp__</a>(y)&nbsp;&lt;==&gt;&nbsp;cmp(x,y)</tt></dd></dl>
+
+<dl><dt><a name="Statement-__contains__"><strong>__contains__</strong></a>(...)</dt><dd><tt>D.<a href="#Statement-__contains__">__contains__</a>(k)&nbsp;-&gt;&nbsp;True&nbsp;if&nbsp;D&nbsp;has&nbsp;a&nbsp;key&nbsp;k,&nbsp;else&nbsp;False</tt></dd></dl>
+
+<dl><dt><a name="Statement-__delitem__"><strong>__delitem__</strong></a>(...)</dt><dd><tt>x.<a href="#Statement-__delitem__">__delitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;del&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="Statement-__eq__"><strong>__eq__</strong></a>(...)</dt><dd><tt>x.<a href="#Statement-__eq__">__eq__</a>(y)&nbsp;&lt;==&gt;&nbsp;x==y</tt></dd></dl>
+
+<dl><dt><a name="Statement-__ge__"><strong>__ge__</strong></a>(...)</dt><dd><tt>x.<a href="#Statement-__ge__">__ge__</a>(y)&nbsp;&lt;==&gt;&nbsp;x&gt;=y</tt></dd></dl>
+
+<dl><dt><a name="Statement-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#Statement-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="Statement-__getitem__"><strong>__getitem__</strong></a>(...)</dt><dd><tt>x.<a href="#Statement-__getitem__">__getitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="Statement-__gt__"><strong>__gt__</strong></a>(...)</dt><dd><tt>x.<a href="#Statement-__gt__">__gt__</a>(y)&nbsp;&lt;==&gt;&nbsp;x&gt;y</tt></dd></dl>
+
+<dl><dt><a name="Statement-__iter__"><strong>__iter__</strong></a>(...)</dt><dd><tt>x.<a href="#Statement-__iter__">__iter__</a>()&nbsp;&lt;==&gt;&nbsp;iter(x)</tt></dd></dl>
+
+<dl><dt><a name="Statement-__le__"><strong>__le__</strong></a>(...)</dt><dd><tt>x.<a href="#Statement-__le__">__le__</a>(y)&nbsp;&lt;==&gt;&nbsp;x&lt;=y</tt></dd></dl>
+
+<dl><dt><a name="Statement-__len__"><strong>__len__</strong></a>(...)</dt><dd><tt>x.<a href="#Statement-__len__">__len__</a>()&nbsp;&lt;==&gt;&nbsp;len(x)</tt></dd></dl>
+
+<dl><dt><a name="Statement-__lt__"><strong>__lt__</strong></a>(...)</dt><dd><tt>x.<a href="#Statement-__lt__">__lt__</a>(y)&nbsp;&lt;==&gt;&nbsp;x&lt;y</tt></dd></dl>
+
+<dl><dt><a name="Statement-__ne__"><strong>__ne__</strong></a>(...)</dt><dd><tt>x.<a href="#Statement-__ne__">__ne__</a>(y)&nbsp;&lt;==&gt;&nbsp;x!=y</tt></dd></dl>
+
+<dl><dt><a name="Statement-__repr__"><strong>__repr__</strong></a>(...)</dt><dd><tt>x.<a href="#Statement-__repr__">__repr__</a>()&nbsp;&lt;==&gt;&nbsp;repr(x)</tt></dd></dl>
+
+<dl><dt><a name="Statement-__setitem__"><strong>__setitem__</strong></a>(...)</dt><dd><tt>x.<a href="#Statement-__setitem__">__setitem__</a>(i,&nbsp;y)&nbsp;&lt;==&gt;&nbsp;x[i]=y</tt></dd></dl>
+
+<dl><dt><a name="Statement-__sizeof__"><strong>__sizeof__</strong></a>(...)</dt><dd><tt>D.<a href="#Statement-__sizeof__">__sizeof__</a>()&nbsp;-&gt;&nbsp;size&nbsp;of&nbsp;D&nbsp;in&nbsp;memory,&nbsp;in&nbsp;bytes</tt></dd></dl>
+
+<dl><dt><a name="Statement-clear"><strong>clear</strong></a>(...)</dt><dd><tt>D.<a href="#Statement-clear">clear</a>()&nbsp;-&gt;&nbsp;None.&nbsp;&nbsp;Remove&nbsp;all&nbsp;items&nbsp;from&nbsp;D.</tt></dd></dl>
+
+<dl><dt><a name="Statement-copy"><strong>copy</strong></a>(...)</dt><dd><tt>D.<a href="#Statement-copy">copy</a>()&nbsp;-&gt;&nbsp;a&nbsp;shallow&nbsp;copy&nbsp;of&nbsp;D</tt></dd></dl>
+
+<dl><dt><a name="Statement-fromkeys"><strong>fromkeys</strong></a>(...)</dt><dd><tt><a href="__builtin__.html#dict">dict</a>.<a href="#Statement-fromkeys">fromkeys</a>(S[,v])&nbsp;-&gt;&nbsp;New&nbsp;<a href="__builtin__.html#dict">dict</a>&nbsp;with&nbsp;keys&nbsp;from&nbsp;S&nbsp;and&nbsp;values&nbsp;equal&nbsp;to&nbsp;v.<br>
+v&nbsp;defaults&nbsp;to&nbsp;None.</tt></dd></dl>
+
+<dl><dt><a name="Statement-get"><strong>get</strong></a>(...)</dt><dd><tt>D.<a href="#Statement-get">get</a>(k[,d])&nbsp;-&gt;&nbsp;D[k]&nbsp;if&nbsp;k&nbsp;in&nbsp;D,&nbsp;else&nbsp;d.&nbsp;&nbsp;d&nbsp;defaults&nbsp;to&nbsp;None.</tt></dd></dl>
+
+<dl><dt><a name="Statement-has_key"><strong>has_key</strong></a>(...)</dt><dd><tt>D.<a href="#Statement-has_key">has_key</a>(k)&nbsp;-&gt;&nbsp;True&nbsp;if&nbsp;D&nbsp;has&nbsp;a&nbsp;key&nbsp;k,&nbsp;else&nbsp;False</tt></dd></dl>
+
+<dl><dt><a name="Statement-items"><strong>items</strong></a>(...)</dt><dd><tt>D.<a href="#Statement-items">items</a>()&nbsp;-&gt;&nbsp;list&nbsp;of&nbsp;D's&nbsp;(key,&nbsp;value)&nbsp;pairs,&nbsp;as&nbsp;2-tuples</tt></dd></dl>
+
+<dl><dt><a name="Statement-iteritems"><strong>iteritems</strong></a>(...)</dt><dd><tt>D.<a href="#Statement-iteritems">iteritems</a>()&nbsp;-&gt;&nbsp;an&nbsp;iterator&nbsp;over&nbsp;the&nbsp;(key,&nbsp;value)&nbsp;items&nbsp;of&nbsp;D</tt></dd></dl>
+
+<dl><dt><a name="Statement-iterkeys"><strong>iterkeys</strong></a>(...)</dt><dd><tt>D.<a href="#Statement-iterkeys">iterkeys</a>()&nbsp;-&gt;&nbsp;an&nbsp;iterator&nbsp;over&nbsp;the&nbsp;keys&nbsp;of&nbsp;D</tt></dd></dl>
+
+<dl><dt><a name="Statement-itervalues"><strong>itervalues</strong></a>(...)</dt><dd><tt>D.<a href="#Statement-itervalues">itervalues</a>()&nbsp;-&gt;&nbsp;an&nbsp;iterator&nbsp;over&nbsp;the&nbsp;values&nbsp;of&nbsp;D</tt></dd></dl>
+
+<dl><dt><a name="Statement-keys"><strong>keys</strong></a>(...)</dt><dd><tt>D.<a href="#Statement-keys">keys</a>()&nbsp;-&gt;&nbsp;list&nbsp;of&nbsp;D's&nbsp;keys</tt></dd></dl>
+
+<dl><dt><a name="Statement-pop"><strong>pop</strong></a>(...)</dt><dd><tt>D.<a href="#Statement-pop">pop</a>(k[,d])&nbsp;-&gt;&nbsp;v,&nbsp;remove&nbsp;specified&nbsp;key&nbsp;and&nbsp;return&nbsp;the&nbsp;corresponding&nbsp;value.<br>
+If&nbsp;key&nbsp;is&nbsp;not&nbsp;found,&nbsp;d&nbsp;is&nbsp;returned&nbsp;if&nbsp;given,&nbsp;otherwise&nbsp;KeyError&nbsp;is&nbsp;raised</tt></dd></dl>
+
+<dl><dt><a name="Statement-popitem"><strong>popitem</strong></a>(...)</dt><dd><tt>D.<a href="#Statement-popitem">popitem</a>()&nbsp;-&gt;&nbsp;(k,&nbsp;v),&nbsp;remove&nbsp;and&nbsp;return&nbsp;some&nbsp;(key,&nbsp;value)&nbsp;pair&nbsp;as&nbsp;a<br>
+2-tuple;&nbsp;but&nbsp;raise&nbsp;KeyError&nbsp;if&nbsp;D&nbsp;is&nbsp;empty.</tt></dd></dl>
+
+<dl><dt><a name="Statement-setdefault"><strong>setdefault</strong></a>(...)</dt><dd><tt>D.<a href="#Statement-setdefault">setdefault</a>(k[,d])&nbsp;-&gt;&nbsp;D.<a href="#Statement-get">get</a>(k,d),&nbsp;also&nbsp;set&nbsp;D[k]=d&nbsp;if&nbsp;k&nbsp;not&nbsp;in&nbsp;D</tt></dd></dl>
+
+<dl><dt><a name="Statement-update"><strong>update</strong></a>(...)</dt><dd><tt>D.<a href="#Statement-update">update</a>([E,&nbsp;]**F)&nbsp;-&gt;&nbsp;None.&nbsp;&nbsp;Update&nbsp;D&nbsp;from&nbsp;<a href="__builtin__.html#dict">dict</a>/iterable&nbsp;E&nbsp;and&nbsp;F.<br>
+If&nbsp;E&nbsp;present&nbsp;and&nbsp;has&nbsp;a&nbsp;.<a href="#Statement-keys">keys</a>()&nbsp;method,&nbsp;does:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;k&nbsp;in&nbsp;E:&nbsp;D[k]&nbsp;=&nbsp;E[k]<br>
+If&nbsp;E&nbsp;present&nbsp;and&nbsp;lacks&nbsp;.<a href="#Statement-keys">keys</a>()&nbsp;method,&nbsp;does:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;(k,&nbsp;v)&nbsp;in&nbsp;E:&nbsp;D[k]&nbsp;=&nbsp;v<br>
+In&nbsp;either&nbsp;case,&nbsp;this&nbsp;is&nbsp;followed&nbsp;by:&nbsp;for&nbsp;k&nbsp;in&nbsp;F:&nbsp;D[k]&nbsp;=&nbsp;F[k]</tt></dd></dl>
+
+<dl><dt><a name="Statement-values"><strong>values</strong></a>(...)</dt><dd><tt>D.<a href="#Statement-values">values</a>()&nbsp;-&gt;&nbsp;list&nbsp;of&nbsp;D's&nbsp;values</tt></dd></dl>
+
+<dl><dt><a name="Statement-viewitems"><strong>viewitems</strong></a>(...)</dt><dd><tt>D.<a href="#Statement-viewitems">viewitems</a>()&nbsp;-&gt;&nbsp;a&nbsp;set-like&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;providing&nbsp;a&nbsp;view&nbsp;on&nbsp;D's&nbsp;items</tt></dd></dl>
+
+<dl><dt><a name="Statement-viewkeys"><strong>viewkeys</strong></a>(...)</dt><dd><tt>D.<a href="#Statement-viewkeys">viewkeys</a>()&nbsp;-&gt;&nbsp;a&nbsp;set-like&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;providing&nbsp;a&nbsp;view&nbsp;on&nbsp;D's&nbsp;keys</tt></dd></dl>
+
+<dl><dt><a name="Statement-viewvalues"><strong>viewvalues</strong></a>(...)</dt><dd><tt>D.<a href="#Statement-viewvalues">viewvalues</a>()&nbsp;-&gt;&nbsp;an&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;providing&nbsp;a&nbsp;view&nbsp;on&nbsp;D's&nbsp;values</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="__builtin__.html#dict">__builtin__.dict</a>:<br>
+<dl><dt><strong>__hash__</strong> = None</dl>
+
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object&gt;<dd><tt>T.<a href="#Statement-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-connect"><strong>connect</strong></a>(**kwargs)</dt><dd><tt>Create&nbsp;veep.IAM&nbsp;connection&nbsp;<a href="__builtin__.html#object">object</a><br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;instance&nbsp;of&nbsp;veep.IAM.<a href="#IAMConnection">IAMConnection</a></tt></dd></dl>
+ <dl><dt><a name="-connect_to_region"><strong>connect_to_region</strong></a>(region, **kwargs)</dt><dd><tt>Create&nbsp;veep.IAM&nbsp;connection&nbsp;<a href="__builtin__.html#object">object</a><br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;instance&nbsp;of&nbsp;veep.IAM.<a href="#IAMConnection">IAMConnection</a></tt></dd></dl>
+</td></tr></table>
