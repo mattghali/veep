@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 
 from veep import Config, IAM, VPC
-import boto.exception, boto.s3
+import boto.exception
+from boto import s3
+from boto.s3.connection import OrdinaryCallingFormat 
 
 def make_roles():
     conn = IAM.connect()
@@ -22,7 +24,7 @@ def make_roles():
 
 def make_bucket(role_arns):
     (admin_arn, generic_arn) = role_arns
-    conn = boto.s3.connect_to_region(Config.home_region)
+    conn = s3.connect_to_region(Config.home_region, calling_format=OrdinaryCallingFormat())
     bucket_arn = 'arn:aws:s3:::' + Config.depot
     try:
         bucket = conn.get_bucket(Config.depot)
