@@ -188,6 +188,9 @@ class Role(object):
     def __repr__(self):
         return str(self)
 
+    def put_policy(self, policy):
+        self.connection.put_role_policy(self.name, policy['Id'], policy)
+
 def connect_to_region(region, **kwargs):
     """Create veep.IAM connection object
 
