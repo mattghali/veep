@@ -3,10 +3,28 @@
 # create NAT instance asgs for each vpc.
 
 import boto.ec2, boto.ec2.autoscale, boto.vpc, netaddr, sys, time
-from veep import Config, SNS, VPC
+from veep import Config, IAM, SNS, VPC
 
 
 if __name__ == '__main__':
+
+    # Create a Role for NAT instances, attach policy allowing reqd ops
+    conn = IAM.connect()
+    role = conn.get_role('NatInstance')
+    if not role:
+        role = conn.create_role('NatInstance', path='/instance/')
+        statement = IAM.Statement(sid='NatPolicy',
+                                  actions=['ec2:DescribeTags', 'ec2:ModifyInstanceAttribute',
+                                           'ec2:CreateRoute', 'ec2:ReplaceRoute'],
+                                  resources=['arn:aws:ec2:*'])
+        statement.pop('Principal')
+        policy = IAM.Policy(id=statement['Sid'], statements=[statement])
+        role.put_policy(policy)
+
+    profile = conn.get_instance_profile(role.name)
+    if not profile:
+        profile = conn.create_instance_profile(role.name)
+        profile.add_role(role)
 
     for region in VPC.get_regions():
         for vpc in region.find_vpcs():
@@ -60,7 +78,7 @@ if __name__ == '__main__':
             lc = boto.ec2.autoscale.launchconfig.LaunchConfiguration(name=asgname, image_id=imageid,
                                         key_name=vpc.get_env(), security_groups=[secgrp],
                                         user_data=Config.userdata, instance_type=inst_type,
-                                        instance_monitoring=True, instance_profile_name='GenericInstance',
+                                        instance_monitoring=True, instance_profile_name=profile.name,
                                         associate_public_ip_address=True)
 
             launchconfig = region.asconn.create_launch_configuration(lc)
