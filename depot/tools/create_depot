@@ -7,10 +7,16 @@ from boto.s3.connection import OrdinaryCallingFormat
 
 def make_roles():
     conn = IAM.connect()
+    statement = IAM.Statement(sid='BasePolicy',
+                              actions=['ec2:DescribeTags'],
+                              resources=['arn:aws:ec2:*'])
+    statement.pop('Principal')
+    policy = IAM.Policy(id=statement['Sid'], statements=[statement])
     for role_name in ['GenericInstance', 'AdminInstance']:
         role = conn.get_role(role_name)
         if not role:
             role = conn.create_role(role_name, path='/instance/')
+            role.put_policy(policy)
         profile = conn.get_instance_profile(role_name)
         if not profile:
             profile = conn.create_instance_profile(role_name, path='/instance/')
