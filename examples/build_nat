@@ -16,7 +16,7 @@ if __name__ == '__main__':
         statement = IAM.Statement(sid='NatPolicy',
                                   actions=['ec2:DescribeTags', 'ec2:ModifyInstanceAttribute',
                                            'ec2:CreateRoute', 'ec2:ReplaceRoute'],
-                                  resources=['arn:aws:ec2:*'])
+                                  resources=['*'])
         statement.pop('Principal')
         policy = IAM.Policy(id=statement['Sid'], statements=[statement])
         role.put_policy(policy)

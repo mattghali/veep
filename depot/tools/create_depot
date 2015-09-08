@@ -9,7 +9,7 @@ def make_roles():
     conn = IAM.connect()
     statement = IAM.Statement(sid='BasePolicy',
                               actions=['ec2:DescribeTags'],
-                              resources=['arn:aws:ec2:*'])
+                              resources=['*'])
     statement.pop('Principal')
     policy = IAM.Policy(id=statement['Sid'], statements=[statement])
     for role_name in ['GenericInstance', 'AdminInstance']:
