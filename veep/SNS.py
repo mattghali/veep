@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import boto.sns
+import boto.exception, boto.sns
 
 
 class Topic(object):
@@ -24,15 +24,64 @@ class Topic(object):
 
     def get_subscriptions(self):
         subs = self.connection.get_all_subscriptions_by_topic(self.arn)
-        return subs['ListSubscriptionsByTopicResponse']['ListSubscriptionsByTopicResult']['Subscriptions']
+        s_list = subs['ListSubscriptionsByTopicResponse']['ListSubscriptionsByTopicResult']['Subscriptions']
+        return [Subscription(self, i) for i in s_list]
 
-    def subscribe(self, sub):
-        (proto, endpoint) = sub
-        self.connection.subscribe(self.arn, proto, endpoint)
-        return True
+    def subscribe(self, proto, endpoint):
+        r = self.connection.subscribe(self.arn, proto, endpoint)['SubscribeResponse']['SubscribeResult']
+        r['TopicArn'] = self.arn
+        r['Owner'] = self.arn.split(':')[4]
+        r['Endpoint'] = endpoint
+        r['Protocol'] = proto
+        return Subscription(self, r)
 
     def unsubscribe(self, sub_arn):
-        self.connection.unsubscribe(sub_arn)
+        return self.connection.unsubscribe(sub_arn)
+
+    def confirm(self, token, aos=False):
+        try:
+            return self.connection.confirm_subscription(self.arn,
+                token, authenticate_on_unsubscribe=aos)['ConfirmSubscriptionResponse']['ConfirmSubscriptionResult']
+        except boto.exception.BotoServerError, e:
+            if e[0] == 400:
+                return False
+            else: raise e
+
+
+class Subscription(object):
+    def __init__(self, topic, sub_res):
+        self.topic = topic
+        self.connection = topic.connection
+        self.topicarn = sub_res['TopicArn']
+        self.owner = sub_res['Owner']
+        self.endpoint = sub_res['Endpoint']
+        self.protocol = sub_res['Protocol']
+        self.proto = self.protocol
+        self.confirmed = sub_res['SubscriptionArn'] != 'PendingConfirmation'
+
+        if self.confirmed:
+            self.subscriptionarn = sub_res['SubscriptionArn']
+            self.arn = self.subscriptionarn
+            self.name = self.subscriptionarn.split(':')[-1]
+        else:
+            self.subscriptionarn = None
+            self.arn = None
+            self.name = sub_res['SubscriptionArn']
+
+    def __repr__(self):
+        return self.name
+
+    def confirm(self, token, aos=False):
+        res = self.topic.confirm(token, aos=aos)
+        if res:
+            self.subscriptionarn = res['SubscriptionArn']
+            self.arn = self.subscriptionarn
+            self.name = self.arn.split(':')[-1]
+            self.confirmed = True
+            return True
+        else:
+            return False
+
 
 class SNSConnection(boto.sns.connection.SNSConnection):
     def __init__(self, **kwargs):
@@ -43,9 +92,8 @@ class SNSConnection(boto.sns.connection.SNSConnection):
         return [Topic(self, i) for i in topic_res['ListTopicsResponse']['ListTopicsResult']['Topics']]
 
     def get_topic(self, name):
-        topics = self.get_all_topics()
-        for topic in topics:
-            if topic == name:
+        for topic in self.get_all_topics():
+            if topic.name == name:
                 return topic
         return None
 

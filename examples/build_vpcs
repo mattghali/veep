@@ -97,10 +97,10 @@ if __name__ == '__main__':
 
             subs = asgtopic.get_subscriptions()
             for sub in subs:
-                (proto, endpoint) = (sub['Protocol'], sub['Endpoint'])
-                if (proto, endpoint) in endpoints:
+                if (sub.proto, sub.endpoint) in endpoints:
                     endpoints.remove((proto, endpoint))
 
             for sub in endpoints:
-                asgtopic.subscribe(sub)
+                (proto, endpoint) = sub
+                asgtopic.subscribe(proto, endpoint)
 
