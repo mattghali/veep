@@ -1,0 +1,106 @@
+#!/usr/bin/env python
+
+# Script used to create new per-region vpcs.
+
+import netaddr, sys, time
+from veep import Config, IAM, SNS, VPC
+import json, boto.sns, boto.sqs
+
+
+# netblock to allocate VPC space from
+master_netblock = netaddr.IPNetwork('10.0.0.0/8')
+
+# subnet length to allocate per-region
+region_block = 14
+
+# environments to create a vpc for in each region
+env_list = [ 'dev', 'qa', 'prod' ]
+
+# subnet length to allocate per-vpc (need space for all environments)
+vpc_block = 16
+
+# subnet length to allocate to each tier
+tier_block = 18
+
+# subnet size for each az in a tier
+az_block = 21
+
+
+if __name__ == '__main__':
+
+    region_subnets = list(master_netblock.subnet(region_block))
+    regions = VPC.get_regions()
+    
+    for region in regions:
+        print "in region", region.name
+        region.cidr_block = region_subnets[regions.index(region)]
+        vpc_subnets = list(region.cidr_block.subnet(vpc_block))
+
+        for vpc_env in env_list:
+            vpc_netblock = vpc_subnets[env_list.index(vpc_env)]
+            existing_vpcs =  region.find_vpcs(env=vpc_env) 
+            if len(existing_vpcs) == 0:
+                vpc = region.create_vpc(env=vpc_env, cidr_block=vpc_netblock)
+                print "create vpc", vpc.get_name()
+            else:
+                vpc = existing_vpcs[0]
+    
+            tier_subnets = list(vpc_netblock.subnet(tier_block))
+
+            tier_list = [ 'frontend', 'backend', 'mgmt', 'private' ]
+            for t in tier_list:
+                if t not in [tier.name for tier in vpc.get_tiers()]:
+                    tier = vpc.add_tier(t, tier_subnets[tier_list.index(t)], subnet_size=az_block)
+                    print "create tier", tier.name
+
+                    if tier.name == 'frontend':
+                        table = vpc.get_tables(name='Public')
+                        tier.associate_table(table)
+
+                    if tier.name == 'private':
+                        table = vpc.get_tables(name='Local')
+                        if not table:
+                            table = vpc.create_table(name='Local')
+                        tier.associate_table(table)
+
+                    if tier.name in ['backend', 'mgmt']:
+                        table = vpc.get_tables(name='NAT')
+                        if not table:
+                            table = vpc.create_table(name='NAT')
+                        tier.associate_table(table)
+
+            # Create SNS topics, SQS Queue, subscribe to topics
+            snsconn = SNS.connect_to_region(region.name)
+            sqsconn = boto.sqs.connect_to_region(region.name)
+
+            as_res_name = vpc.get_name() + '-autoscaling'
+
+            asgtopic = snsconn.get_topic(as_res_name)
+            if not asgtopic:
+                asgtopic = snsconn.create_topic(as_res_name)
+
+            queues = sqsconn.get_all_queues(prefix=vpc.get_name())
+            asgqueue = False
+            for queue in queues:
+                if queue.name == as_res_name: asgqueue = queue
+
+            if not asgqueue:
+                asgqueue = sqsconn.create_queue(as_res_name)
+
+                condition = IAM.Condition('ArnEquals', 'aws:SourceArn', str(asgtopic.arn))
+                statement = IAM.Statement(principal=IAM.P_any(), actions='SQS:SendMessage',
+                                      resources=asgqueue.arn, conditions=condition)
+                policy = IAM.Policy(statements=statement)
+                asgqueue.set_attribute('Policy', policy)
+
+            endpoints = [('sqs', asgqueue.arn),]
+
+            subs = asgtopic.get_subscriptions()
+            for sub in subs:
+                if (sub.proto, sub.endpoint) in endpoints:
+                    endpoints.remove((sub.proto, sub.endpoint))
+
+            for sub in endpoints:
+                (proto, endpoint) = sub
+                asgtopic.subscribe(proto, endpoint)
+
