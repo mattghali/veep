@@ -1,0 +1,1 @@
+yum -y install glib2 glib2-devel gd gd-devel libxml2 libxml2-devel boost
