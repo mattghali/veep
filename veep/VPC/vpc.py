@@ -1,6 +1,8 @@
-import boto.ec2, boto.vpc, netaddr, time
+import boto.ec2, boto.vpc, netaddr, os, random, time
 import Config
 from tier import Tier
+
+random.seed()
 
 class Vpc(boto.vpc.vpc.VPC):
     """Container for VPC configuration and convenience methods."""
@@ -253,3 +255,70 @@ class Vpc(boto.vpc.vpc.VPC):
             igw.add_tag('Name', self.get_name())
             return igw
         return False
+
+    def run_instances(self, **kwargs):
+        image_id = kwargs.setdefault('image_id', None)
+        root_type = kwargs.setdefault('root_type', 'ebs')
+        min_count = kwargs.setdefault('min_count', 1)
+        max_count = kwargs.setdefault('max_count', 1)
+        key_name = kwargs.setdefault('key_name', self.get_name())
+        user_data = kwargs.setdefault('user_data', Config.userdata)
+        instance_type = kwargs.setdefault('instance_type', 't2.micro')
+        monitoring_enabled = kwargs.setdefault('monitoring_enabled', True)
+        subnet_id = kwargs.setdefault('subnet_id', None)
+        tier = kwargs.setdefault('tier', None)
+        security_group_names = kwargs.setdefault('security_group_names', ['SSH'])
+        security_group_ids = kwargs.setdefault('security_group_ids', [])
+        instance_profile = kwargs.setdefault('instance_profile', None)
+        instance_profile_name = kwargs.setdefault('instance_profile_name', None)
+        instance_profile_arn = kwargs.setdefault('instance_profile_arn', None)
+        ebs_optimized = kwargs.setdefault('ebs_optimized', False)
+        tags = kwargs.setdefault('tags', {})
+        dry_run = kwargs.setdefault('dry_run', False)
+
+        # Pick an image ID
+        if not image_id:
+            images = self.region.get_images(root_type=root_type)
+            if len(images) > 0:
+                kwargs['image_id'] = images[-1].id # get latest image
+        kwargs.pop('root_type')
+
+        # use subnet_id if set, otherwise use tier, otherwise default to backend
+        if not subnet_id:
+            if not tier:
+                tier = self.get_tiers(name='backend')
+            kwargs['subnet_id'] = random.choice(list(tier.subnets)).id
+        kwargs.pop('tier')
+
+        # Security group selection
+        if not security_group_ids:
+            for s in self.get_secgrps(names=security_group_names):
+                kwargs['security_group_ids'].append(s.id)
+        kwargs.pop('security_group_names')
+
+        # Set default tags, if unset.
+        tags.setdefault('Type', 'Generic')
+        tags.setdefault('Env', self.get_env())
+        tags.setdefault('Owner', os.getlogin())
+        tags.setdefault('Name', "%s-%s" % (tags['Owner'], tags['Type']))
+        kwargs.pop('tags')
+
+        # Select instance profile - if by name or arn, get Profile obj
+        if instance_profile:
+            kwargs['instance_profile_name'] = instance_profile.name
+            kwargs['instance_profile_arn'] = instance_profile.arn
+        else:
+            if not instance_profile_name and not instance_profile_arn:
+                # Hope there's a matching profile for the type tag.
+                kwargs['instance_profile_name'] = "%s%s-%s" % (tags['Type'], 'Instance', self.get_env())
+        kwargs.pop('instance_profile')
+
+        # run the instance.
+        reservation = self.region.ec2conn.run_instances(**kwargs)
+
+        # Add tags
+        for instance in reservation.instances:
+            instance.add_tags(tags)
+
+        return reservation
+
