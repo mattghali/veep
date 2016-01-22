@@ -5,4 +5,4 @@ yum -y install glib2 glib2-devel gd gd-devel libxml2 libxml2-devel boost
 
 # development tools
 yum -y install screen rpm-build-libs rpm-devel rpmdevtools rpm-build \
-    rpm-sign gnupg gcc gcc-c++ cmake cmake-doc git-all
+    rpm-sign gnupg gcc gcc-c++ cmake cmake-doc git-all vim
