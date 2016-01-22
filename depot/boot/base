@@ -17,7 +17,7 @@ else
     aws s3 --region=$REGION cp s3://depot.fn8.it/repos/prod/yum-plugin-s3-iam-1.0.2-1.noarch.rpm /var/tmp/yums3.rpm
     aws s3 --region=$REGION cp s3://depot.fn8.it/repos/prod/fn8-repo-prod-1.0-1.noarch.rpm /var/tmp/repo.rpm
 fi
-(cd /var/tmp; rpm -i yums3.rpm repo.rpm)
+(cd /var/tmp; yum install -y yums3.rpm repo.rpm)
 
 case "$(tags Type)" in
     'nat') aws s3 --region=us-west-2 cp s3://depot.fn8.it/boot/nat - | sh -x;;
