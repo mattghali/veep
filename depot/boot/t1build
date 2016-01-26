@@ -1,12 +1,9 @@
 yum update -y
 
-# build dependencies
-yum -y install glib2 glib2-devel gd gd-devel libxml2 libxml2-devel boost \
-    openssl-devel
-
 # development tools
-yum -y install screen rpm-build-libs rpm-devel rpmdevtools rpm-build \
-    rpm-sign gnupg gcc gcc-c++ cmake cmake-doc git-all vim
+yum install -y screen rpm-build-libs rpm-devel rpmdevtools rpm-build \
+    rpm-sign gnupg cmake-doc git-all vim
 
 # sinceme internal libraries
-yum -y install fn8-t1-libtaomee fn8-t1-libtaomee++ fn8-t1-db_base fn8-t1-asyc_serv
+yum install -y fn8-t1-libtaomee fn8-t1-libtaomee++ \
+    fn8-t1-db_base fn8-t1-asyc_serv
