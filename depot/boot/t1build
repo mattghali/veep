@@ -1,8 +1,12 @@
 yum update -y
 
 # development tools
-yum install -y screen rpm-build-libs rpm-devel rpmdevtools rpm-build \
-    rpm-sign gnupg cmake-doc git-all vim
+yum install -y cmake cmake-doc git-all gnupg rpm-build rpm-build-libs \
+    rpm-devel rpmdevtools rpm-sign screen vim
+
+# sinceme-specific reqs
+yum install -y boost gd-devel glib2-devel libxml2-devel mysql51-libs \
+    mysql51-devel openssl-devel
 
 # sinceme internal libraries
 yum install -y fn8-t1-libtaomee fn8-t1-libtaomee++ \
