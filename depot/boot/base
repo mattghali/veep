@@ -22,5 +22,6 @@ fi
 case "$(tags Type)" in
         'nat') aws s3 --region=us-west-2 cp s3://depot.fn8.it/boot/nat - | sh -x;;
     't1build') aws s3 --region=us-west-2 cp s3://depot.fn8.it/boot/t1build - | sh -x;;
+      't1dev') aws s3 --region=us-west-2 cp s3://depot.fn8.it/boot/t1dev - | sh -x;;
             *) aws s3 --region=us-west-2 cp s3://depot.fn8.it/boot/generic - | sh -x;;
 esac

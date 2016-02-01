@@ -1,0 +1,17 @@
+yum update -y
+
+# development tools
+yum install -y screen vim
+
+# sinceme-specific reqs
+yum install -y boost boost-serialization json-c mysql51-libs openssl
+
+# sinceme internal libraries
+yum install -y fn8-t1-libtaomee fn8-t1-libtaomee++ \
+    fn8-t1-db_base fn8-t1-asyc_ser
+
+# sinceme t1 game packages
+yum install -y fn8-t1-account_db fn8-t1-account_front fn8-t1-analyze_serv \
+    fn8-t1-dota_balance fn8-t1-dota_char fn8-t1-dota_codedb \
+    fn8-t1-dota_switch fn8-t1-dota_transit fn8-t1-dota_transitdb \
+    fn8-t1-dota_update fn8-t1-dota_updatedb
