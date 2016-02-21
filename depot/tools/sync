@@ -2,6 +2,6 @@
 
 for dir in "boot"; do
     aws s3 sync --exclude .git \
-            $dir s3://depot.fn8.it/${dir}
+            $dir s3://depot.snark.net/${dir}
 done
 

@@ -3,25 +3,21 @@ export INSTID=$(ec2-metadata -i | cut -d\  -f2)
 export AZ=$(ec2-metadata -z | cut -d\  -f2)
 export REGION=${AZ%?}
 
+export DEPOT='depot.snark.net'
+export DEPOT_REG='us-west-2'
+
 tags() { aws ec2 describe-tags --region $REGION --output text \
                     --filters "Name=resource-id,Values=$INSTID" \
                               "Name=key,Values=$1" | cut -f5; }
 
 export ENV="$(tags Env)"
-if [ ! -z "$ENV" ]; then
-    # install per-env repo
-    aws s3 --region=us-west-2 cp s3://depot.fn8.it/repos/${ENV}/yum-plugin-s3-iam-1.0.2-1.noarch.rpm /var/tmp/yums3.rpm
-    aws s3 --region=us-west-2 cp s3://depot.fn8.it/repos/${ENV}/fn8-repo-${ENV}-1.0-1.noarch.rpm /var/tmp/repo.rpm
-else
-    # untagged infra like nat instances are prod
-    aws s3 --region=us-west-2 cp s3://depot.fn8.it/repos/prod/yum-plugin-s3-iam-1.0.2-1.noarch.rpm /var/tmp/yums3.rpm
-    aws s3 --region=us-west-2 cp s3://depot.fn8.it/repos/prod/fn8-repo-prod-1.0-1.noarch.rpm /var/tmp/repo.rpm
-fi
+[ -z "$ENV" ] || export ENV='prod' # treat untagged instances like prod
+
+aws s3 --region=${DEPOT_REG} cp s3://${DEPOT}/repos/${ENV}/yum-plugin-s3-iam-1.0.2-1.noarch.rpm /var/tmp/yums3.rpm
+aws s3 --region=${DEPOT_REG} cp s3://${DEPOT}/repos/${ENV}/snark-repo-${ENV}-1.0-1.noarch.rpm /var/tmp/repo.rpm
 (cd /var/tmp; yum install -y yums3.rpm repo.rpm)
 
 case "$(tags Type)" in
-        'nat') aws s3 --region=us-west-2 cp s3://depot.fn8.it/boot/nat - | sh -x;;
-    't1build') aws s3 --region=us-west-2 cp s3://depot.fn8.it/boot/t1build - | sh -x;;
-      't1dev') aws s3 --region=us-west-2 cp s3://depot.fn8.it/boot/t1dev - | sh -x;;
-            *) aws s3 --region=us-west-2 cp s3://depot.fn8.it/boot/generic - | sh -x;;
+        'nat') aws s3 --region=${DEPOT_REG} cp s3://${DEPOT}/boot/nat - | sh -x;;
+            *) aws s3 --region=${DEPOT_REG} cp s3://${DEPOT}/boot/generic - | sh -x;;
 esac
