@@ -39,6 +39,7 @@ class Region(boto.vpc.RegionInfo):
     def get_geoname(self):
         region_mapping = {
             'ap-northeast-1': 'Asia Pacific (Tokyo)',
+            'ap-northeast-2': 'Asia Pacific (Seoul)',
             'ap-southeast-1': 'Asia Pacific (Singapore)',
             'ap-southeast-2': 'Asia Pacific (Sydney)',
             'eu-central-1': 'EU (Frankfurt)',
