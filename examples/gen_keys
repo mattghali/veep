@@ -1,0 +1,44 @@
+#!/usr/bin/env python
+
+import os, random, string, sys
+from Crypto.PublicKey import RSA
+from veep import Config, VPC
+
+keydir = 'keys'
+keylen = 2048
+
+try:
+    os.stat(keydir)
+except OSError:
+    os.mkdir(keydir)
+
+random.seed()
+
+for region in VPC.get_regions():
+    for vpc in region.find_vpcs():
+        keyname = vpc.get_name()
+        keyfile = os.path.join(keydir, keyname)
+
+        try:
+            k = os.stat(keyfile)
+            sys.stderr.write('skipping %s: file exists\n' % keyfile)
+        except OSError:
+            k = False
+
+        if not k:
+            passphrase = str()
+            for x in range(4):
+                for i in random.sample(string.letters + string.digits, 16):
+                    passphrase += i
+    
+            key = RSA.generate(keylen)
+    
+            with open(keyfile, 'w') as content_file:
+                os.chmod(keyfile, 0600)
+                content_file.write(key.exportKey(format='PEM', passphrase=passphrase))
+                print "%s: %s" % (keyname, passphrase)
+    
+            pubkey = key.publickey()
+            with open("%s.pub" % keyfile, 'w') as content_file:
+                content_file.write(pubkey.exportKey('OpenSSH'))
+            region.ec2conn.import_key_pair(keyname, pubkey.exportKey('OpenSSH'))
