@@ -1,0 +1,56 @@
+#!/usr/bin/env python
+
+from veep import IAM, VPC
+
+import argparse, sys
+
+def parseArgs():
+    parser = argparse.ArgumentParser(description='Tool to create temp dev instances')
+    parser.add_argument('--region', default='us-west-2')
+    parser.add_argument('--env', choices=['dev', 'qa', 'prod'], default='dev')
+    parser.add_argument('--image-id', dest='image_id', help='ami id')
+    parser.add_argument('--root-type', choices=['ebs', 'instance-store'], default='ebs', dest='root_type', help='root volume type')
+    parser.add_argument('--min-count', type=int, dest='min_count', help='min number of instances to launch')
+    parser.add_argument('--max-count', type=int, dest='max_count', help='max number of instances to launch')
+    parser.add_argument('--key-name', dest='key_name', help='name of ssh key')
+    parser.add_argument('--user-data-file', type=argparse.FileType('r'), default=None, dest='user_data', help='file containing userdata')
+    parser.add_argument('--instance-type', dest='instance_type', default='t2.micro', help='name of ec2 instance type')
+    parser.add_argument('--monitoring-enabled', action='store_true', dest='monitoring_enabled', default=True, help='enable monitoring')
+    parser.add_argument('--monitoring-disabled', action='store_false', dest='monitoring_enabled', help='disable monitoring')
+    parser.add_argument('--subnet-id', dest='subnet_id', help='specific subnet id')
+    parser.add_argument('--tier', help='name of vpc tier')
+    parser.add_argument('--security-group-name', dest='security_group_names', action='append')
+    parser.add_argument('--security-group-id', dest='security-group-ids', action='append')
+    parser.add_argument('--instance-profile-name', dest='instance_profile_name')
+    parser.add_argument('--instance-profile-arn', dest='instance_profile_arn')
+    parser.add_argument('--ebs-optimized', action='store_true', default=False, dest='ebs_optimized')
+    parser.add_argument('--type-tag', dest='type_tag', help='value for Type tag')
+    parser.add_argument('--dry-run', action='store_true', dest='dry_run', default=False, help='dry test run')
+    return parser.parse_args()
+
+
+
+if __name__ == '__main__':
+    args = parseArgs()
+
+    reg = args.__dict__.pop('region')
+    region = VPC.connect_to_region(reg)
+
+    env = args.__dict__.pop('env')
+    vpc = region.find_vpcs(env=env)[0]
+
+    if args.tier:
+        tiername = args.tier
+        args.tier = vpc.get_tiers(name=tiername)
+
+    if args.type_tag:
+        type = args.__dict__.pop('type_tag')
+        args.tags = {'Type': type}
+
+    kwargs = dict()
+    for (k, v) in args._get_kwargs():
+        if v:
+            kwargs[k] = v
+
+    vpc.run_instances(**kwargs)
+

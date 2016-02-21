@@ -20,8 +20,15 @@ for (env_name, var_name, default) in vars:
 
 # you're going to want to override these in your ~/.veep.cfg
 home_region = 'us-west-2'
-depot = 'depot.snark.net'
-ct_bucket = 'cloudtrail.snark.net'
+depot = 'depot.foo.com'
+ct_bucket = 'cloudtrail.foo.com'
+
+# Read in values from your dotfile
+parser = SafeConfigParser()
+if parser.read(cfg_path):
+    for (name, value) in parser.items(cfg_section):
+        setattr(self, name, value)
+
 
 # Other handy things to define
 blacklists = {
@@ -32,12 +39,5 @@ blacklists = {
 userdata = ''.join([ '#!/usr/bin/env bash\n\n',
                      'yum -y install aws-cli ec2-utils\n',
                      'aws s3 --region=' + home_region + ' cp s3://' + depot + '/boot/base - | sh -x\n'])
-
-
-# Read in values from your dotfile
-parser = SafeConfigParser()
-if parser.read(cfg_path):
-    for (name, value) in parser.items(cfg_section):
-        setattr(self, name, value)
 
 
